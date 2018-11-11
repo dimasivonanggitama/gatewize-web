@@ -17,6 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin/dashboard', 'DashboardController@index')->name('admin/dashboard');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'DashboardController@index');
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('accounts', 'DashboardController@index')->name('accounts');
+    Route::get('reports', 'DashboardController@index')->name('reports');
+    Route::get('documentation', 'DashboardController@index')->name('documentation');
+    Route::get('billing', 'DashboardController@index')->name('billing');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');

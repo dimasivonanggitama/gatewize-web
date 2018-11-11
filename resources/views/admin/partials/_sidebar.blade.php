@@ -17,31 +17,31 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin/dashboard') }}">
+            <a class="nav-link" href="{{ route('dashboard') }}">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin/accounts') }}">
+            <a class="nav-link" href="{{ route('accounts') }}">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Accounts</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin/reports') }}">
+            <a class="nav-link" href="{{ route('reports') }}">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Reports</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin/documentation') }}">
+            <a class="nav-link" href="{{ route('documentation') }}">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Documentation</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin/billing') }}">
+            <a class="nav-link" href="{{ route('billing') }}">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Billing</span>
             </a>
