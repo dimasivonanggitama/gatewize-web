@@ -23,6 +23,8 @@ class DepositTableSeeder extends Seeder
                 'balance' => 20000,
                 'sender_name' => "Ganteng",
                 'status' => 'ACCEPTED',
+                'unique_code' => 100 + rand(1,100),
+                'expired_date' => date('Y-m-d h:i:s')
             ]);
         }
     }

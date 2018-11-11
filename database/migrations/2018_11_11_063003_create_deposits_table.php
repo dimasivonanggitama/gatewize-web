@@ -20,7 +20,9 @@ class CreateDepositsTable extends Migration
             $table->double('amount', 8, 2);
             $table->double('balance', 8, 2);
             $table->string('sender_name');
+            $table->integer('unique_code');
             $table->enum('status', ['WAITING', 'ACCEPTED', 'FAILED', 'CANCELED', 'EXPIRED']);
+            $table->timestamp('expired_date')->nullable();
             $table->timestamps();
         });
     }
