@@ -14,15 +14,36 @@
                   </div>
                 </div>
               </div>
-              <button class="btn btn-success btn-block">New Project
-                <i class="mdi mdi-plus"></i>
-              </button>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin') }}">
+            <a class="nav-link" href="{{ route('admin/dashboard') }}">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin/accounts') }}">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">Accounts</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin/reports') }}">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin/documentation') }}">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">Documentation</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin/billing') }}">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">Billing</span>
             </a>
           </li>
         </ul>
