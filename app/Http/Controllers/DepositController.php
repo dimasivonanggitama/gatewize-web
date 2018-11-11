@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Deposit as Deposit;
 use App\PaymentMethod as PaymentMethod;
+use Carbon\Carbon;
 
 class DepositController extends Controller
 {
@@ -40,13 +41,18 @@ class DepositController extends Controller
             'amount' => 'required|integer|min:50000'
         ]);
 
+        $now = Carbon::now();
+        $expired_date = $now->addHours(6);
+
         $data = [
             'user_id' => Auth::user()->id,
             'payment_method_id' => $request->payment,
             'amount' => $request->amount,
             'balance' => 0,
             'sender_name' => $request->sender,
-            'status' => 'WAITING'
+            'status' => 'WAITING',
+            'unique_code' => rand(0, 999),
+            'expired_date' => $expired_date
         ];
 
 
