@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Deposit as Deposit;
 
 class DashboardController extends Controller
 {
@@ -18,6 +20,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.app');
+        $deposit = Deposit::where(['user_id' => Auth::user()->id])->first();
+        return view('admin.pages.dashboard', compact('deposit'));
     }
 }

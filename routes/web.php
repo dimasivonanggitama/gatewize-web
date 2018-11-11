@@ -24,6 +24,9 @@ Route::prefix('admin')->group(function () {
     Route::get('reports', 'DashboardController@index')->name('reports');
     Route::get('documentation', 'DashboardController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
+    Route::get('deposit/add', 'DepositController@add')->name('deposit-add');
+    Route::post('deposit/store', 'DepositController@store')->name('deposit-store');
+    Route::get('deposit/invoice/{id}', 'DepositController@invoice')->name('deposit-invoice');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
