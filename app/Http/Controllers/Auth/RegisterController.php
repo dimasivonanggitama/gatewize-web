@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Deposit;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -65,7 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'username' => $data['username'],
             'fullname' => $data['fullname'],
             'email' => $data['email'],
@@ -73,5 +75,24 @@ class RegisterController extends Controller
             'telegram' => $data['telegram'],
             'address' => $data['address']
         ]);
+
+        $now = Carbon::now();
+        $expired_date = $now->addHours(6);
+
+        $data = [
+            'user_id' => $user->id,
+            'payment_method_id' => "1",
+            'amount' => 10000,
+            'balance' => 10000,
+            'sender_name' => $user->fullname,
+            'status' => 'ACCEPTED',
+            'unique_code' => rand(0, 999),
+            'expired_date' => $expired_date
+        ];
+
+
+        $deposit = Deposit::create($data);
+
+        return $user;
     }
 }
