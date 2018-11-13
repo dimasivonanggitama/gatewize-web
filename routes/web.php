@@ -20,7 +20,7 @@ Auth::routes();
 Route::prefix('admin')->group(function () {
     Route::get('/', 'DashboardController@index');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-    Route::get('accounts', 'DashboardController@index')->name('accounts');
+    Route::get('accounts', 'AccountController@index')->name('accounts');
     Route::get('reports', 'ReportController@index')->name('reports');
     Route::get('documentation', 'DocumentationController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
