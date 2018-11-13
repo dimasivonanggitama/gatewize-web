@@ -21,6 +21,7 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{!! asset('theme/StarAdmin/css/style.css') !!}">
+  <link rel="stylesheet" href="{!! asset('theme/StarAdmin/css/demo-1.css') !!}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{!! asset('theme/StarAdmin/images/favicon.png') !!}" />
 </head>
@@ -56,6 +57,7 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{!! asset('theme/StarAdmin/js/dashboard.js') !!}"></script>
+  <script src="{!! asset('theme/StarAdmin/js/tabs.js') !!}"></script>
   <!-- End custom js for this page-->
 </body>
 
