@@ -22,7 +22,7 @@ Route::prefix('admin')->group(function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('accounts', 'DashboardController@index')->name('accounts');
     Route::get('reports', 'DashboardController@index')->name('reports');
-    Route::get('documentation', 'DashboardController@index')->name('documentation');
+    Route::get('documentation', 'DocumentationController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
     Route::get('deposit/add', 'DepositController@add')->name('deposit-add');
     Route::post('deposit/store', 'DepositController@store')->name('deposit-store');
