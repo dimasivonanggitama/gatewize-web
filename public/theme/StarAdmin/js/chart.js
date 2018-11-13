@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   /* ChartJS
    * -------
    * Data and config for chartjs
@@ -64,6 +64,17 @@ $(function() {
       yAxes: [{
         ticks: {
           beginAtZero: true
+        },
+        gridLines: {
+          display: false
+        }
+      }],
+      xAxes: [{
+        ticks: {
+          beginAtZero: true
+        },
+        gridLines: {
+          display: false
         }
       }]
     },
