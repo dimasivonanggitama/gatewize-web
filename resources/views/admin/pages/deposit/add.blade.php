@@ -50,7 +50,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Informasi</h4>
                     <p>
-                        <ol class="text-muted">
+                        <ol>
                             <li>Pilih metode pembayaran yang anda inginkan</li>
                             <li>Pada kotak pengirim masukan Informasi Pengirim (Nama / Nomor)</li>
                             <li>Kemudian masukan jumlah deposit yang anda inginkan, lalu submit</li>
