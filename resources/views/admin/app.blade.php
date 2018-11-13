@@ -58,6 +58,7 @@
   <!-- Custom js for this page-->
   <script src="{!! asset('theme/StarAdmin/js/dashboard.js') !!}"></script>
   <script src="{!! asset('theme/StarAdmin/js/tabs.js') !!}"></script>
+  <script src="{!! asset('theme/StarAdmin/js/data-table.js') !!}"></script>
   <!-- End custom js for this page-->
 </body>
 
