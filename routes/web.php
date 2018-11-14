@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function () {
         Route::post('store', 'DepositController@store')->name('deposit-store');
         Route::get('invoice/{id}', 'DepositController@invoice')->name('deposit-invoice');
         Route::get('cancel/{id}', 'DepositController@cancel')->name('deposit-cancel');
+        Route::get('print/{id}', 'DepositController@print')->name('deposit-print');
     });
 });
 

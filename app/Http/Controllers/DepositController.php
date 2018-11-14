@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Deposit as Deposit;
 use App\PaymentMethod as PaymentMethod;
 use Carbon\Carbon;
+use PDF;
 
 class DepositController extends Controller
 {
@@ -68,6 +69,14 @@ class DepositController extends Controller
     }
 
     public function cancel($id){
-        
+
+    }
+
+    public function print($id){
+        $deposit = Deposit::findOrFail($id);
+
+        $this->data['newDeposit'] = $deposit;
+        $pdf = PDF::loadView('admin.pages.deposit.invoice-print', $this->data);
+        return $pdf->download('invoice.pdf');
     }
 }

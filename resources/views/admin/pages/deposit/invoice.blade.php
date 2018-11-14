@@ -82,7 +82,7 @@
                       <h4 class="text-right mb-5">Total : Rp. {{ number_format($newDeposit->amount + $newDeposit->unique_code) }}</h4>
                       <hr> </div>
             <div class="container-fluid w-100">
-                <a href="#" class="btn btn-primary float-right mt-4 ml-2">
+                <a href="{{ route('deposit-print', $newDeposit->id) }}" target="_blank" class="btn btn-primary float-right mt-4 ml-2">
                 <i class="mdi mdi-printer mr-1"></i>Print</a>
                 @if ($newDeposit->status == 'WAITING')
                     <a href="{{ route('deposit-cancel', $newDeposit->id) }}" class="btn btn-success float-right mt-4">
@@ -92,6 +92,5 @@
             </div>
         </div>
         </div>
-    </div>
     </div>
 @endsection
