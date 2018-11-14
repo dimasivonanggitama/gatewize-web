@@ -62,6 +62,12 @@ class DepositController extends Controller
 
     public function invoice($id){
         $deposit = Deposit::findOrFail($id);
-        dd($deposit);
+
+        $this->data['newDeposit'] = $deposit;
+        return view('admin.pages.deposit.invoice')->with($this->data);
+    }
+
+    public function cancel($id){
+        
     }
 }

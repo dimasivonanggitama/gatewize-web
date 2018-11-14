@@ -24,9 +24,13 @@ Route::prefix('admin')->group(function () {
     Route::get('reports', 'ReportController@index')->name('reports');
     Route::get('documentation', 'DocumentationController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
-    Route::get('deposit/add', 'DepositController@add')->name('deposit-add');
-    Route::post('deposit/store', 'DepositController@store')->name('deposit-store');
-    Route::get('deposit/invoice/{id}', 'DepositController@invoice')->name('deposit-invoice');
+    
+    Route::prefix('deposit')->group(function(){
+        Route::get('add', 'DepositController@add')->name('deposit-add');
+        Route::post('store', 'DepositController@store')->name('deposit-store');
+        Route::get('invoice/{id}', 'DepositController@invoice')->name('deposit-invoice');
+        Route::get('cancel/{id}', 'DepositController@cancel')->name('deposit-cancel');
+    });
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
