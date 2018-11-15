@@ -9,7 +9,7 @@
             {{-- <p class="page-description">Add class </p> --}}
             <div class="row">
                 <div class="table-sorter-wrapper col-lg-12 table-responsive">
-                <table id="sortable-table-1" class="table table-striped">
+                <table id="deposit_table" class="table table-striped">
                     <thead>
                     <tr>
                         <th class="sortStyle">ID</th>
@@ -62,10 +62,28 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div style="float:right;">
+                    {{ $depositData->links() }}
+                </div>
                 </div>
             </div>
             </div>
         </div>
         </div>
     </div>
+    <script src="../../../assets/js/shared/jq.tablesort.js"></script>
+@endsection
+
+@section('custom_js')
+    <script src="{!! asset('theme/StarAdmin/js/jq.tablesort.js') !!}"></script>
+    <script>
+        (function($) {
+            'use strict';
+            $(function() {
+                if ($('#deposit_table').length) {
+                    $('#deposit_table').tablesort();
+                }
+            });
+        })(jQuery);
+    </script>
 @endsection
