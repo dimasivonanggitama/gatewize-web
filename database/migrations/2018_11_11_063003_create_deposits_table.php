@@ -17,10 +17,11 @@ class CreateDepositsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('payment_method_id');
-            $table->double('amount', 8, 2);
-            $table->double('balance', 8, 2);
             $table->string('sender_name');
+            $table->double('amount', 8, 2);
             $table->integer('unique_code');
+            $table->double('total', 8, 2);
+            $table->double('balance', 8, 2);
             $table->enum('status', ['WAITING', 'ACCEPTED', 'FAILED', 'CANCELED', 'EXPIRED']);
             $table->timestamp('expired_date')->nullable();
             $table->timestamps();
