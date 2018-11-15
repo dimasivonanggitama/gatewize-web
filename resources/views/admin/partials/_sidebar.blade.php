@@ -26,6 +26,23 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#deposit" aria-expanded="false" aria-controls="deposit">
+        <i class="menu-icon mdi mdi-currency-usd"></i>
+        <span class="menu-title">Deposit</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="deposit">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('deposit-add') }}">Tambah Deposit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('deposit') }}">Riwayat Deposit</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="{{ route('accounts') }}">
         <i class="menu-icon mdi mdi-account-location"></i>
         <span class="menu-title">Accounts</span>

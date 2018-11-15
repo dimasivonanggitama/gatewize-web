@@ -26,7 +26,8 @@ class DepositController extends Controller
     
     public function index()
     {
-        
+        $this->data['depositData'] = Deposit::where(['user_id' => Auth::user()->id])->paginate(10);
+        return view('admin.pages.deposit.riwayat')->with($this->data);
     }
 
     public function add(){

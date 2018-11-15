@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
     Route::get('billing', 'DashboardController@index')->name('billing');
     
     Route::prefix('deposit')->group(function(){
+        Route::get('/', 'DepositController@index')->name('deposit');
         Route::get('add', 'DepositController@add')->name('deposit-add');
         Route::post('store', 'DepositController@store')->name('deposit-store');
         Route::get('invoice/{id}', 'DepositController@invoice')->name('deposit-invoice');
