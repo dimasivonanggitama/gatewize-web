@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
             'fullname' => "Administrator",
             'username' => "admin",
             'address' => "Surabaya",
+            'balance' => 10000,
             'password' => bcrypt('123456'),
             'type' => 'admin'
         ]);
@@ -29,6 +30,7 @@ class UsersTableSeeder extends Seeder
                 'fullname' => $faker->firstNameMale . ' ' . $faker->lastName,
                 'username' => $email,
                 'address' => $faker->address,
+                'balance' => 10000,
                 'password' => Hash::make('secret'),
                 'type' => 'user'
             ]);

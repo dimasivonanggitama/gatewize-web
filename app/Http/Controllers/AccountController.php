@@ -17,7 +17,7 @@ class AccountController extends Controller
     
     public function index()
     {
-        $deposit = Deposit::where(['user_id' => Auth::user()->id])->first();
+        // $this->data['balance'] = Auth::user()->balance;
         return view('admin.pages.account.index', compact('deposit'));
     }
 }

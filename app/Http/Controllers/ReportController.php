@@ -17,7 +17,6 @@ class ReportController extends Controller
     
     public function index()
     {
-        $deposit = Deposit::where(['user_id' => Auth::user()->id])->first();
         return view('admin.pages.report.index', compact('deposit'));
     }
 }

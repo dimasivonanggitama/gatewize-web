@@ -12,7 +12,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right">Deposit</p>
                             <div class="fluid-container">
-                                <h3 class="font-weight-medium text-right mb-0">Rp. {{ number_format($deposit->balance) }}</h3>
+                                <h3 class="font-weight-medium text-right mb-0">Rp. {{ number_format(Auth::user()->balance) }}</h3>
                             </div>
                         </div>
                     </div>

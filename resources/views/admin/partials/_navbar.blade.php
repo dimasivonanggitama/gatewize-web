@@ -16,7 +16,7 @@
           </li> --}}
         </ul>
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item">Balance : {{ $deposit->balance }}</li>
+          <li class="nav-item">Balance : Rp. {{ number_format(Auth::user()->balance) }}</li>
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello, {{ Auth::user()->fullname }} !</span>

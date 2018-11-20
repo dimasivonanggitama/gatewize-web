@@ -17,11 +17,11 @@ class DepositController extends Controller
     {
         $this->middleware('auth', ['except' => ['getCallback']]);
 
-        $this->middleware(function ($request, $next) {
-            $this->data['deposit'] = Deposit::where(['user_id' => Auth::user()->id])->first();
+        // $this->middleware(function ($request, $next) {
+        //     $this->data['balance'] = Auth::user()->balance;
 
-            return $next($request);
-        }, ['except' => ['getCallback']]);
+        //     return $next($request);
+        // }, ['except' => ['getCallback']]);
     }
     
     public function index()
@@ -58,6 +58,8 @@ class DepositController extends Controller
             'expired_date' => $expired_date
         ];
 
+        // dd($data);
+
 
         $deposit = Deposit::create($data);
         return redirect()->route('deposit-invoice', ['id' => $deposit->id]);
@@ -92,7 +94,7 @@ class DepositController extends Controller
                 # Waktu transaksi dalam format unix timestamp
                 $time = $data['unix_timestamp'];
                 $date = date('Y-m-d h:i:s', $time);
-                echo "<br><h1>$date</h1>";
+                // echo "<br><h1>$date</h1>";
 
                 # Tipe transaksi : credit / debit
                 $type = $data['type'];
@@ -112,8 +114,11 @@ class DepositController extends Controller
                     $deposit = Deposit::where(['total' => $amount])->orderBy('id', 'desc')->firstOrFail();
                     if($deposit != null){
                         $deposit->status = 'ACCEPTED';
-                        $deposit->balance = $deposit->balance + $deposit->amount;
+                        $deposit->balance = $amount;
+                        $user = $deposit->users;
+                        $user->balance = $user->balance + $amount;
                         $deposit->save();
+                        $user->save();
                     }
                 }
             }
