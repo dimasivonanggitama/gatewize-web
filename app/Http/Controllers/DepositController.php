@@ -135,7 +135,55 @@ class DepositController extends Controller
         }
     }
 
-    public function confirmation(Request $request){
+    public function confirmation(Request $request, $id){
+        $deposit = Deposit::findOrFail($id);
+        $yesterday = Carbon::yesterday();
+        $now = Carbon::now();
+        $data = array(
+            "search"  => array(
+                "date"    => array(
+                    "from"    => $yesterday,
+                    "to"      => $now
+                ),
+                "service_code"    => \strtolower($deposit->payment_methods->account_vendor),
+                "amount"          => $deposit->total
+            )
+        );
 
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL             => "https://api.cekmutasi.co.id/v1/bank/search",
+            CURLOPT_POST            => true,
+            CURLOPT_POSTFIELDS      => http_build_query($data),
+            CURLOPT_HTTPHEADER      => ["API-KEY: (APIKEY-ANDA)"],
+            CURLOPT_SSL_VERIFYHOST  => 0,
+            CURLOPT_SSL_VERIFYPEER  => 0,
+            CURLOPT_RETURNTRANSFER  => true,
+            CURLOPT_HEADER          => false
+        ));
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $result = json_decode($result);
+        if($result->success){
+            $deposit->status = "ACCEPTED";
+            $user = $deposit->users;
+            $user->balance = $user->balance + $deposit->total;
+            DB::transaction(function(){
+                $depositStat = $deposit->save();
+                $userStat = $user->save();
+
+                if((!$depositStat) || (!$userStat)){
+                    //berhasil
+                    echo "berhasil";
+                } else {
+                    //gagal
+                    echo "berhasil";
+                }
+            });
+        } else{
+            echo "gagal";
+            //gagal
+        }
     }
 }
