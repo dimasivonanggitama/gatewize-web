@@ -85,7 +85,9 @@
                 <a href="{{ route('deposit-print', $newDeposit->id) }}" target="_blank" class="btn btn-primary float-right mt-4 ml-2">
                 <i class="mdi mdi-printer mr-1"></i>Print</a>
                 @if ($newDeposit->status == 'WAITING')
-                    <a href="{{ route('deposit-cancel', $newDeposit->id) }}" class="btn btn-success float-right mt-4">
+                    <a href="{{ route('deposit-confirmation', $newDeposit->id) }}" class="btn btn-success float-right mt-4 ml-2">
+                    <i class="mdi mdi-telegram mr-1"></i>Konfirmasi</a>
+                    <a href="{{ route('deposit-cancel', $newDeposit->id) }}" class="btn btn-secondary float-right mt-4">
                     <i class="mdi mdi-telegram mr-1"></i>Batalkan</a>
                 @endif
             </div>

@@ -58,9 +58,6 @@ class DepositController extends Controller
             'expired_date' => $expired_date
         ];
 
-        // dd($data);
-
-
         $deposit = Deposit::create($data);
         return redirect()->route('deposit-invoice', ['id' => $deposit->id]);
     }
@@ -73,7 +70,10 @@ class DepositController extends Controller
     }
 
     public function cancel($id){
-
+        $deposit = Deposit::findOrFail($id);
+        $deposit->status = "CANCELED";
+        $status = $deposit->save();
+        return redirect()->route('deposit-invoice', ['id' => $id]);
     }
 
     public function print($id){
@@ -86,7 +86,7 @@ class DepositController extends Controller
 
     public function getCallback(Request $request){
         $result = $request->all();
-        print_r($result);
+        // print_r($result);
         if( $result['action'] == "payment_report" )
         {
             foreach( $result['content']['data'] as $data )
@@ -113,15 +113,29 @@ class DepositController extends Controller
                 {
                     $deposit = Deposit::where(['total' => $amount])->orderBy('id', 'desc')->firstOrFail();
                     if($deposit != null){
-                        $deposit->status = 'ACCEPTED';
-                        $deposit->balance = $amount;
-                        $user = $deposit->users;
-                        $user->balance = $user->balance + $amount;
-                        $deposit->save();
-                        $user->save();
+                        DB::transaction(function()
+                        {
+                            $deposit->status = 'ACCEPTED';
+                            $deposit->balance = $amount;
+                            $user = $deposit->users;
+                            $user->balance = $user->balance + $amount;
+                            
+                            $depositStatus = $deposit->save();
+                            $userStatus = $user->save();
+
+                            if(!$depositStatus || !$userStatus){
+                                return response()->json(['status' => false, 'msg' => 'Gagal mengubah deposit']);
+                            } else {
+                                return response()->json(['status' => false, 'msg' => 'Berhasil mengubah deposit']);
+                            }
+                        });
                     }
                 }
             }
         }
+    }
+
+    public function confirmation(Request $request){
+
     }
 }
