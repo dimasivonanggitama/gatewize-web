@@ -72,26 +72,28 @@ class RegisterController extends Controller
             'fullname' => $data['fullname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'balance' => 10000,
             'telegram' => $data['telegram'],
             'address' => $data['address']
         ]);
 
-        $now = Carbon::now();
-        $expired_date = $now->addHours(6);
+        // $now = Carbon::now();
+        // $expired_date = $now->addHours(6);
 
-        $data = [
-            'user_id' => $user->id,
-            'payment_method_id' => "1",
-            'amount' => 10000,
-            'balance' => 10000,
-            'sender_name' => $user->fullname,
-            'status' => 'ACCEPTED',
-            'unique_code' => rand(0, 999),
-            'expired_date' => $expired_date
-        ];
+        // $data = [
+        //     'user_id' => $user->id,
+        //     'payment_method_id' => "1",
+        //     'amount' => 10000,
+        //     'balance' => 10000,
+        //     'sender_name' => $user->fullname,
+        //     'status' => 'ACCEPTED',
+        //     'unique_code' => 0,
+        //     'total' => 10000,
+        //     'expired_date' => $expired_date
+        // ];
 
 
-        $deposit = Deposit::create($data);
+        // $deposit = Deposit::create($data);
 
         return $user;
     }
