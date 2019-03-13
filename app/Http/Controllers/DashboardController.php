@@ -21,6 +21,6 @@ class DashboardController extends Controller
     public function index()
     {
         // $this->data['balance'] = Auth::user()->balance;
-        return view('admin.pages.dashboard', compact('deposit'));
+        return view('admin.pages.dashboard');
     }
 }
