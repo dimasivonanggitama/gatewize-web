@@ -18,6 +18,6 @@ class AccountController extends Controller
     public function index()
     {
         // $this->data['balance'] = Auth::user()->balance;
-        return view('admin.pages.account.index', compact('deposit'));
+        return view('admin.pages.account.index');
     }
 }

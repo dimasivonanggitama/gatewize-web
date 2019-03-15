@@ -17,6 +17,6 @@ class ReportController extends Controller
     
     public function index()
     {
-        return view('admin.pages.report.index', compact('deposit'));
+        return view('admin.pages.report.index');
     }
 }

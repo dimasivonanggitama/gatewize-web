@@ -17,6 +17,6 @@ class DocumentationController extends Controller
     
     public function index()
     {
-        return view('admin.pages.documentation.index', compact('deposit'));
+        return view('admin.pages.documentation.index');
     }
 }
