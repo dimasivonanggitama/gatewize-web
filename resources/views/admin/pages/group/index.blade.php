@@ -38,6 +38,11 @@
 				</ul>
 				<div class="tab-content tab-content-basic">
                     <div class="tab-pane fade active show" id="tab-digipos" role="tabpanel" aria-labelledby="tab-digipos">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a href="{{ route('groups.create') }}" class="btn btn-outline-primary">Add New Group</a>
+                            </div>
+                        </div>
 						<div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -64,7 +69,9 @@
                                                 <td>Group Name 1</td>
                                                 <td>100</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             <tr role="row">
@@ -72,7 +79,9 @@
                                                 <td>Group Name 2</td>
                                                 <td>60</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -82,6 +91,11 @@
                         </div>
 					</div>
                     <div class="tab-pane fade" id="tab-tcash" role="tabpanel" aria-labelledby="tab-tcash">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a href="{{ route('groups.create') }}" class="btn btn-outline-primary">Add New Group</a>
+                            </div>
+                        </div>
 						<div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -102,13 +116,16 @@
                                                 </th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>          
                                             <tr role="row">
                                                 <td class="sorting_1">1</td>
                                                 <td>Group Name 1</td>
                                                 <td>100</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             <tr role="row">
@@ -116,7 +133,9 @@
                                                 <td>Group Name 2</td>
                                                 <td>60</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -126,6 +145,11 @@
                         </div>
 					</div>
                     <div class="tab-pane fade" id="tab-mytsel" role="tabpanel" aria-labelledby="tab-mytsel">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a href="{{ route('groups.create') }}" class="btn btn-outline-primary">Add New Group</a>
+                            </div>
+                        </div>
 						<div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -146,13 +170,16 @@
                                                 </th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>          
                                             <tr role="row">
                                                 <td class="sorting_1">1</td>
                                                 <td>Group Name 1</td>
                                                 <td>100</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             <tr role="row">
@@ -160,7 +187,9 @@
                                                 <td>Group Name 2</td>
                                                 <td>60</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -170,6 +199,11 @@
                         </div>
 					</div>
                     <div class="tab-pane fade" id="tab-gopay" role="tabpanel" aria-labelledby="tab-gopay">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a href="{{ route('groups.create') }}" class="btn btn-outline-primary">Add New Group</a>
+                            </div>
+                        </div>
 						<div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -190,13 +224,16 @@
                                                 </th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>          
                                             <tr role="row">
                                                 <td class="sorting_1">1</td>
                                                 <td>Group Name 1</td>
                                                 <td>100</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             <tr role="row">
@@ -204,7 +241,9 @@
                                                 <td>Group Name 2</td>
                                                 <td>60</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -214,6 +253,11 @@
                         </div>
 					</div>
                     <div class="tab-pane fade" id="tab-ovo" role="tabpanel" aria-labelledby="tab-ovo">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a href="{{ route('groups.create') }}" class="btn btn-outline-primary">Add New Group</a>
+                            </div>
+                        </div>
 						<div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -234,13 +278,16 @@
                                                 </th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>          
                                             <tr role="row">
                                                 <td class="sorting_1">1</td>
                                                 <td>Group Name 1</td>
                                                 <td>100</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             <tr role="row">
@@ -248,7 +295,9 @@
                                                 <td>Group Name 2</td>
                                                 <td>60</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -258,6 +307,11 @@
                         </div>
 					</div>
                     <div class="tab-pane fade" id="tab-tokopedia" role="tabpanel" aria-labelledby="tab-tokopedia">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a href="{{ route('groups.create') }}" class="btn btn-outline-primary">Add New Group</a>
+                            </div>
+                        </div>
 						<div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -278,13 +332,16 @@
                                                 </th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>          
                                             <tr role="row">
                                                 <td class="sorting_1">1</td>
                                                 <td>Group Name 1</td>
                                                 <td>100</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             <tr role="row">
@@ -292,7 +349,9 @@
                                                 <td>Group Name 2</td>
                                                 <td>60</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -302,6 +361,11 @@
                         </div>
 					</div>
                     <div class="tab-pane fade" id="tab-bukalapak" role="tabpanel" aria-labelledby="tab-bukalapak">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a href="{{ route('groups.create') }}" class="btn btn-outline-primary">Add New Group</a>
+                            </div>
+                        </div>
 						<div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -322,13 +386,16 @@
                                                 </th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>          
                                             <tr role="row">
                                                 <td class="sorting_1">1</td>
                                                 <td>Group Name 1</td>
                                                 <td>100</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             <tr role="row">
@@ -336,7 +403,9 @@
                                                 <td>Group Name 2</td>
                                                 <td>60</td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary">View</button>
+                                                    <a href="{{ route('groups.show', 1) }}" class="btn btn-outline-primary">View</a>
+                                                    <a href="{{ route('groups.edit', 1) }}" class="btn btn-outline-success">Edit</a>
+                                                    <a href="{{ route('groups.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
