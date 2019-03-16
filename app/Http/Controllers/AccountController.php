@@ -20,4 +20,19 @@ class AccountController extends Controller
         // $this->data['balance'] = Auth::user()->balance;
         return view('admin.pages.account.index');
     }
+
+    public function edit($id = 0)
+    {
+        return view('admin.pages.account.edit');
+    }
+
+    public function update($id = 0)
+    {
+        
+    }
+
+    public function destroy($id = 0)
+    {
+        
+    }
 }

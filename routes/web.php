@@ -19,11 +19,17 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     Route::get('/', 'DashboardController@index');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('groups', 'GroupController@index')->name('groups');
-    Route::get('accounts', 'AccountController@index')->name('accounts');
+    
     Route::get('reports', 'ReportController@index')->name('reports');
     Route::get('documentation', 'DocumentationController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
-    
+    Route::prefix('accounts')->group(function() {
+        Route::get('/', 'AccountController@index')->name('accounts');
+        Route::get('edit/{id}', 'AccountController@edit')->name('accounts.edit');
+        Route::get('update/{id}', 'AccountController@edit')->name('accounts.edit');
+        Route::get('delete/{id}', 'AccountController@destroy')->name('accounts.destroy');
+    });
+
     Route::prefix('deposit')->group(function(){
         Route::get('/', 'DepositController@index')->name('deposit');
         Route::get('add', 'DepositController@add')->name('deposit-add');

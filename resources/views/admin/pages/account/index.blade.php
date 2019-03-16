@@ -15,10 +15,10 @@
                                             No.
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 99.1167px;" aria-label="Purchased On: activate to sort column ascending">
-                                            Phone
+                                            Account Name
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 99.1167px;" aria-label="Purchased On: activate to sort column ascending">
-                                            Status
+                                            Phone
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 99.1167px;" aria-label="Purchased On: activate to sort column ascending">
                                             Balance
@@ -35,7 +35,8 @@
                                         <td>08123456789</td>
                                         <td>1000</td>
                                         <td>
-                                            <button class="btn btn-outline-primary">Update</button>
+                                            <a href="{{ route('accounts.edit', 1) }}" class="btn btn-outline-primary">Edit</a>
+                                            <a href="{{ route('accounts.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
                                         </td>
                                     </tr>
                                 </tbody>
