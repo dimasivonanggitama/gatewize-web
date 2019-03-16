@@ -4,7 +4,7 @@
       <div class="nav-link">
         <div class="user-wrapper">
           <div class="profile-image">
-            <img src="{{ asset('theme/staradmin/images/faces/face1.jpg') }}" alt="profile image">
+            <img src="{{ asset('theme/StarAdmin/images/faces/face1.jpg') }}" alt="profile image">
           </div>
           <div class="text-wrapper">
             <p class="profile-name">{{ Auth::user()->fullname }}</p>
@@ -41,6 +41,12 @@
           </li>
         </ul>
       </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('groups') }}">
+        <i class="menu-icon mdi mdi-account-location"></i>
+        <span class="menu-title">Groups</span>
+      </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ route('accounts') }}">

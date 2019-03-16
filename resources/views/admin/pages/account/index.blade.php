@@ -8,33 +8,33 @@
 			<div class="col-md-12">
 				<ul class="nav nav-tabs tab-simple-styled" role="tablist">
 					<li class="nav-item">
-                          <a class="nav-link active" id="tab-2-1" data-toggle="tab" href="#dashboard-2-1" role="tab" aria-controls="dashboard-2-1" aria-selected="true">
-                            <i class="mdi mdi-speedometer"></i>Digipos</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="tab-2-2" data-toggle="tab" href="#message-2-2" role="tab" aria-controls="message-2-2" aria-selected="false">
-                            <i class="mdi mdi-message-outline"></i>TCASH</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="tab-2-2" data-toggle="tab" href="#message-2-2" role="tab" aria-controls="message-2-2" aria-selected="false">
-                            <i class="mdi mdi-message-outline"></i>MY-TSEL</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="tab-2-3" data-toggle="tab" href="#campaigns-2-3" role="tab" aria-controls="campaigns-2-3" aria-selected="false">
-                            <i class="mdi mdi-bell-outline"></i>GO-PAY</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="tab-2-4" data-toggle="tab" href="#influencers-2-4" role="tab" aria-controls="influencers-2-4" aria-selected="false">
-                            <i class="mdi mdi-account-outline"></i>OVO</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="tab-2-5" data-toggle="tab" href="#payments-2-5" role="tab" aria-controls="payments-2-5" aria-selected="false">
-                            <i class="mdi mdi-lightbulb-outline"></i>Tokopedia</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="tab-2-6" data-toggle="tab" href="#analytics-2-6" role="tab" aria-controls="analytics-2-6" aria-selected="false">
-                            <i class="mdi mdi-airplay"></i>Bukalapak</a>
-                        </li>
+                        <a class="nav-link active" id="tab-2-1" data-toggle="tab" href="#dashboard-2-1" role="tab" aria-controls="dashboard-2-1" aria-selected="true">
+                        <i class="mdi mdi-speedometer"></i>Digipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-2-2" data-toggle="tab" href="#message-2-2" role="tab" aria-controls="message-2-2" aria-selected="false">
+                        <i class="mdi mdi-message-outline"></i>TCASH</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-2-2" data-toggle="tab" href="#message-2-2" role="tab" aria-controls="message-2-2" aria-selected="false">
+                        <i class="mdi mdi-message-outline"></i>MY-TSEL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-2-3" data-toggle="tab" href="#campaigns-2-3" role="tab" aria-controls="campaigns-2-3" aria-selected="false">
+                        <i class="mdi mdi-bell-outline"></i>GO-PAY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-2-4" data-toggle="tab" href="#influencers-2-4" role="tab" aria-controls="influencers-2-4" aria-selected="false">
+                        <i class="mdi mdi-account-outline"></i>OVO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-2-5" data-toggle="tab" href="#payments-2-5" role="tab" aria-controls="payments-2-5" aria-selected="false">
+                        <i class="mdi mdi-lightbulb-outline"></i>Tokopedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-2-6" data-toggle="tab" href="#analytics-2-6" role="tab" aria-controls="analytics-2-6" aria-selected="false">
+                        <i class="mdi mdi-airplay"></i>Bukalapak</a>
+                    </li>
 				</ul>
 				<div class="tab-content tab-content-basic">
 					<div class="tab-pane fade active show" id="home-3-1" role="tabpanel" aria-labelledby="tab-3-1">

@@ -18,6 +18,7 @@ Auth::routes(['verify' => true]);
 Route::prefix('admin')->middleware('verified')->group(function () {
     Route::get('/', 'DashboardController@index');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('groups', 'GroupController@index')->name('groups');
     Route::get('accounts', 'AccountController@index')->name('accounts');
     Route::get('reports', 'ReportController@index')->name('reports');
     Route::get('documentation', 'DocumentationController@index')->name('documentation');
