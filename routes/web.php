@@ -26,18 +26,18 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     Route::prefix('accounts')->group(function() {
         Route::get('/', 'AccountController@index')->name('accounts');
         Route::get('edit/{id}', 'AccountController@edit')->name('accounts.edit');
-        Route::get('update/{id}', 'AccountController@update')->name('accounts.update');
-        Route::get('delete/{id}', 'AccountController@destroy')->name('accounts.destroy');
+        Route::post('update/{id}', 'AccountController@update')->name('accounts.update');
+        Route::post('delete/{id}', 'AccountController@destroy')->name('accounts.destroy');
     });
 
     Route::prefix('groups')->group(function() {
         Route::get('/', 'GroupController@index')->name('groups');
         Route::get('create', 'GroupController@create')->name('groups.create');
-        Route::get('store', 'GroupController@store')->name('groups.store');
+        Route::post('store', 'GroupController@store')->name('groups.store');
         Route::get('show/{id}', 'GroupController@show')->name('groups.show');
         Route::get('edit/{id}', 'GroupController@edit')->name('groups.edit');
-        Route::get('update/{id}', 'GroupController@update')->name('groups.update');
-        Route::get('delete/{id}', 'GroupController@destroy')->name('groups.destroy');
+        Route::post('update/{id}', 'GroupController@update')->name('groups.update');
+        Route::post('delete/{id}', 'GroupController@destroy')->name('groups.destroy');
     });
 
     Route::prefix('deposit')->group(function(){
