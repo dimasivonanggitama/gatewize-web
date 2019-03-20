@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
 
 class GroupController extends Controller
 {
@@ -18,24 +20,36 @@ class GroupController extends Controller
     
     public function index($service = "")
     {
-        if($service == "gojek"){
-            $response = $this->_client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list");
-        } else {
-            $response = null;
-        }
-        
-        if($response != null && $response->getStatusCode() == 200){
-            $groups = json_decode($response->getBody());
-        } else {
-            $groups = array();
-        }
-        if(isset($groups->status)){
-            $groups = array();
-        }
-        $data = [
-            'groups' => $groups,
-            'service' => $service,
-        ];
+        try{
+            if($service == "gojek"){
+                $response = $this->_client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list");
+            } else {
+                $response = null;
+            }
+            
+            if($response != null && $response->getStatusCode() == 200){
+                $groups = json_decode($response->getBody());
+            } else {
+                $groups = [];
+            }
+            if(isset($groups->status)){
+                $groups = [];
+            }
+            $data = [
+                'groups' => $groups,
+                'service' => $service,
+            ];
+        } catch (ClientException $e) {
+            $data = [
+                'groups' => [],
+                'service' => $service,
+            ];
+            // echo Psr7\str($e->getRequest());
+            // echo Psr7\str($e->getResponse());
+        } 
+        // catch (RequestException $e) { 
+        //     return redirect()->route('groups', 'gojek');
+        // }
 
         return view('admin.pages.group.index')->with($data);
     }
@@ -108,6 +122,6 @@ class GroupController extends Controller
             flash($response->message)->error();
         }
 
-        return redirect()->route('groups', 'gojek');
+        return redirect()->route('groups', $service);
     }
 }
