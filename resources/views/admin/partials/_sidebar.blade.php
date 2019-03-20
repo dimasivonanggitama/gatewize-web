@@ -75,7 +75,7 @@
                   <a class="nav-link" href="{{ route('deposit') }}">Reports</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Products</a>
+                  <a class="nav-link" href="{{ route('product.gojek') }}">Products</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('deposit') }}">Documentation</a>

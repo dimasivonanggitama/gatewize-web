@@ -24,6 +24,15 @@
   <link rel="stylesheet" href="{!! asset('theme/StarAdmin/css/demo-1.css') !!}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{!! asset('theme/StarAdmin/images/favicon.png') !!}" />
+  <style type="text/css">
+    table {
+      counter-reset: tableCount;     
+    }
+    .counterCell:before {              
+      content: counter(tableCount); 
+      counter-increment: tableCount; 
+    }
+  </style>
 </head>
 
 <body>
@@ -59,6 +68,13 @@
   <script src="{!! asset('theme/StarAdmin/js/dashboard.js') !!}"></script>
   <script src="{!! asset('theme/StarAdmin/js/tabs.js') !!}"></script>
   <script src="{!! asset('theme/StarAdmin/js/data-table.js') !!}"></script>
+  <script>
+    $(".service-menu a").click(function(event){
+      event.stopPropagation();
+      event.preventDefault();
+      $(this).next("ul").toggleClass("service-collapse");
+    });
+  </script>
   @yield('custom_js')
   <!-- End custom js for this page-->
 </body>

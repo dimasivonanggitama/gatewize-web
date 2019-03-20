@@ -1,5 +1,6 @@
 <?php
 
+use App\Gopay;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,10 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     Route::get('reports', 'ReportController@index')->name('reports');
     Route::get('documentation', 'DocumentationController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
+
+    // Route::prefix('digipos')->group(function(){
+    //     Route::get('/', )
+    // });
 
     Route::prefix('accounts')->group(function() {
         Route::get('/', 'AccountController@index')->name('accounts');
@@ -48,6 +53,11 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::get('cancel/{id}', 'DepositController@cancel')->name('deposit-cancel');
         Route::get('confirmation/{id}', 'DepositController@confirmation')->name('deposit-confirmation');
         Route::get('print/{id}', 'DepositController@print')->name('deposit-print');
+    });
+
+    Route::prefix('product')->group(function(){
+        Route::get('gojek', 'ProductController@gojekPulsa')->name('product.gojek');
+        // Route::get('gojek', 'ProductController@gojek')->name('product.gojek');
     });
 });
 
