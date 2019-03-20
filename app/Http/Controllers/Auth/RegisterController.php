@@ -74,7 +74,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'balance' => 10000,
             'telegram' => $data['telegram'],
-            'address' => $data['address']
+            'address' => $data['address'],
+            'license_key' => md5($data['email'] . rand(0,1000))
         ]);
 
         // $now = Carbon::now();
