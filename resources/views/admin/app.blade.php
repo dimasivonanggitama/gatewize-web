@@ -60,6 +60,10 @@
   <script src="{!! asset('theme/StarAdmin/js/tabs.js') !!}"></script>
   <script src="{!! asset('theme/StarAdmin/js/data-table.js') !!}"></script>
   @yield('custom_js')
+
+  <script>
+      $('.dataTable').DataTable()
+  </script>
   <!-- End custom js for this page-->
 </body>
 

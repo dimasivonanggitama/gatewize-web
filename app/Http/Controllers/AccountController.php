@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Deposit as Deposit;
+use GuzzleHttp\Client;
 
 class AccountController extends Controller
 {
@@ -15,9 +15,11 @@ class AccountController extends Controller
         $this->middleware('auth');
     }
     
-    public function index()
+    public function index($services = "")
     {
-        // $this->data['balance'] = Auth::user()->balance;
+        $client = new Client();
+        $response = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/3/list");
+
         return view('admin.pages.account.index');
     }
 

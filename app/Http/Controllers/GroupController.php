@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 
 class GroupController extends Controller
 {
@@ -13,17 +14,37 @@ class GroupController extends Controller
         $this->middleware('auth');
     }
     
-    public function index()
+    public function index($service = "")
     {
-        return view('admin.pages.group.index');
+        $client = new Client();
+        if($service == "gojek"){
+            $response = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list");
+        } else {
+            $response = null;
+        }
+        
+        if($response != null && $response->getStatusCode() == 200){
+            $groups = json_decode($response->getBody());
+        } else {
+            $groups = array();
+        }
+        if(isset($groups->status)){
+            $groups = array();
+        }
+        $data = [
+            'groups' => $groups,
+            'service' => $service,
+        ];
+
+        return view('admin.pages.group.index')->with($data);
     }
 
-    public function show($id = 0)
+    public function show($service = "", $id = 0)
     {
         
     }
 
-    public function create()
+    public function create($service = "")
     {
         return view('admin.pages.group.add');
     }
@@ -33,17 +54,17 @@ class GroupController extends Controller
         
     }
 
-    public function edit($id = 0)
+    public function edit($service = "", $id = 0)
     {
         return view('admin.pages.group.edit');
     }
 
-    public function update(Request $request, $id = 0)
+    public function update(Request $request, $service = "", $id = 0)
     {
         
     }
 
-    public function destroy($id = 0)
+    public function destroy($service = "", $id = 0)
     {
         
     }
