@@ -71,9 +71,9 @@ class GroupController extends Controller
         }
 
         if($response->status){
-            flash('Berhasil menambahkan grup')->success();
+            flash($response->message)->success();
         } else {
-            flash('Gagal menambahkan grup')->error();
+            flash($response->message)->error();
         }
 
         return redirect()->route('groups', 'gojek');
@@ -89,8 +89,25 @@ class GroupController extends Controller
         
     }
 
-    public function destroy($service = "", $id = 0)
+    public function destroy(Request $request, $service = "")
     {
+        $this->validate($request, [
+            'id' => 'required|integer|min:0'
+        ]);
         
+        if($request->service == "gojek"){
+            $response = $this->_client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/$request->id/delete");
+            $response = json_decode($response->getBody());
+        } else {
+            $response = ['status' => false];
+        }
+
+        if($response->status){
+            flash($response->message)->success();
+        } else {
+            flash($response->message)->error();
+        }
+
+        return redirect()->route('groups', 'gojek');
     }
 }

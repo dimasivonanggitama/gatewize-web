@@ -40,8 +40,18 @@
                                         <td>{{ $group->limit_account }}</td>
                                         <td>
                                             <a href="{{ route('groups.show', ['service' => $service, 'id' => $group->id]) }}" class="btn btn-outline-primary">View</a>
-                                            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal" data-id="1">Edit</button>
-                                            <a href="{{ route('groups.destroy', ['service' => $service, 'id' => $group->id]) }}" class="btn btn-outline-danger">Delete</a>
+                                            @if($group->is_default != 1)
+                                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal" data-id="1">Edit</button>
+
+                                                <form class="form-inline" method="POST" action="{{ route('groups.destroy', ['service' => $service]) }}" style="margin:none;display:inline;">
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
+                                                    <input type="hidden" name="id" value="{{ $group->id }}">
+                                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                                </form>
+                                            @endif
+                                            <a href="#" class="btn btn-primary">Refresh</a>
+                                            <a href="#" class="btn btn-success">Redeem Promo</a>
                                         </td>
                                     </tr>
                                     @endforeach
