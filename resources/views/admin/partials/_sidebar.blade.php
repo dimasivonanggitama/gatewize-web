@@ -238,10 +238,10 @@
       <div class="collapse" id="product">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('product_pulsa') }}">Pulsa</a>
+            <a class="nav-link" href="{{ route('deposit') }}">Pulsa</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('product_token') }}">Token</a>
+            <a class="nav-link" href="{{ route('deposit') }}">Token</a>
           </li>
         </ul>
       </div>
