@@ -9,16 +9,17 @@ use GuzzleHttp\Client;
 
 class GroupController extends Controller
 {
+    private $_client;
     public function __construct()
     {
         $this->middleware('auth');
+        $this->_client = new Client();
     }
     
     public function index($service = "")
     {
-        $client = new Client();
         if($service == "gojek"){
-            $response = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list");
+            $response = $this->_client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list");
         } else {
             $response = null;
         }
@@ -51,7 +52,31 @@ class GroupController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|string|max:191',
+            'limit' => 'required|integer|min:0'
+        ]);
         
+        if($request->service == "gojek"){
+            $response = $this->_client->post("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/add", 
+                [
+                    'form_params' => [ 
+                        'name' => $request->name,
+                        'limit' => $request->limit
+                    ]
+                ]);
+            $response = json_decode($response->getBody());
+        } else {
+            $response = ['status' => false];
+        }
+
+        if($response->status){
+            flash('Berhasil menambahkan grup')->success();
+        } else {
+            flash('Gagal menambahkan grup')->error();
+        }
+
+        return redirect()->route('groups', 'gojek');
     }
 
     public function edit($service = "", $id = 0)

@@ -46,6 +46,7 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+          @include('flash::message')
           @yield('content')
         </div>
       </div>
