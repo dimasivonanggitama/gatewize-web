@@ -29,20 +29,20 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     // });
 
     Route::prefix('accounts')->group(function() {
-        Route::get('/', 'AccountController@index')->name('accounts');
+        Route::get('/{service}', 'AccountController@index')->name('accounts');
         Route::get('edit/{id}', 'AccountController@edit')->name('accounts.edit');
         Route::post('update/{id}', 'AccountController@update')->name('accounts.update');
         Route::post('delete/{id}', 'AccountController@destroy')->name('accounts.destroy');
     });
 
     Route::prefix('groups')->group(function() {
-        Route::get('/', 'GroupController@index')->name('groups');
+        Route::get('/{service}', 'GroupController@index')->name('groups');
         Route::get('create', 'GroupController@create')->name('groups.create');
         Route::post('store', 'GroupController@store')->name('groups.store');
-        Route::get('show/{id}', 'GroupController@show')->name('groups.show');
-        Route::get('edit/{id}', 'GroupController@edit')->name('groups.edit');
-        Route::post('update/{id}', 'GroupController@update')->name('groups.update');
-        Route::post('delete/{id}', 'GroupController@destroy')->name('groups.destroy');
+        Route::get('show/{service}/{id}', 'GroupController@show')->name('groups.show');
+        Route::get('edit/{service}/{id}', 'GroupController@edit')->name('groups.edit');
+        Route::post('update/{service}/{id}', 'GroupController@update')->name('groups.update');
+        Route::post('delete/{service}/{id}', 'GroupController@destroy')->name('groups.destroy');
     });
 
     Route::prefix('deposit')->group(function(){

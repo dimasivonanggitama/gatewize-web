@@ -34,17 +34,17 @@
       <div class="collapse1" id="service">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#digipos" aria-expanded="false" aria-controls="service">
+            <a class="nav-link" data-toggle="collapse" href="#digipos" aria-expanded="false" aria-controls="digipos">
               <span class="menu-title">Digipos</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="digipos">
               <ul class="nav flex-column sub-menu" style="padding: 0 0 0 1rem;">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit-add') }}">Groups</a>
+                  <a class="nav-link" href="{{ route('groups', 'digipos') }}">Groups</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Accounts</a>
+                  <a class="nav-link" href="{{ route('accounts', 'digipos') }}">Accounts</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('deposit') }}">Reports</a>
@@ -66,7 +66,7 @@
             <div class="collapse" id="gojek">
               <ul class="nav flex-column sub-menu" style="padding: 0 0 0 1rem;">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit-add') }}">Groups</a>
+                  <a class="nav-link" href="{{ route('groups', 'gojek') }}">Groups</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('deposit') }}">Accounts</a>
@@ -200,13 +200,13 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('groups') }}">
+      <a class="nav-link" href="{{ route('groups', 'digipos') }}">
         <i class="menu-icon mdi mdi-account-location"></i>
         <span class="menu-title">Groups</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('accounts') }}">
+      <a class="nav-link" href="{{ route('accounts', 'digipos') }}">
         <i class="menu-icon mdi mdi-account-location"></i>
         <span class="menu-title">Accounts</span>
       </a>

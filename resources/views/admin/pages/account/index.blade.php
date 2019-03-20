@@ -8,7 +8,7 @@
 			<div class="col-md-12">
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="order-listing" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
+                        <table id="group-account" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
                             <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 55.3167px;" aria-sort="ascending" aria-label="Order #: activate to sort column descending">

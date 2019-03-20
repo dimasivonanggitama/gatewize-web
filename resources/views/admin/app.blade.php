@@ -76,6 +76,10 @@
     });
   </script>
   @yield('custom_js')
+
+  <script>
+      $('.dataTable').DataTable()
+  </script>
   <!-- End custom js for this page-->
 </body>
 
