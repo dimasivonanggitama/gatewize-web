@@ -12,7 +12,7 @@ class ProductController extends Controller
 		$this->middleware('auth');
 	}
 
-    public function gojekPulsa()
+    public function gojek()
     {
     	$client = new GojekClient();
     	$license = auth()->user()->license_key;
