@@ -47,13 +47,13 @@
                   <a class="nav-link" href="{{ route('accounts', 'digipos') }}">Accounts</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Reports</a>
+                  <a class="nav-link" href="">Reports</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Products</a>
+                  <a class="nav-link" href="">Products</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Documentation</a>
+                  <a class="nav-link" href="">Documentation</a>
                 </li>
               </ul>
             </div>
@@ -69,16 +69,16 @@
                   <a class="nav-link" href="{{ route('groups', 'gojek') }}">Groups</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Accounts</a>
+                  <a class="nav-link" href="">Accounts</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Reports</a>
+                  <a class="nav-link" href="">Reports</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('product.gojek') }}">Products</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Documentation</a>
+                  <a class="nav-link" href="">Documentation</a>
                 </li>
               </ul>
             </div>
@@ -91,19 +91,19 @@
             <div class="collapse" id="ovo">
               <ul class="nav flex-column sub-menu" style="padding: 0 0 0 1rem;">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit-add') }}">Groups</a>
+                  <a class="nav-link" href="">Groups</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Accounts</a>
+                  <a class="nav-link" href="">Accounts</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Reports</a>
+                  <a class="nav-link" href="">Reports</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Products</a>
+                  <a class="nav-link" href="">Products</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Documentation</a>
+                  <a class="nav-link" href="">Documentation</a>
                 </li>
               </ul>
             </div>
@@ -116,19 +116,19 @@
             <div class="collapse" id="linkaja">
               <ul class="nav flex-column sub-menu" style="padding: 0 0 0 1rem;">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit-add') }}">Groups</a>
+                  <a class="nav-link" href="">Groups</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Accounts</a>
+                  <a class="nav-link" href="">Accounts</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Reports</a>
+                  <a class="nav-link" href="">Reports</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Products</a>
+                  <a class="nav-link" href="">Products</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('deposit') }}">Documentation</a>
+                  <a class="nav-link" href="">Documentation</a>
                 </li>
               </ul>
             </div>
@@ -146,13 +146,13 @@
       <div class="collapse" id="billingbalance">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('deposit-add') }}">Tambah Deposit</a>
+            <a class="nav-link" href="">Tambah Deposit</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('deposit') }}">Riwayat Deposit</a>
+            <a class="nav-link" href="">Riwayat Deposit</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('deposit') }}">Riwayat Transaksi</a>
+            <a class="nav-link" href="">Riwayat Transaksi</a>
           </li>
         </ul>
       </div>
@@ -167,16 +167,16 @@
       <div class="collapse" id="support">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('deposit-add') }}">Open Ticket</a>
+            <a class="nav-link" href="">Open Ticket</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('deposit') }}">Term of Service</a>
+            <a class="nav-link" href="">Term of Service</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('deposit') }}">Privacy Policy</a>
+            <a class="nav-link" href="">Privacy Policy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('deposit') }}">Contact Us</a>
+            <a class="nav-link" href="">Contact Us</a>
           </li>
         </ul>
       </div>
