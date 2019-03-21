@@ -46,6 +46,7 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+          @include('flash::message')
           @yield('content')
         </div>
       </div>
@@ -79,7 +80,7 @@
   @yield('custom_js')
 
   <script>
-      $('.dataTable').DataTable()
+      // $('.dataTable').dataTable()
   </script>
   <!-- End custom js for this page-->
 </body>

@@ -20,9 +20,10 @@ class GroupController extends Controller
     
     public function index($service = "")
     {
+        $client = new Client();
         try{
             if($service == "gojek"){
-                $response = $this->_client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list");
+                $response = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list", ['User-Agent' => null]);
             } else {
                 $response = null;
             }
@@ -74,16 +75,16 @@ class GroupController extends Controller
         if($request->service == "gojek"){
             $response = $this->_client->post("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/add", 
                 [
-                    'form_params' => [ 
+                    'json' => [
                         'name' => $request->name,
-                        'limit' => $request->limit
+                        'limit' => (int)$request->limit
                     ]
                 ]);
             $response = json_decode($response->getBody());
         } else {
             $response = ['status' => false];
         }
-
+        
         if($response->status){
             flash($response->message)->success();
         } else {
@@ -121,6 +122,7 @@ class GroupController extends Controller
         } else {
             flash($response->message)->error();
         }
+        $this->_client = null;
 
         return redirect()->route('groups', $service);
     }
