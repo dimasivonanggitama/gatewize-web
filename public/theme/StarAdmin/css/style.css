@@ -23191,7 +23191,7 @@ body.avgrund-active {
 .swal2-modal .swal2-buttonswrapper .dataTables_wrapper .dataTable .swal2-styled,
 .dataTables_wrapper .dataTable .wizard>.actions a,
 .wizard>.actions .dataTables_wrapper .dataTable a {
-    padding: 0.1rem 1rem;
+    /*padding: 0.1rem 1rem;*/
     vertical-align: top;
 }
 
