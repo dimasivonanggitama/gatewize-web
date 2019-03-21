@@ -33,15 +33,16 @@
                                 </thead>
                                 
                                 <tbody>     
+                                    @php ($no = 1)
                                     @foreach ($groups as $group)  
                                     <tr role="row">
-                                        <td class="sorting_1">1</td>
+                                        <td class="sorting_1">{{ $no }}</td>
                                         <td>{{ $group->name }}</td>
                                         <td>{{ $group->limit_account }}</td>
                                         <td>
                                             <a href="{{ route('groups.show', ['service' => $service, 'id' => $group->id]) }}" class="btn btn-outline-primary">View</a>
                                             @if($group->is_default != 1)
-                                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal" data-id="1">Edit</button>
+                                                <button type="button" class="btn btn-outline-success btn-edit" data-toggle="modal" data-target="#editModal" data-id="{{ $group->id }}" data-name="{{ $group->name }}" data-limit="{{ $group->limit_account }}">Edit</button>
 
                                                 <form class="form-inline" method="POST" action="{{ route('groups.destroy', ['service' => $service]) }}" style="margin:none;display:inline;">
                                                     @csrf
@@ -54,6 +55,7 @@
                                             <a href="#" class="btn btn-success">Redeem Promo</a>
                                         </td>
                                     </tr>
+                                    @php ($no = $no + 1)
                                     @endforeach
                                 </tbody>
                             </table>
@@ -111,19 +113,20 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form class="forms-sample" method="POST" action="{{ route('groups.update', ['service' => $service, 'id' => 1]) }}">
+        <form class="forms-sample" method="POST" action="{{ route('groups.update', ['service' => $service]) }}">
             <div class="modal-body">
                 @csrf
                 <div class="form-group">
                     <label for="name">Group Name</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Nama Grup" value="{{ old('name') }}" required>
+                    <input type="hidden" name="id" value="" id="id-edit">
+                    <input type="text" class="form-control" name="name" id="name-edit" placeholder="Nama Grup" value="{{ old('name') }}" required>
                     @if ($errors->first('name'))
                         <small class="text-danger">{{ $errors->first('name') }}</small>
                     @endif
                 </div>
                 <div class="form-group">
                     <label for="limit">Account Limit</label>
-                    <input type="text" class="form-control" name="limit" id="limit" placeholder="Limit Akun" value="{{ old('limit') }}" required>
+                    <input type="text" class="form-control" name="limit" id="limit-edit" placeholder="Limit Akun" value="{{ old('limit') }}" required>
                     @if ($errors->first('limit'))
                         <small class="text-danger">{{ $errors->first('limit') }}</small>
                     @endif
@@ -137,4 +140,18 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('custom_js')
+<script>
+    $('.btn-edit').click(function(){
+        let id = $(this).data('id')
+        let name = $(this).data('name')
+        let limit = $(this).data('limit')
+
+        $('#id-edit').val(id)
+        $('#name-edit').val(name)
+        $('#limit-edit').val(limit)
+    })
+</script>
 @endsection

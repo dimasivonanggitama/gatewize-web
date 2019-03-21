@@ -91,17 +91,42 @@ class GroupController extends Controller
             flash($response->message)->error();
         }
 
-        return redirect()->route('groups', 'gojek');
+        return redirect()->route('groups', $request->service);
     }
 
-    public function edit($service = "", $id = 0)
+    public function edit($service = "")
     {
         return view('admin.pages.group.edit');
     }
 
-    public function update(Request $request, $service = "", $id = 0)
+    public function update(Request $request, $service = "")
     {
+        $this->validate($request, [
+            'id' => 'required|integer|min:0',
+            'name' => 'required|string|max:191',
+            'limit' => 'required|integer|min:0'
+        ]);
         
+        if($request->service == "gojek"){
+            $response = $this->_client->post("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/$request->id/update", 
+                [
+                    'json' => [
+                        'name' => $request->name,
+                        'limit' => (int)$request->limit
+                    ]
+                ]);
+            $response = json_decode($response->getBody());
+        } else {
+            $response = ['status' => false];
+        }
+        
+        if($response->status){
+            flash($response->message)->success();
+        } else {
+            flash($response->message)->error();
+        }
+
+        return redirect()->route('groups', $request->service);
     }
 
     public function destroy(Request $request, $service = "")

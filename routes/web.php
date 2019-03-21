@@ -40,8 +40,8 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::get('create', 'GroupController@create')->name('groups.create');
         Route::post('store', 'GroupController@store')->name('groups.store');
         Route::get('show/{service}/{id}', 'GroupController@show')->name('groups.show');
-        Route::get('edit/{service}/{id}', 'GroupController@edit')->name('groups.edit');
-        Route::post('update/{service}/{id}', 'GroupController@update')->name('groups.update');
+        // Route::get('edit/{service}/{id}', 'GroupController@edit')->name('groups.edit');
+        Route::post('update/{service}/', 'GroupController@update')->name('groups.update');
         Route::delete('delete/{service}', 'GroupController@destroy')->name('groups.destroy');
         Route::get('digipos', 'GroupController@digipos')->name('groups.digipos');
         Route::get('gojek', 'GroupController@gojek')->name('groups.gojek');
