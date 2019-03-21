@@ -42,7 +42,7 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::get('show/{service}/{id}', 'GroupController@show')->name('groups.show');
         Route::get('edit/{service}/{id}', 'GroupController@edit')->name('groups.edit');
         Route::post('update/{service}/{id}', 'GroupController@update')->name('groups.update');
-        Route::post('delete/{service}/{id}', 'GroupController@destroy')->name('groups.destroy');
+        Route::delete('delete/{service}', 'GroupController@destroy')->name('groups.destroy');
     });
 
     Route::prefix('deposit')->group(function(){
