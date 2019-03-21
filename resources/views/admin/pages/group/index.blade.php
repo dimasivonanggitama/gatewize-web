@@ -51,7 +51,7 @@
                                                     <button type="submit" class="btn btn-outline-danger">Delete</button>
                                                 </form>
                                             @endif
-                                            <a href="#" class="btn btn-primary">Refresh</a>
+                                            <button type="button" class="btn btn-refresh btn-primary" data-id="{{ $group->id }}">Refresh</button>
                                             <a href="#" class="btn btn-success">Redeem Promo</a>
                                         </td>
                                     </tr>
@@ -152,6 +152,35 @@
         $('#id-edit').val(id)
         $('#name-edit').val(name)
         $('#limit-edit').val(limit)
+    })
+
+    $('.btn-refresh').click(function(){
+        let id = $(this).data('id')
+        swal({
+            title: 'Refresh Status',
+            text: "Apakah anda ingin merefresh status akun?",
+            icon: 'info',
+            buttons: {
+                cancel: {
+                text: "Cancel",
+                value: false,
+                visible: true,
+                className: "btn btn-danger",
+                closeModal: true,
+                },
+                confirm: {
+                text: "OK",
+                value: true,
+                visible: true,
+                className: "btn btn-primary",
+                closeModal: true
+                }
+            }
+        }).then((result) => {
+            if(result){
+                location.href = "{{ url('admin/groups/refresh') }}/{{ $service }}/" + id
+            }
+        })
     })
 </script>
 @endsection

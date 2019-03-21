@@ -151,4 +151,27 @@ class GroupController extends Controller
 
         return redirect()->route('groups', $service);
     }
+
+    public function refresh($service = "", $id = "")
+    {
+        if($service == "gojek"){
+            $response = $this->_client->get("https://api.gatewize.com/devel-gopay/refresh/" . Auth::user()->license_key . "/$id/data");
+            $response = json_decode($response->getBody());
+        } else {
+            $response = ['status' => false];
+        }
+
+        
+
+        if($response != null){
+            echo"test";
+            flash("Berhasil merefresh status")->success();
+        } else {
+            echo"test2";
+            flash("Gagal merefresh status")->error();
+        }
+        $this->_client = null;
+
+        return redirect()->route('groups', $service);
+    }
 }
