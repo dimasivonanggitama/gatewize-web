@@ -17,10 +17,9 @@ Route::get('/', 'HomeController@index');
 Auth::routes(['verify' => true]);
 
 Route::prefix('admin')->middleware('verified')->group(function () {
-    Route::get('/', 'DashboardController@index');
+    Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     
-    Route::get('reports', 'ReportController@index')->name('reports');
     Route::get('documentation', 'DocumentationController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
 
@@ -33,6 +32,7 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::get('edit/{id}', 'AccountController@edit')->name('accounts.edit');
         Route::post('update/{id}', 'AccountController@update')->name('accounts.update');
         Route::post('delete/{id}', 'AccountController@destroy')->name('accounts.destroy');
+        Route::get('digipos', 'AccountController@digipos')->name('accounts.digipos');
     });
 
     Route::prefix('groups')->group(function() {
@@ -43,6 +43,8 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::get('edit/{service}/{id}', 'GroupController@edit')->name('groups.edit');
         Route::post('update/{service}/{id}', 'GroupController@update')->name('groups.update');
         Route::delete('delete/{service}', 'GroupController@destroy')->name('groups.destroy');
+        Route::get('digipos', 'GroupController@digipos')->name('groups.digipos');
+        Route::get('gojek', 'GroupController@gojek')->name('groups.gojek');
     });
 
     Route::prefix('deposit')->group(function(){
@@ -55,11 +57,15 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::get('print/{id}', 'DepositController@print')->name('deposit-print');
     });
 
-    Route::prefix('product')->group(function(){
-        Route::get('gojek', 'ProductController@gojek')->name('product.gojek');
-        Route::get('digipos', 'ProductController@digipos')->name('product.digipos');
-        Route::get('ovo', 'ProductController@ovo')->name('product.ovo');
-        Route::get('linkaja', 'ProductController@ovo')->name('product.linkaja');
+    Route::prefix('products')->group(function(){
+        Route::get('gojek', 'ProductController@gojek')->name('products.gojek');
+        // Route::get('digipos', 'ProductController@digipos')->name('product.digipos');
+        // Route::get('ovo', 'ProductController@ovo')->name('product.ovo');
+        // Route::get('linkaja', 'ProductController@ovo')->name('product.linkaja');
+    });
+
+    Route::prefix('reports')->group(function(){
+        Route::get('gojek', 'ReportController@gojek')->name('reports.gojek');
     });
 });
 

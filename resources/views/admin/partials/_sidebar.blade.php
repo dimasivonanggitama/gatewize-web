@@ -72,10 +72,10 @@
                   <a class="nav-link" href="">Accounts</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Reports</a>
+                  <a class="nav-link" href="{{ route('reports.gojek') }}">Reports</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('product.gojek') }}">Products</a>
+                  <a class="nav-link" href="{{ route('products.gojek') }}">Products</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="">Documentation</a>
@@ -212,7 +212,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('reports') }}">
+      <a class="nav-link" href="">
         <i class="menu-icon mdi mdi-notebook"></i>
         <span class="menu-title">Reports</span>
       </a>

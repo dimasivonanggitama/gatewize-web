@@ -27,4 +27,10 @@ class GojekClient
 		$response = $this->client->get('/devel-gopay/product/'.$license.'/token');
 		return json_decode($response->getBody(), true);
 	}
+
+	public function getGroups($license)
+	{
+		$response = $this->client->get('devel-gopay/group/'.$license.'/list');
+		return json_decode($response->getBody(), true);
+	}
 }

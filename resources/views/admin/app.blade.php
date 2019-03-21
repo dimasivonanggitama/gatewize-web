@@ -46,7 +46,6 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          @include('flash::message')
           @yield('content')
         </div>
       </div>
@@ -69,6 +68,7 @@
   <script src="{!! asset('theme/StarAdmin/js/dashboard.js') !!}"></script>
   <script src="{!! asset('theme/StarAdmin/js/tabs.js') !!}"></script>
   <script src="{!! asset('theme/StarAdmin/js/data-table.js') !!}"></script>
+  <script src="{!! asset('theme/StarAdmin/js/jquery-3.3.1.min.js') !!}"></script>
   <script>
     $(".service-menu a").click(function(event){
       event.stopPropagation();
