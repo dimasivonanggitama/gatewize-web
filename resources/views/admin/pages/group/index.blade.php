@@ -40,7 +40,7 @@
                                         <td>{{ $group->name }}</td>
                                         <td>{{ $group->limit_account }}</td>
                                         <td>
-                                            <a href="{{ route('groups.show', ['service' => $service, 'id' => $group->id]) }}" class="btn btn-outline-primary">View</a>
+                                            <a href="{{ route('accounts.group', ['service' => $service, 'group_id' => $group->id]) }}" class="btn btn-outline-primary">View</a>
                                             @if($group->is_default != 1)
                                                 <button type="button" class="btn btn-outline-success btn-edit" data-toggle="modal" data-target="#editModal" data-id="{{ $group->id }}" data-name="{{ $group->name }}" data-limit="{{ $group->limit_account }}">Edit</button>
 

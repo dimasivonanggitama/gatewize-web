@@ -14,31 +14,41 @@
                                     <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 55.3167px;" aria-sort="ascending" aria-label="Order #: activate to sort column descending">
                                         No.
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 99.1167px;" aria-label="Purchased On: activate to sort column ascending">
+                                    <!-- <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 99.1167px;" aria-label="Purchased On: activate to sort column ascending">
                                         Account Name
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 99.1167px;" aria-label="Purchased On: activate to sort column ascending">
+                                    </th> -->
+                                    <th class="sorting" >
                                         Phone
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 99.1167px;" aria-label="Purchased On: activate to sort column ascending">
+                                    <th class="sorting" >
                                         Balance
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 52.6667px;" aria-label="Actions: activate to sort column ascending">
+                                    <th class="sorting" >
+                                        Expired Date
+                                    </th>
+                                    <th class="sorting" >
                                         Actions
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>          
+                                @php ($no = 1)
+                                @foreach ($accounts as $account)
                                 <tr role="row">
-                                    <td class="sorting_1">1</td>
-                                    <td>Account Name 1</td>
-                                    <td>08123456789</td>
-                                    <td>1000</td>
+                                    <td class="sorting_1">{{ $no }}</td>
+                                    <!-- <td>Account Name 1</td> -->
+                                    <td>{{ $account->phone }}</td>
+                                    <td>{{ $account->balance }}</td>
+                                    <td>{{ date('d - m - Y', strtotime($account->expired_date)) }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal" data-id="1">Edit</button>
-                                        <a href="{{ route('accounts.destroy', 1) }}" class="btn btn-outline-danger">Delete</a>
+                                        <!-- <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal" data-id="1">Edit</button> -->
+                                        <button type="button" class="btn btn-outline-primary">Move</button>
+                                        <button type="button" class="btn btn-outline-success">Update OTP</button>
+                                        <!-- <a href="{{ route('accounts.destroy', 1) }}" class="btn btn-outline-danger">Delete</a> -->
                                     </td>
                                 </tr>
+                                @php ($no++)
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

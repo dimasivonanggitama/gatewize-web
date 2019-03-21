@@ -69,7 +69,7 @@
                   <a class="nav-link" href="{{ route('groups', 'gojek') }}">Groups</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Accounts</a>
+                  <a class="nav-link" href="{{ route('accounts', 'gojek') }}">Accounts</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('reports.gojek') }}">Reports</a>

@@ -32,6 +32,7 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::get('edit/{id}', 'AccountController@edit')->name('accounts.edit');
         Route::post('update/{id}', 'AccountController@update')->name('accounts.update');
         Route::post('delete/{id}', 'AccountController@destroy')->name('accounts.destroy');
+        Route::get('/group/{group_id}/{service}', 'AccountController@group')->name('accounts.group');
         Route::get('digipos', 'AccountController@digipos')->name('accounts.digipos');
     });
 
