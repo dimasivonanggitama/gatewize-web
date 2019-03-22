@@ -6,7 +6,7 @@
 		<h4 class="card-title">Manage Accounts</h4>
         <div class="row">
             <div class="col-sm-12">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal" data-id="1">Add Group</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal" data-id="1">Add Account</button>
             </div>
         </div>
 		<div class="row mt-4">
