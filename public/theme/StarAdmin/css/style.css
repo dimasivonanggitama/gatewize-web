@@ -13640,6 +13640,7 @@ html {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    margin-left: 17.7%;
 }
 
 @media (max-width: 991px) {
