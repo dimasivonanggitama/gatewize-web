@@ -148,7 +148,7 @@ class AccountController extends Controller
             'newGroup' => 'required|integer|min:0'
         ]);
         $client = new Client();
-        if($request->service == "gojek") {
+        if($service == "gojek") {
             // {{ api_url  }}/account/{{ license  }}/9/085893539852/move/7
             $response = $client->post("https://api.gatewize.com/devel-gopay/account/" . Auth::user()->license_key . "/$request->oldGroup/$request->phone/move/$request->newGroup");
             $response = json_decode($response->getBody(),TRUE);
@@ -162,6 +162,6 @@ class AccountController extends Controller
             flash($response['message'])->error();
         }
 
-        return redirect()->route('accounts', $request->service);
+        return redirect()->route('accounts.group', ['group_id' => $request->newGroup, 'service' => $service]);
     }
 }
