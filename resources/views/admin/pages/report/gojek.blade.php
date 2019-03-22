@@ -215,6 +215,8 @@
     var type;
     $('select#groupSelect').on('change', function(){
         groupId = this.value;
+        $('#accountSelect').empty();
+        $('#accountSelect').append($('<option disabled selected value=""></option>'));
         $.get('https://api.gatewize.com/devel-gopay/group/{{Auth::user()->license_key}}/'+groupId+'/list', function(data){
             for (var i = 0; i < data.length; i++) {
                 $('select#accountSelect')
@@ -268,6 +270,7 @@
     }
     function insertGoBillsTable(data){
         $('#goBillsTable').empty();
+        $('#tab-goBills').show();
         let array = data.bills;
         for (let i = 0; i < array.length; i++) {
             let report = array[i];
@@ -276,14 +279,14 @@
                 report.createdDateTime+"</td><td>"+
                 report.orderId+"</td><td>"+
                 report.context.customerId+"</td><td>"+
-                report.amount.amount + report.adminFee.amount +"</td><td>"+
+                report.totalAmount.amount+"</td><td>"+
                 report.status+"</td><td>"+
                 tokenFormat(context.stroomToken, context.customerName, context.tariffAndPower, context.kwhTotal)+"</td></tr>");
         }
-        $('#tab-goBills').show();
     }
     function insertGoPulsaTable(data){
         $('#goPulsaTable').empty();
+        $('#tab-goPulsa').show();
         let array = data.completedBookingOrder;
         for (let i = 0; i < array.length; i++) {
             let report = array[i];
@@ -296,10 +299,10 @@
                 report.status+"</td><td>"+
                 report.createdDate+"</td></tr>");
         }
-        $('#tab-goPulsa').show();
     }
     function insertGoPayTable(data){
         $('#goPayTable').empty();
+        $('#tab-goPay').show();
         let array = data.success;
         for (let i = 0; i < array.length; i++) {
             let report = array[i];
@@ -312,7 +315,6 @@
                 report.description+"</td><td>"+
                 report.effective_balance_after_transaction+"</td></tr>");
         }
-        $('#tab-goPay').show();
     }
     function tokenFormat(stroomToken, name, tariffAndPower, kwhTotal){
         return stroomToken + '/' + name + '/' + tariffAndPower + '/' + kwhTotal;
