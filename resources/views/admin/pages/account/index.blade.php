@@ -169,47 +169,25 @@
             <div class="modal-body">
                 @csrf
                 <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phone-update" name="phone" placeholder="No. Telepon" value="{{ old('phone') }}" require>
-                    @if ($errors->first('phone'))
-                        <small class="text-danger">{{ $errors->first('phone') }}</small>
+                    <label for="token">Token</label>
+                    <input type="hidden" id="license-update" name="license">
+                    <input type="hidden" id="phone-update" name="phone">
+                    <input type="hidden" id="group-update" name="group">
+                    <input type="text" class="form-control" id="token-update" name="token" placeholder="Token" value="{{ old('token') }}" require>
+                    @if ($errors->first('token'))
+                        <small class="text-danger">{{ $errors->first('token') }}</small>
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="group-update">Group</label>
-                    <input type="text" class="form-control" id="group-update" name="group" placeholder="Group ID" value="{{ old('group') }}" require>
-                    @if ($errors->first('group'))
-                        <small class="text-danger">{{ $errors->first('group') }}</small>
+                    <label for="otp-update">Masukkan Kode OTP</label>
+                    <input type="text" class="form-control" id="otp-update" name="otp-update" placeholder="Kode OTP" value="{{ old('otp-update') }}" require>
+                    @if ($errors->first('otp-update'))
+                        <small class="text-danger">{{ $errors->first('otp-update') }}</small>
                     @endif
-                </div>
-                <div class="form-group">
-                    <label for="license">Lisensi</label>
-                    <input type="text" class="form-control" id="license-update" name="license" placeholder="Lisensi" value="{{ old('license') }}" require>
-                    @if ($errors->first('license'))
-                        <small class="text-danger">{{ $errors->first('license') }}</small>
-                    @endif
-                </div>
-                <div id="form-verify">
-                    <hr>
-                    <div class="form-group">
-                        <label for="token">Token</label>
-                        <input type="text" class="form-control" id="token-update" name="token" placeholder="Token" value="{{ old('token') }}" require>
-                        @if ($errors->first('token'))
-                            <small class="text-danger">{{ $errors->first('token') }}</small>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label for="otp-update">Masukkan Kode OTP</label>
-                        <input type="text" class="form-control" id="otp-update" name="otp-update" placeholder="Kode OTP" value="{{ old('otp-update') }}" require>
-                        @if ($errors->first('otp-update'))
-                            <small class="text-danger">{{ $errors->first('otp-update') }}</small>
-                        @endif
-                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="btn-update-otp">Update</button>
                 <button type="button" class="btn btn-success" id="btn-verify-otp">Verify</button>
             </div>
         </form>
@@ -221,8 +199,6 @@
 @section('custom_js')
 <script>
     // hide verify form and button
-    $('#btn-verify-otp').hide()
-    $('#form-verify').hide()
 
     $('.btn-move').click(function(){
         let groupId = $(this).data('group')
@@ -239,13 +215,6 @@
         $('#phone-update').val(phone)
         $('#license-update').val(license)
         $('#group-update').val(groupId)
-    })
-
-    $('#btn-update-otp').click(function(){
-        let phone = $('#phone-update').val()
-        let license = $('#license-update').val()
-        let groupId = $('#group-update').val()
-        console.log(phone + " " + license + " " +  groupId)
         $.post('https://api.gatewize.com/devel-gopay/account/'+ license +'/'+ groupId +'/'+ phone +'/update', function(data){
             console.log(data)
             if(data.status){
@@ -279,14 +248,10 @@
                     text: "Berhasil update otp",
                     icon: 'success',
                 })
-
-                $('#btn-verify-otp').hide()
-                $('#form-verify').hide()
-                $('#btn-update-otp').show()
             } else {
                 swal({
                     title: 'Update Gagal',
-                    text: "Silahkan coba lagi",
+                    text: data.message,
                     icon: 'error',
                 })
             }
