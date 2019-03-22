@@ -30,11 +30,12 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     Route::prefix('accounts')->group(function() {
         Route::get('/{service}', 'AccountController@index')->name('accounts');
         Route::get('edit/{id}', 'AccountController@edit')->name('accounts.edit');
+        Route::post('store/{service}', 'AccountController@store')->name('accounts.store');
         Route::post('update/{id}', 'AccountController@update')->name('accounts.update');
         Route::post('delete/{id}', 'AccountController@destroy')->name('accounts.destroy');
         Route::get('/group/{group_id}/{service}', 'AccountController@group')->name('accounts.group');
         Route::get('digipos', 'AccountController@digipos')->name('accounts.digipos');
-        Route::post('move/{service}/', 'AccountController@move')->name('groups.move');
+        Route::post('move/{service}/', 'AccountController@move')->name('accounts.move');
     });
 
     Route::prefix('groups')->group(function() {
