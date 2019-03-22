@@ -41,8 +41,7 @@
                                     <td>{{ $account->balance }}</td>
                                     <td>{{ date('d - m - Y', strtotime($account->expired_date)) }}</td>
                                     <td>
-                                        <!-- <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal" data-id="1">Edit</button> -->
-                                        <button type="button" class="btn btn-outline-primary">Move</button>
+                                        <button type="button" class="btn btn-move btn-outline-primary"  data-toggle="modal" data-target="#moveModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}">Move</button>
                                         <button type="button" class="btn btn-outline-success">Update OTP</button>
                                         <!-- <a href="{{ route('accounts.destroy', 1) }}" class="btn btn-outline-danger">Delete</a> -->
                                     </td>
@@ -58,39 +57,65 @@
 	</div>
 </div>
 
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+<div class="modal fade" id="moveModal" tabindex="-1" role="dialog" aria-labelledby="moveModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Group</h5>
+            <h5 class="modal-title">Move Account</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form class="forms-sample" method="POST" action="{{ route('deposit-store') }}">
+        <form class="forms-sample" method="POST" action="{{ route('groups.move', $service) }}">
             <div class="modal-body">
                 @csrf
                 <div class="form-group">
-                    <label for="name">Account Name</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Nama Akun" value="{{ old('name') }}" required>
-                    @if ($errors->first('name'))
-                        <small class="text-danger">{{ $errors->first('name') }}</small>
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control phoneMove" placeholder="No. Telepon" value="{{ old('phone') }}" disabled>
+                    <input type="hidden" class="phoneMove" name="phone" name="phone" value="{{ old('phone') }}">
+                    @if ($errors->first('phone'))
+                        <small class="text-danger">{{ $errors->first('phone') }}</small>
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="phone" placeholder="No. Telepon" value="{{ old('phone') }}" required>
-                    @if ($errors->first('phone'))
-                        <small class="text-danger">{{ $errors->first('phone') }}</small>
+                    <label for="oldGroup">Old Group</label>
+                    <input type="text" class="form-control oldGroupMove" placeholder="Grup Lama" value="{{ old('oldGroup') }}" disabled>
+                    <input type="hidden" class="oldGroupMove" name="oldGroup" value="{{ old('oldGroup') }}">
+                    @if ($errors->first('oldGroup'))
+                        <small class="text-danger">{{ $errors->first('oldGroup') }}</small>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="newGroup">New Group</label>
+                    <select class="form-control" name="newGroup" id="newGroupMove">
+                        <option value="" disabled selected>Grup Baru</option>
+                        @foreach($groups as $group)
+                        <option value="{{ $group->id }}">{{ $group->name }}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->first('newGroup'))
+                        <small class="text-danger">{{ $errors->first('newGroup') }}</small>
                     @endif
                 </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Move</button>
             </div>
         </form>
     </div>
   </div>
 </div>
+@endsection
+
+@section('custom_js')
+<script>
+    $('.btn-move').click(function(){
+        let groupId = $(this).data('group')
+        let phone = $(this).data('phone')
+        console.log(groupId + phone)
+        $('.phoneMove').val(phone)
+        $('.oldGroupMove').val(groupId)
+    })
+</script>
 @endsection
