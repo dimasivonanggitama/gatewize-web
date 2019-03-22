@@ -32,6 +32,14 @@
       content: counter(tableCount); 
       counter-increment: tableCount; 
     }
+
+    .sidebar { 
+      position:fixed;
+    }
+
+    .main-panel { 
+      margin-left: 17.7%;
+    }
   </style>
 </head>
 
