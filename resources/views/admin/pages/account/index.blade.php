@@ -4,22 +4,27 @@
 <div class="card">
 	<div class="card-body">
 		<h4 class="card-title">Manage Accounts</h4>
-        <div class="dropdown">
-            Pilih Group :
-            <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ $filterBy }}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="{{ route('accounts', $service) }}">All Account</a>
-                @foreach($groups as $group)
-                <a class="dropdown-item" href="{{ route('accounts.group', ['service' => $service, 'group_id' => $group->id]) }}">{{ $group->name }}</a>
-                @endforeach
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal" data-id="1">Add Account</button>
             </div>
         </div>
 		<div class="row mt-4">
 			<div class="col-md-12">
                 <div class="row">
                     <div class="col-sm-12">
+                        <div class="dropdown">
+                            <small>Pilih Group :</small>
+                            <button class="btn btn-sm btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ $filterBy }}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{ route('accounts', $service) }}">All Account</a>
+                                @foreach($groups as $group)
+                                <a class="dropdown-item" href="{{ route('accounts.group', ['service' => $service, 'group_id' => $group->id]) }}">{{ $group->name }}</a>
+                                @endforeach
+                            </div>
+                        </div>
                         <table id="group-account" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
                             <thead>
                                 <tr role="row">
@@ -69,6 +74,37 @@
 	</div>
 </div>
 
+<!-- create modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Account</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form class="forms-sample" method="POST" action="{{ route('accounts.store', $service) }}">
+            <div class="modal-body">
+                @csrf
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phoneadd" name="phone" placeholder="No. Telepon" value="{{ old('phone') }}" require>
+                    @if ($errors->first('phone'))
+                        <small class="text-danger">{{ $errors->first('phone') }}</small>
+                    @endif
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- move modal -->
 <div class="modal fade" id="moveModal" tabindex="-1" role="dialog" aria-labelledby="moveModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -78,7 +114,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form class="forms-sample" method="POST" action="{{ route('groups.move', $service) }}">
+        <form class="forms-sample" method="POST" action="{{ route('accounts.move', $service) }}">
             <div class="modal-body">
                 @csrf
                 <div class="form-group">

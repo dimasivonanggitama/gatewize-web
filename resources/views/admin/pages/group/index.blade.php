@@ -52,7 +52,7 @@
                                                 </form>
                                             @endif
                                             <button type="button" class="btn btn-refresh btn-primary" data-id="{{ $group->id }}">Refresh</button>
-                                            <a href="#" class="btn btn-success">Redeem Promo</a>
+                                            <!-- <a href="#" class="btn btn-success">Redeem Promo</a> -->
                                         </td>
                                     </tr>
                                     @php ($no = $no + 1)

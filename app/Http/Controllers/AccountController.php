@@ -44,6 +44,35 @@ class AccountController extends Controller
         return view('admin.pages.account.index')->with($data);
     }
 
+    public function store(Request $request, $service)
+    {
+        $this->validate($request, [
+            'phone' => 'required|string|max:191'
+        ]);
+        $client = new Client();
+        if($service == "gojek") {
+            $groups = $this->getAllGroup($client, $service);
+            $defaultGroup = 0;
+            foreach ($groups as $group) {
+                if($group->is_default){
+                    $defaultGroup = $group->id;
+                }
+            }
+            $response = $client->get("https://api.gatewize.com/devel-gopay/account/" . Auth::user()->license_key . "/$defaultGroup/$request->phone/add/years");
+            $response = json_decode($response->getBody(),TRUE);
+        } else {
+            $response = ['status' => false, 'message' => 'Failed to add account to default group'];
+        }
+        
+        if($response['status']) {
+            flash($response['message'])->success();
+        } else {
+            flash($response['message'])->error();
+        }
+
+        return redirect()->route('accounts', $service);
+    }
+
     public function edit($id = 0)
     {
         return view('admin.pages.account.edit');
