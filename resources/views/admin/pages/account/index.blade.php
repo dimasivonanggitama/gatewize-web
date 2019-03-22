@@ -58,8 +58,8 @@
                                     <td>{{ $account->balance }}</td>
                                     <td>{{ date('d - m - Y', strtotime($account->expired_date)) }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-move btn-outline-primary"  data-toggle="modal" data-target="#moveModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}">Move</button>
-                                        <button type="button" class="btn btn-outline-success">Update OTP</button>
+                                        <button type="button" class="btn btn-move btn-outline-primary" data-toggle="modal" data-target="#moveModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}">Move</button>
+                                        <button type="button" class="btn btn-update btn-outline-success" data-toggle="modal" data-target="#updateModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}" data-license="{{ Auth::user()->license_key }}">Update OTP</button>
                                         <!-- <a href="{{ route('accounts.destroy', 1) }}" class="btn btn-outline-danger">Delete</a> -->
                                     </td>
                                 </tr>
@@ -154,16 +154,108 @@
     </div>
   </div>
 </div>
+
+<!-- send otp modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Update Acount</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form class="forms-sample">
+            <div class="modal-body">
+                @csrf
+                <div class="form-group">
+                    <label for="token">Token</label>
+                    <input type="hidden" id="license-update" name="license">
+                    <input type="hidden" id="phone-update" name="phone">
+                    <input type="hidden" id="group-update" name="group">
+                    <input type="text" class="form-control" id="token-update" name="token" placeholder="Token" value="{{ old('token') }}" require>
+                    @if ($errors->first('token'))
+                        <small class="text-danger">{{ $errors->first('token') }}</small>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="otp-update">Masukkan Kode OTP</label>
+                    <input type="text" class="form-control" id="otp-update" name="otp-update" placeholder="Kode OTP" value="{{ old('otp-update') }}" require>
+                    @if ($errors->first('otp-update'))
+                        <small class="text-danger">{{ $errors->first('otp-update') }}</small>
+                    @endif
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="btn-verify-otp">Verify</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('custom_js')
 <script>
+    // hide verify form and button
+
     $('.btn-move').click(function(){
         let groupId = $(this).data('group')
         let phone = $(this).data('phone')
         console.log(groupId + phone)
         $('.phoneMove').val(phone)
         $('.oldGroupMove').val(groupId)
+    })
+
+    $('.btn-update').click(function(){
+        let groupId = $(this).data('group')
+        let phone = $(this).data('phone')
+        let license = $(this).data('license')
+        $('#phone-update').val(phone)
+        $('#license-update').val(license)
+        $('#group-update').val(groupId)
+        $.post('https://api.gatewize.com/devel-gopay/account/'+ license +'/'+ groupId +'/'+ phone +'/update', function(data){
+            console.log(data)
+            if(data.status){
+                $('#token-update').val(data.token)
+                $('#btn-update-otp').hide()
+                $('#btn-verify-otp').show()
+                $('#form-verify').show()
+            } else {
+                swal({
+                    title: 'Update Gagal',
+                    text: "Silahkan coba lagi",
+                    icon: 'error',
+                })
+            }
+        })
+    })
+
+    $('#btn-verify-otp').click(function(){
+        let phone = $('#phone-update').val()
+        let license = $('#license-update').val()
+        let groupId = $('#group-update').val()
+        let token = $('#token-update').val()
+        let otp = $('#otp-update').val()
+        $.post('https://api.gatewize.com/devel-gopay/account/'+ license +'/'+ groupId +'/'+ phone +'/verify',
+        {   token: token, 
+            otp: otp,
+        }, function(data){
+            if(data.status){
+                swal({
+                    title: 'Berhasil',
+                    text: "Berhasil update otp",
+                    icon: 'success',
+                })
+            } else {
+                swal({
+                    title: 'Update Gagal',
+                    text: data.message,
+                    icon: 'error',
+                })
+            }
+        })
     })
 </script>
 @endsection
