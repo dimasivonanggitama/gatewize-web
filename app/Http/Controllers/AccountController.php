@@ -18,29 +18,43 @@ class AccountController extends Controller
     
     public function index($service = "")
     {
-        $client = new Client();
-        $account = array();
-        // if service not listed, then response null
-        if($service == "gojek"){
-            $responseGroup = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list");
-        } else {
-            $responseGroup = null;
-        }
+        try {
+            $client = new Client();
+            $account = array();
+            // if service not listed, then response null
+            if($service == "gojek"){
+                $response = $client->get("https://api.gatewize.com/devel-gopay/user/" . Auth::user()->license_key . "/list");
+            } else {
+                $response = null;
+            }
+            
+            if($response != null && $response->getStatusCode() == 200){
+                $accounts = json_decode($response->getBody());
+            } else {
+                $accounts = array();
+            }
+
+            // check is user subscribed
+            if(isset($accounts->status)){
+                $accounts = array();
+            }
         
-        if($responseGroup != null && $responseGroup->getStatusCode() == 200){
-            $groups = json_decode($responseGroup->getBody());
-            // $group = $groups[0]->id;
-            dd($groups);
-        } else {
-            $groups = array();
-        }
 
-        // check is user subscribed
-        if(isset($groups->status)){
-            $groups = array();
-        }
+            $data = [
+                'accounts' => $accounts,
+                'service' => $service,
+            ];
+        } catch (ClientException $e) {
+            $data = [
+                'accounts' => [],
+                'service' => $service,
+            ];
+        } 
+        // catch (RequestException $e) { 
+        //     return redirect()->route('groups', 'gojek');
+        // }
 
-        return view('admin.pages.account.index');
+        return view('admin.pages.account.index')->with($data);
     }
 
     public function edit($id = 0)
@@ -96,5 +110,10 @@ class AccountController extends Controller
         // }
 
         return view('admin.pages.account.index')->with($data);
+    }
+
+    public function move(Request $request, $service = "")
+    {
+        
     }
 }
