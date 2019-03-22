@@ -20,48 +20,21 @@ class AccountController extends Controller
     {
         try {
             $client = new Client();
-            $account = array();
-            // if service not listed, then response null
-            if($service == "gojek"){
-                $response = $client->get("https://api.gatewize.com/devel-gopay/user/" . Auth::user()->license_key . "/list");
-                $responseGroup = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list", ['User-Agent' => null]);
-            } else {
-                $response = null;
-                $responseGroup = null;
-            }
-            
-            if($response != null && $response->getStatusCode() == 200){
-                $accounts = json_decode($response->getBody());
-            } else {
-                $accounts = array();
-            }
-
-            if($responseGroup != null && $responseGroup->getStatusCode() == 200){
-                $groups = json_decode($responseGroup->getBody());
-            } else {
-                $groups = array();
-            }
-
-            // check is user subscribed
-            if(isset($accounts->status)){
-                $accounts = array();
-            }
-
-            // check is user subscribed
-            if(isset($responseGroup->status)){
-                $groups = array();
-            }
+            $accounts = $this->getAllAccount($client, $service);
+            $groups = $this->getAllGroup($client, $service);
         
             $data = [
                 'accounts' => $accounts,
                 'groups' => $groups,
                 'service' => $service,
+                'filterBy' => 'All Account'
             ];
         } catch (ClientException $e) {
             $data = [
                 'accounts' => [],
                 'groups' => [],
                 'service' => $service,
+                'filterBy' => 'All Account'
             ];
         } 
         // catch (RequestException $e) { 
@@ -91,46 +64,22 @@ class AccountController extends Controller
         try {
             $client = new Client();
 
-            // if service not listed, then response null
-            if($service == "gojek"){
-                $response = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/$groupId/list");
-                $responseGroup = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list", ['User-Agent' => null]);
-            } else {
-                $response = null;
-                $responseGroup = null;
-            }
-            
-            if($response != null && $response->getStatusCode() == 200){
-                $accounts = json_decode($response->getBody());
-            } else {
-                $accounts = array();
-            }
-            
-            if($responseGroup != null && $responseGroup->getStatusCode() == 200){
-                $groups = json_decode($responseGroup->getBody());
-            } else {
-                $groups = array();
-            }
+            $accounts = $this->getAccountByGroup($client, $service, $groupId);
 
-            // check is user subscribed
-            if(isset($accounts->status)){
-                $accounts = array();
-            }
-
-            if(isset($responseGroup->status)){
-                $groups = array();
-            }
+            $groups = $this->getAllGroup($client, $service);
         
             $data = [
                 'accounts' => $accounts,
                 'groups' => $groups,
                 'service' => $service,
+                'filterBy' => 'Group'
             ];
         } catch (ClientException $e) {
             $data = [
                 'accounts' => [],
                 'groups' => [],
                 'service' => $service,
+                'filterBy' => 'Group'
             ];
         }  
         // catch (RequestException $e) { 
@@ -163,5 +112,73 @@ class AccountController extends Controller
         }
 
         return redirect()->route('accounts.group', ['group_id' => $request->newGroup, 'service' => $service]);
+    }
+
+    private function getAllGroup($client, $service)
+    {
+        if($service == "gojek"){
+            $responseGroup = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list", ['User-Agent' => null]);
+        } else {
+            $responseGroup = null;
+        }
+
+        if($responseGroup != null && $responseGroup->getStatusCode() == 200){
+            $groups = json_decode($responseGroup->getBody());
+        } else {
+            $groups = array();
+        }
+
+        if(isset($responseGroup->status)){
+            $groups = array();
+        }
+
+        return $groups;
+    }
+
+    private function getAllAccount($client, $service)
+    {
+        $account = array();
+        // if service not listed, then response null
+        if($service == "gojek"){
+            $response = $client->get("https://api.gatewize.com/devel-gopay/user/" . Auth::user()->license_key . "/list");
+        } else {
+            $response = null;
+        }
+        
+        if($response != null && $response->getStatusCode() == 200){
+            $accounts = json_decode($response->getBody());
+        } else {
+            $accounts = array();
+        }
+
+        // check is user subscribed
+        if(isset($accounts->status)){
+            $accounts = array();
+        }
+
+        return $accounts;
+    }
+
+    private function getAccountByGroup($client, $service, $groupId)
+    {
+        // if service not listed, then response null
+        if($service == "gojek"){
+            $response = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/$groupId/list");
+        } else {
+            $response = null;
+        }
+        
+        if($response != null && $response->getStatusCode() == 200){
+            $accounts = json_decode($response->getBody());
+        } else {
+            $accounts = array();
+        }
+
+        // check is user subscribed
+        if(isset($accounts->status)){
+            $accounts = array();
+        }
+
+        return $accounts;
     }
 }

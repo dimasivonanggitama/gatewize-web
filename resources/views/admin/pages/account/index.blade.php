@@ -4,6 +4,18 @@
 <div class="card">
 	<div class="card-body">
 		<h4 class="card-title">Manage Accounts</h4>
+        <div class="dropdown">
+            Pilih Group :
+            <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ $filterBy }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{{ route('accounts', $service) }}">All Account</a>
+                @foreach($groups as $group)
+                <a class="dropdown-item" href="{{ route('accounts.group', ['service' => $service, 'group_id' => $group->id]) }}">{{ $group->name }}</a>
+                @endforeach
+            </div>
+        </div>
 		<div class="row mt-4">
 			<div class="col-md-12">
                 <div class="row">
