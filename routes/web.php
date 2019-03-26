@@ -71,6 +71,18 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     Route::prefix('reports')->group(function(){
         Route::get('gojek', 'ReportController@gojek')->name('reports.gojek');
     });
+
+    Route::prefix('ticket')->group(function(){
+        Route::get('create', 'TicketController@create')->name('ticket.create');
+        Route::post('create', 'TicketController@store');
+        Route::get('my', 'TicketController@index')->name('ticket.index');
+        Route::get('{ticketId}', 'TicketController@show')->name('ticket.show');
+    });
+    Route::prefix('comment')->group(function(){
+        Route::get('', 'CommentsController@index');
+        Route::post('', 'CommentsController@postComment');
+        Route::post('{ticketId}/close', 'CommentsController@close');
+    });
 });
 		
 Route::get('/home', 'HomeController@index')->name('home');
