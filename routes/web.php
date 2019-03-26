@@ -26,6 +26,9 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     // Route::prefix('digipos')->group(function(){
     //     Route::get('/', )
     // });
+    Route::prefix('profile')->group(function(){
+        Route::get('/', 'ProfileController@index')->name('profile');
+    });
 
     Route::prefix('accounts')->group(function() {
         Route::get('/{service}', 'AccountController@index')->name('accounts');
@@ -86,8 +89,3 @@ Route::prefix('admin')->middleware('verified')->group(function () {
 });
 		
 Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::prefix('profile')->group(function(){
-	Route::get('/', 'ProfileController@index')->name('profile');
-});
