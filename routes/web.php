@@ -67,10 +67,15 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         // Route::get('ovo', 'ProductController@ovo')->name('product.ovo');
         // Route::get('linkaja', 'ProductController@ovo')->name('product.linkaja');
     });
-
+	
     Route::prefix('reports')->group(function(){
         Route::get('gojek', 'ReportController@gojek')->name('reports.gojek');
     });
 });
-
+		
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::prefix('profile')->group(function(){
+	Route::get('/', 'ProfileController@index')->name('profile');
+});
