@@ -44,6 +44,9 @@
                                         Expired Date
                                     </th>
                                     <th class="sorting" >
+                                        Is Enabled
+                                    </th>
+                                    <th class="sorting" >
                                         Actions
                                     </th>
                                 </tr>
@@ -57,6 +60,11 @@
                                     <td>{{ $account->phone }}</td>
                                     <td>{{ $account->balance }}</td>
                                     <td>{{ date('d - m - Y', strtotime($account->expired_date)) }}</td>
+                                    @if($account->enabled == 1)
+                                    <td>true</td>
+                                    @else
+                                    <td>false</td>
+                                    @endif
                                     <td>
                                         <button type="button" class="btn btn-move btn-outline-primary" data-toggle="modal" data-target="#moveModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}">Move</button>
                                         <button type="button" class="btn btn-update btn-outline-success" data-toggle="modal" data-target="#updateModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}" data-license="{{ Auth::user()->license_key }}">Update OTP</button>
