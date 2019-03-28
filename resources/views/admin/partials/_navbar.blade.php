@@ -24,16 +24,19 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
 					<a class="dropdown-item mt-2" href="{{ route('profile') }}">
+						<i class="mdi mdi-account"></i>
 						Manage Accounts
 					</a>
-					<a class="dropdown-item">
+					<a class="dropdown-item" href="{{ route('change-password') }}">
+						<i class="mdi mdi-key-change"></i>
 						Change Password
 					</a>
-					<a class="dropdown-item" href="{{ route('logout') }}"
+					<a class="dropdown-item text-danger" href="{{ route('logout') }}"
 						onclick="event.preventDefault();
 						document.getElementById('logout-form').submit();">
+						<i class="mdi mdi-power"></i>
 						{{ __('Logout') }}
-
+						
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							@csrf
 						</form>

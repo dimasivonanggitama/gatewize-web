@@ -29,6 +29,10 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     Route::prefix('profile')->group(function(){
         Route::get('/', 'ProfileController@index')->name('profile');
     });
+	
+	Route::prefix('change-password')->group(function() {
+        Route::get('/', 'Auth/ResetPasswordController@index')->name('change-password');
+	});
 
     Route::prefix('accounts')->group(function() {
         Route::get('/{service}', 'AccountController@index')->name('accounts');

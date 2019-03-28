@@ -36,4 +36,8 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+	
+	public index () {
+		return view('auth.password.reset');
+	}
 }
