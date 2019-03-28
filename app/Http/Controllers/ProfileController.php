@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User as User;
 use Auth; 
+use Mail;
+use App\Mail\UpdatePassword;
 
 class ProfileController extends Controller
 {
@@ -34,10 +36,14 @@ class ProfileController extends Controller
 			$this->validate($request, [
 				'password' => 'required|string|max:191'
 			]);
+
 			$user->password = bcrypt($request->password);
 		}
 
 		$user->save();
+
+		if($request->password != null)
+		    Mail::to(Auth::user()->email)->send(new UpdatePassword);		
 
 		flash("Success update user")->success();
 		
