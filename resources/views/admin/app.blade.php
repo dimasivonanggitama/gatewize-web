@@ -41,6 +41,8 @@
       margin-left: 17.7%;
     }
   </style>
+
+  @yield('custom_css')
 </head>
 
 <body>

@@ -3,357 +3,209 @@
 
 <!-- content ini dari admin.app ada yield('content') -->
 @section('content')
-	<div class="row d-flex justify-content-center">
-		<div class="col-xs-1 center-block text-center">
-			<div class="content-center">
-				<h1>Profil Akun</h1>
-				<div class="profile-image">
-					<img class="img-fluid img-thumbnail" src="images/faces/face1.jpg" alt="profile image">
-				</div>
-				<div class="text-wrapper">
-					<p class="profile-name">{{ Auth::user()->fullname }}</p>
-					<div class="text-wrapper">
-						Member since:
-						<small class="designation text-muted">{{ Auth::user()->created_at }}</small>
-					</div>
-					<div class="text-wrapper">
-						Last login:
-						<small class="designation text-muted">(DD/MM/YYYY)</small>
-					</div>
-					<div class="text-wrapper">
-						Last Update(s):
-						<small class="designation text-muted">(DD/MM/YYYY)</small>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- Update avatar Section-->
-	<div class="row">
-		<div class="col">
-			<hr>
-			<h3>Foto Profil</h3>
-		</div>
-	</div>
-	
-		<div class="mx-auto">
-		</div>
-		
-	<div class="row">
-		<div class="card bg-light">
+	<div class="row profile-page">
+		<div class="col-12">
+		<div class="card">
 			<div class="card-body">
-				<div class="col">
-					<div class="form-group">
-						<form action="">
-							{{ csrf_field() }}
-							<label for="delete_avatar">Hapus foto profil</label>
-							<button class="btn btn-danger" id="delete_avatar" type="submit">Hapus Foto</button>
-							<!-- Modal: Konfirmasi hapus foto -->
-								
-							<!-- -->
-						</form>
+			<div class="profile-header text-white">
+				<div class="d-flex justify-content-around">
+					<div class="profile-info d-flex align-items-center">
+						<img class="rounded-circle img-lg" src="{{ asset('theme/StarAdmin/images/faces/face1.jpg') }}" alt="profile image">
+						<div class="wrapper pl-4">
+							<p class="profile-user-name" style="margin-bottom:10px;">{{ Auth::user()->fullname }}</p>
+							<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editModal">Edit Profile</button>
+						</div>
 					</div>
-				</div>
-				<div class="col">
-					<div class="form-group">
-						<form action="" enctype="multipart/form-data" method="post">
-							{{ csrf_field() }}
-							<div class="form-group">
-								<label for="input_avatar">Pilih file gambar profile...</label>
-								<div class="row">
-									<div class="col-8.9">
-										<input type="file" class="form-control-file" id="input_avatar" name="input_avatar" accept=".jpg,.png" required>
-										<div class="invalid-feedback">Example invalid custom file feedback</div>
-									</div>
-									<div class="col">
-										<button type="submit" class="btn btn-primary">Update</button>
-									</div>
-								</div>
-							</div>
-						</form>
+					<div class="details">
+						<div class="detail-col">
+						<p>Total Balance</p>
+						<p>Rp. {{ Auth::user()->balance }}</p>
+						</div>
 					</div>
 				</div>
 			</div>
+			<div class="profile-body">
+				<ul class="nav tab-switch" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="user-profile-info-tab" data-toggle="pill" href="#user-profile-info" role="tab" aria-controls="user-profile-info" aria-selected="true">Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="user-profile-activity-tab" data-toggle="pill" href="#user-profile-activity" role="tab" aria-controls="user-profile-activity" aria-selected="false">Activity</a>
+					</li>
+				</ul>
+				<div class="row">
+					<div class="col-md-9">
+						<div class="tab-content tab-body" id="profile-log-switch">
+							<div class="tab-pane fade show active pr-3" id="user-profile-info" role="tabpanel" aria-labelledby="user-profile-info-tab">
+								<table class="table table-borderless w-100 mt-4">
+									<tr>
+										<td>
+										<strong>Full Name :</strong> {{ Auth::user()->fullname }}</td>
+										<td>
+										<strong>Email :</strong> {{ Auth::user()->email }}</td>
+									</tr>
+									<tr>
+										<td>
+										<strong>Username :</strong> {{ Auth::user()->username }}</td>
+										<td>
+										<strong>Telegram :</strong> {{ Auth::user()->telegram }}</td>
+									</tr>
+									<tr>
+										<td>
+										<strong>License Key :</strong> {{ Auth::user()->license_key }}</td>
+										<td>
+										<strong>Address :</strong> {{ Auth::user()->address }}
+										</td>
+									</tr>
+								</table>
+								<div class="row mt-5 pb-4 border-bottom">
+									<div class="col-6">
+										<div class="d-flex align-items-start pb-3 border-bottom">
+										<img src="../../../assets/images/samples/profile_page/logo/01.png" alt="brand logo">
+										<div class="wrapper pl-4">
+											<p class="font-weight-bold mb-0">Photoshop</p>
+											<small>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</small>
+										</div>
+										</div>
+										<div class="d-flex align-items-start py-3 border-bottom">
+										<img src="../../../assets/images/samples/profile_page/logo/02.png" alt="brand logo">
+										<div class="wrapper pl-4">
+											<p class="font-weight-bold mb-0">Photoshop</p>
+											<small>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</small>
+										</div>
+										</div>
+										<div class="d-flex align-items-start py-3">
+										<img src="../../../assets/images/samples/profile_page/logo/03.png" alt="brand logo">
+										<div class="wrapper pl-4">
+											<p class="font-weight-bold mb-0">Photoshop</p>
+											<small>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</small>
+										</div>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="row">
+										<div class="col-12">
+											<img class="img-fluid rounded" src="../../../assets/images/samples/profile_page/banner_01.jpg" alt="banner image"> </div>
+										<div class="col-12 mt-3">
+											<img class="img-fluid rounded" src="../../../assets/images/samples/profile_page/banner_02.jpg" alt="banner image"> </div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="user-profile-activity" role="tabpanel" aria-labelledby="user-profile-activity-tab">
+								<div class="horizontal-timeline">
+									<section class="time-frame">
+										<h4 class="section-time-frame">Today</h4>
+										<div class="event">
+										<p class="event-text">We’re big on real names around here, so people know who’s who</p>
+										<div class="event-alert">You have added task #26 Successfully to the project “Agile CRM”</div>
+										<div class="event-info">New Dashboard Design - 9:24 PM</div>
+										</div>
+										<div class="event">
+										<p class="event-text">Admin is a full featured, multipurpose, premium bootstrap admin template built with Bootstrap 4 Framework</p>
+										<div class="tumbnail-views">
+											<div class="thumbnail">
+											<img src="../../../assets/images/samples/profile_page/thumbnail/01.jpg" alt="thumbnail"> </div>
+											<div class="thumbnail">
+											<img src="../../../assets/images/samples/profile_page/thumbnail/02.jpg" alt="thumbnail"> </div>
+											<div class="thumbnail">
+											<img src="../../../assets/images/samples/profile_page/thumbnail/03.jpg" alt="thumbnail"> </div>
+											<div class="thumbnail">
+											<img src="../../../assets/images/samples/profile_page/thumbnail/04.jpg" alt="thumbnail"> </div>
+											<div class="thumbnail">
+											<img src="../../../assets/images/samples/profile_page/thumbnail/05.jpg" alt="thumbnail"> </div>
+											<div class="thumbnail">
+											<img src="../../../assets/images/samples/profile_page/thumbnail/06.jpg" alt="thumbnail"> </div>
+										</div>
+										<div class="event-info">New Dashboard Design - 9:24 PM</div>
+										</div>
+										<div class="event">
+										<p class="event-text">It is a fully responsive bootstrap admin template / bootstrap admin dashboard</p>
+										<div class="event-alert">You have added task #26 Successfully to the project “Agile CRM”</div>
+										<div class="event-info">New Dashboard Design - 9:24 PM</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
 		</div>
 	</div>
-			
-			<p></p>
-			
-	<div class="accordion" id="profileParent" role="tablist" aria-multiselectable="true">
-		<div class="collapse show" id="collapseProfile" aria-expanded="true" data-parent="#profileParent">
-			
-			<div class="row">
-				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-					<div class="card card-statistics">
-						<div class="card-body">
-							<div class="clearfix">
-								<div class="float-left">
-									<i class="mdi mdi-cube text-danger icon-lg"></i>
-								</div>
-								<div class="float-right">
-									<p class="mb-0 text-right">Total Revenue</p>
-									<div class="fluid-container">
-									<h3 class="font-weight-medium text-right mb-0">$65,650</h3>
-									</div>
-								</div>
-							</div>
-							<p class="text-muted mt-3 mb-0">
-							<i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-					<div class="card card-statistics">
-						<div class="card-body">
-							<div class="clearfix">
-								<div class="float-left">
-									<i class="mdi mdi-receipt text-warning icon-lg"></i>
-								</div>
-								<div class="float-right">
-									<p class="mb-0 text-right">Orders</p>
-									<div class="fluid-container">
-									<h3 class="font-weight-medium text-right mb-0">3455</h3>
-									</div>
-								</div>
-							</div>
-							<p class="text-muted mt-3 mb-0">
-							<i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-					<div class="card card-statistics">
-						<div class="card-body">
-							<div class="clearfix">
-							<div class="float-left">
-								<i class="mdi mdi-poll-box text-success icon-lg"></i>
-							</div>
-							<div class="float-right">
-								<p class="mb-0 text-right">Sales</p>
-								<div class="fluid-container">
-								<h3 class="font-weight-medium text-right mb-0">5693</h3>
-								</div>
-							</div>
-							</div>
-							<p class="text-muted mt-3 mb-0">
-							<i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-					<div class="card card-statistics">
-						<div class="card-body">
-							<div class="clearfix">
-							<div class="float-left">
-								<i class="mdi mdi-account-location text-info icon-lg"></i>
-							</div>
-							<div class="float-right">
-								<p class="mb-0 text-right">Employees</p>
-								<div class="fluid-container">
-								<h3 class="font-weight-medium text-right mb-0">246</h3>
-								</div>
-							</div>
-							</div>
-							<p class="text-muted mt-3 mb-0">
-							<i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
-							</p>
-						</div>
-					</div>
-				</div>
+
+	<!-- create modal -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edit Profile</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
-			<div class="row">
-			<div class="col-lg-7 grid-margin stretch-card">
-				<!--weather card-->
-				<div class="card card-weather">
-				<div class="card-body">
-					<div class="weather-date-location">
-					<h3>Monday</h3>
-					<p class="text-gray">
-						<span class="weather-date">25 October, 2016</span>
-						<span class="weather-location">London, UK</span>
-					</p>
+			<form class="forms-sample" method="POST" action="{{ route('profile.update') }}">
+				<div class="modal-body">
+					@csrf
+					<div class="form-group">
+						<label for="fullname">Full Name</label>
+						<input type="text" class="form-control" id="fullname" name="fullname" placeholder="Nama Lengkap" value="{{ old('fullname', Auth::user()->fullname) }}" require>
+						@if ($errors->first('fullname'))
+							<small class="text-danger">{{ $errors->first('fullname') }}</small>
+						@endif
 					</div>
-					<div class="weather-data d-flex">
-					<div class="mr-auto">
-						<h4 class="display-3">21
-						<span class="symbol">&deg;</span>C</h4>
-						<p>
-						Mostly Cloudy
-						<p class="profile-name">{{ Auth::user()->fullname }}</p>
-						<div class="text-wrapper">
-							Member since:
-							<small class="designation text-muted">{{ Auth::user()->created_at }}</small>
-						</div>
-						<div class="text-wrapper">
-							Last login:
-							<small class="designation text-muted">@php echo date("d-m-Y");@endphp</small>
-						</div>
-						<div class="text-wrapper">
-							License:
-							<small class="designation text-muted">{{ Auth::user()->license_key }}</small>
-						</div>
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" id="username" name="username" placeholder="Username" value="{{ old('username', Auth::user()->username) }}" require>
+						@if ($errors->first('username'))
+							<small class="text-danger">{{ $errors->first('username') }}</small>
+						@endif
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-					<div class="card card-statistics">
-					<div class="card-body">
-						<div class="clearfix">
-						<div class="float-left">
-							<i class="mdi mdi-cube text-danger icon-lg"></i>
-						</div>
-						<div class="float-right">
-							<p class="mb-0 text-right">Total Revenue</p>
-							<div class="fluid-container">
-							<h3 class="font-weight-medium text-right mb-0">$65,650</h3>
-							</div>
-						</div>
-						</div>
-						<p class="text-muted mt-3 mb-0">
-						<i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
-						</p>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Alamat Email" value="{{ old('email', Auth::user()->email) }}" require>
+						@if ($errors->first('email'))
+							<small class="text-danger">{{ $errors->first('email') }}</small>
+						@endif
 					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Kosongi jika tidak ingin mengubah password" value="{{ old('password') }}">
+						@if ($errors->first('password'))
+							<small class="text-danger">{{ $errors->first('password') }}</small>
+						@endif
+					</div>
+					<div class="form-group">
+						<label for="address">Address</label>
+						<textarea name="address" class="form-control" id="address" cols="30" rows="3">{{ old('address', Auth::user()->address) }}</textarea>
+						@if ($errors->first('address'))
+							<small class="text-danger">{{ $errors->first('address') }}</small>
+						@endif
+					</div>
+					<div class="form-group">
+						<label for="telegram">Telegram</label>
+						<input type="text" class="form-control" id="telegram" name="telegram" placeholder="ID Telegram" value="{{ old('telegram', Auth::user()->telegram) }}" require>
+						@if ($errors->first('telegram'))
+							<small class="text-danger">{{ $errors->first('telegram') }}</small>
+						@endif
 					</div>
 				</div>
-				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-					<div class="card card-statistics">
-					<div class="card-body">
-						<div class="clearfix">
-						<div class="float-left">
-							<i class="mdi mdi-receipt text-warning icon-lg"></i>
-						</div>
-						<div class="float-right">
-							<p class="mb-0 text-right">Orders</p>
-							<div class="fluid-container">
-							<h3 class="font-weight-medium text-right mb-0">3455</h3>
-							</div>
-						</div>
-						</div>
-						<p class="text-muted mt-3 mb-0">
-						<i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
-						</p>
-					</div>
-					</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Update</button>
 				</div>
-				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-					<div class="card card-statistics">
-					<div class="card-body">
-						<div class="clearfix">
-						<div class="float-left">
-							<i class="mdi mdi-poll-box text-success icon-lg"></i>
-						</div>
-						<div class="float-right">
-							<p class="mb-0 text-right">Sales</p>
-							<div class="fluid-container">
-							<h3 class="font-weight-medium text-right mb-0">5693</h3>
-							</div>
-						</div>
-						</div>
-						<p class="text-muted mt-3 mb-0">
-						<i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales
-						</p>
-					</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-					<div class="card card-statistics">
-					<div class="card-body">
-						<div class="clearfix">
-						<div class="float-left">
-							<i class="mdi mdi-account-location text-info icon-lg"></i>
-						</div>
-						<div class="float-right">
-							<p class="mb-0 text-right">Employees</p>
-							<div class="fluid-container">
-							<h3 class="font-weight-medium text-right mb-0">246</h3>
-							</div>
-						</div>
-						</div>
-						<p class="text-muted mt-3 mb-0">
-						<i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
-						</p>
-					</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-			<div class="collapse" id="collapseFoto" data-parent="#profileParent">
-				
-			</div>
-		<div>
-		
-		<!-- Biodata Section -->
-		<div class="collapse" id="collapseBiodata" data-parent="#profileParent">
-			<div class="row d-flex justify-content-center">
-				<div class="content-center">
-					<div class="mx-auto">
-						<div class="">
-							Edit Biodata
-						</div>
-						
-						<div class="card bg-light" style="width: 50rem;">
-							<div class="card-body">
-								<form action="" aria-describedby="help_form_permintaan">
-									<div class="form-group">
-										<label for="input_nama_lengap">Nama Lengkap</label>
-										<input type="text" class="form-control" id="input_nama_lengkap" placeholder="{{ Auth::user()->fullname }}">
-									</div>
-									<div class="form-group">
-										<label for="input_alamat">Alamat</label>
-										<input type="text" class="form-control" id="input_alamat" placeholder="{{ Auth::user()->address }}">
-									</div>
-									<button type="submit" class="btn btn-primary">Update</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<!-- Biodata Section -->
-		<div>
-			<div class="collapse" id="collapseAkun" data-parent="#profileParent">
-				<div class="row d-flex justify-content-center">
-					<div class="content-center">
-						<div class="mx-auto">
-							<div class="">
-								Edit Akun
-							</div>
-							
-							<div class="card bg-light" style="width: 50rem;">
-								<div class="card-body">
-									<form action="">
-										<div class="form-group">
-											<label for="input_alamat_email">Alamat Email</label>
-											<input type="text" class="form-control" id="input_alamat_email" placeholder="{{ Auth::user()->email }}">
-										</div>
-										<div class="form-group">
-											<label for="input_nama_user">Username</label>
-											<input type="text" class="form-control" id="input_nama_user" placeholder="{{ Auth::user()->username }}">
-										</div>
-										<div class="form-group">
-											<label for="input_password">Password</label>
-											<input type="text" class="form-control" id="input_password" placeholder="Masukkan password baru anda">
-										</div>
-										<div class="form-group">
-											<label for="input_password_confirm">Confirm Password</label>
-											<input type="text" class="form-control" id="input_password_confirm" placeholder="Masukkan ulang password baru anda">
-										</div>
-										<button type="Update" class="btn btn-primary">Update</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
+	</div>
+@endsection
+
+@section('custom_css')
+<style>
+	.profile-page .profile-header{
+		background: url("{{ asset('theme/StarAdmin/images/samples/profile_header_banner.jpg') }}") no-repeat center center;
+	}
+</style>
 @endsection

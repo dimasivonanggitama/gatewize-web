@@ -28,6 +28,7 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     // });
     Route::prefix('profile')->group(function(){
         Route::get('/', 'ProfileController@index')->name('profile');
+        Route::post('/update', 'ProfileController@update')->name('profile.update');
     });
 
     Route::prefix('accounts')->group(function() {
