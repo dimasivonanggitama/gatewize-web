@@ -61,13 +61,14 @@
                                     <td>{{ $account->balance }}</td>
                                     <td>{{ date('d - m - Y', strtotime($account->expired_date)) }}</td>
                                     @if($account->enabled == 1)
-                                    <td>true</td>
+                                    <td>Aktif</td>
                                     @else
-                                    <td>false</td>
+                                    <td>Tidak Aktif</td>
                                     @endif
                                     <td>
-                                        <button type="button" class="btn btn-move btn-outline-primary" data-toggle="modal" data-target="#moveModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}">Move</button>
-                                        <button type="button" class="btn btn-update btn-outline-success" data-toggle="modal" data-target="#updateModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}" data-license="{{ Auth::user()->license_key }}">Update OTP</button>
+                                        <button type="button" class="btn btn-move btn-warning" data-toggle="modal" data-target="#moveModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}">Move</button>
+                                        <button type="button" class="btn btn-update btn-primary" data-toggle="modal" data-target="#updateModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}" data-license="{{ Auth::user()->license_key }}">Update OTP</button>
+                                        <button type="button" class="btn btn-list btn-success" data-toggle="modal" data-target="#listModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}" data-license="{{ Auth::user()->license_key }}">List Voucher</button>
                                         <!-- <a href="{{ route('accounts.destroy', 1) }}" class="btn btn-outline-danger">Delete</a> -->
                                     </td>
                                 </tr>
@@ -241,6 +242,33 @@
     })
 
     $('#btn-verify-otp').click(function(){
+        let phone = $('#phone-update').val()
+        let license = $('#license-update').val()
+        let groupId = $('#group-update').val()
+        let token = $('#token-update').val()
+        let otp = $('#otp-update').val()
+        $.post('https://api.gatewize.com/devel-gopay/account/'+ license +'/'+ groupId +'/'+ phone +'/verify',
+        {   token: token, 
+            otp: otp,
+        }, function(data){
+            if(data.status){
+                swal({
+                    title: 'Berhasil',
+                    text: "Berhasil update otp",
+                    icon: 'success',
+                })
+            } else {
+                swal({
+                    title: 'Update Gagal',
+                    text: data.message,
+                    icon: 'error',
+                })
+            }
+        })
+    })
+
+
+    $('#btn-list-voucher').click(function(){
         let phone = $('#phone-update').val()
         let license = $('#license-update').val()
         let groupId = $('#group-update').val()
