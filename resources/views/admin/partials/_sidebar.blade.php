@@ -4,7 +4,7 @@
       <div class="nav-link">
         <div class="user-wrapper">
           <div class="profile-image">
-            <img src="{{ asset('theme/StarAdmin/images/faces/face1.jpg') }}" alt="profile image">
+            <img src="{{ Auth::user()->getAvatar() }}" alt="profile image">
           </div>
           <div class="text-wrapper">
             <p class="profile-name">{{ Auth::user()->fullname }}</p>

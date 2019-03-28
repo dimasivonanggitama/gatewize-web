@@ -10,7 +10,7 @@
 			<div class="profile-header text-white">
 				<div class="d-flex justify-content-around">
 					<div class="profile-info d-flex align-items-center">
-						<img class="rounded-circle img-lg" src="{{ asset('theme/StarAdmin/images/faces/face1.jpg') }}" alt="profile image">
+						<img class="rounded-circle img-lg" src="{{ Auth::user()->getAvatar(128) }}" alt="profile image">
 						<div class="wrapper pl-4">
 							<p class="profile-user-name" style="margin-bottom:10px;">{{ Auth::user()->fullname }}</p>
 							<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editModal">Edit Profile</button>
@@ -58,7 +58,7 @@
 										</td>
 									</tr>
 								</table>
-								<div class="row mt-5 pb-4 border-bottom">
+								<!-- <div class="row mt-5 pb-4 border-bottom">
 									<div class="col-6">
 										<div class="d-flex align-items-start pb-3 border-bottom">
 										<img src="../../../assets/images/samples/profile_page/logo/01.png" alt="brand logo">
@@ -90,7 +90,7 @@
 											<img class="img-fluid rounded" src="../../../assets/images/samples/profile_page/banner_02.jpg" alt="banner image"> </div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<div class="tab-pane fade" id="user-profile-activity" role="tabpanel" aria-labelledby="user-profile-activity-tab">
 								<div class="horizontal-timeline">
