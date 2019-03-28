@@ -9,6 +9,16 @@
 	</div>
 	<div class="navbar-menu-wrapper d-flex align-items-center">
 		<ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="mdi mdi-elevation-rise"></i>Integration</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="mdi mdi-bookmark-plus-outline"></i>Store</a>
+          </li>
+        </ul>
+		<ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
 			{{-- <li class="nav-item">
 				<a href="#" class="nav-link">
 					<i class="mdi mdi-elevation-rise"></i>Deposit
@@ -25,9 +35,6 @@
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
 					<a class="dropdown-item mt-2" href="{{ route('profile') }}">
 						Manage Accounts
-					</a>
-					<a class="dropdown-item">
-						Change Password
 					</a>
 					<a class="dropdown-item" href="{{ route('logout') }}"
 						onclick="event.preventDefault();
