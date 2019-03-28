@@ -3,14 +3,186 @@
 
 <!-- content ini dari admin.app ada yield('content') -->
 @section('content')
-	<div class="accordion" id="profileParent" role="tablist" aria-multiselectable="true">
-		<div class="collapse show" id="collapseProfile" aria-expanded="true" data-parent="#profileParent">
-			<div class="row d-flex justify-content-center">
-				<div class="content-center ">
-					<div class="profile-image">
-						<img class="img-fluid img-thumbnail" src="{{ asset('theme/StarAdmin/images/faces/face1.jpg') }}" alt="profile image">
+	<div class="row d-flex justify-content-center">
+		<div class="col-xs-1 center-block text-center">
+			<div class="content-center">
+				<h1>Profil Akun</h1>
+				<div class="profile-image">
+					<img class="img-fluid img-thumbnail" src="images/faces/face1.jpg" alt="profile image">
+				</div>
+				<div class="text-wrapper">
+					<p class="profile-name">{{ Auth::user()->fullname }}</p>
+					<div class="text-wrapper">
+						Member since:
+						<small class="designation text-muted">{{ Auth::user()->created_at }}</small>
 					</div>
 					<div class="text-wrapper">
+						Last login:
+						<small class="designation text-muted">(DD/MM/YYYY)</small>
+					</div>
+					<div class="text-wrapper">
+						Last Update(s):
+						<small class="designation text-muted">(DD/MM/YYYY)</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Update avatar Section-->
+	<div class="row">
+		<div class="col">
+			<hr>
+			<h3>Foto Profil</h3>
+		</div>
+	</div>
+	
+		<div class="mx-auto">
+		</div>
+		
+	<div class="row">
+		<div class="card bg-light">
+			<div class="card-body">
+				<div class="col">
+					<div class="form-group">
+						<form action="">
+							{{ csrf_field() }}
+							<label for="delete_avatar">Hapus foto profil</label>
+							<button class="btn btn-danger" id="delete_avatar" type="submit">Hapus Foto</button>
+							<!-- Modal: Konfirmasi hapus foto -->
+								
+							<!-- -->
+						</form>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<form action="" enctype="multipart/form-data" method="post">
+							{{ csrf_field() }}
+							<div class="form-group">
+								<label for="input_avatar">Pilih file gambar profile...</label>
+								<div class="row">
+									<div class="col-8.9">
+										<input type="file" class="form-control-file" id="input_avatar" name="input_avatar" accept=".jpg,.png" required>
+										<div class="invalid-feedback">Example invalid custom file feedback</div>
+									</div>
+									<div class="col">
+										<button type="submit" class="btn btn-primary">Update</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+			
+			<p></p>
+			
+	<div class="accordion" id="profileParent" role="tablist" aria-multiselectable="true">
+		<div class="collapse show" id="collapseProfile" aria-expanded="true" data-parent="#profileParent">
+			
+			<div class="row">
+				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+					<div class="card card-statistics">
+						<div class="card-body">
+							<div class="clearfix">
+								<div class="float-left">
+									<i class="mdi mdi-cube text-danger icon-lg"></i>
+								</div>
+								<div class="float-right">
+									<p class="mb-0 text-right">Total Revenue</p>
+									<div class="fluid-container">
+									<h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+									</div>
+								</div>
+							</div>
+							<p class="text-muted mt-3 mb-0">
+							<i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+					<div class="card card-statistics">
+						<div class="card-body">
+							<div class="clearfix">
+								<div class="float-left">
+									<i class="mdi mdi-receipt text-warning icon-lg"></i>
+								</div>
+								<div class="float-right">
+									<p class="mb-0 text-right">Orders</p>
+									<div class="fluid-container">
+									<h3 class="font-weight-medium text-right mb-0">3455</h3>
+									</div>
+								</div>
+							</div>
+							<p class="text-muted mt-3 mb-0">
+							<i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+					<div class="card card-statistics">
+						<div class="card-body">
+							<div class="clearfix">
+							<div class="float-left">
+								<i class="mdi mdi-poll-box text-success icon-lg"></i>
+							</div>
+							<div class="float-right">
+								<p class="mb-0 text-right">Sales</p>
+								<div class="fluid-container">
+								<h3 class="font-weight-medium text-right mb-0">5693</h3>
+								</div>
+							</div>
+							</div>
+							<p class="text-muted mt-3 mb-0">
+							<i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+					<div class="card card-statistics">
+						<div class="card-body">
+							<div class="clearfix">
+							<div class="float-left">
+								<i class="mdi mdi-account-location text-info icon-lg"></i>
+							</div>
+							<div class="float-right">
+								<p class="mb-0 text-right">Employees</p>
+								<div class="fluid-container">
+								<h3 class="font-weight-medium text-right mb-0">246</h3>
+								</div>
+							</div>
+							</div>
+							<p class="text-muted mt-3 mb-0">
+							<i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			<div class="col-lg-7 grid-margin stretch-card">
+				<!--weather card-->
+				<div class="card card-weather">
+				<div class="card-body">
+					<div class="weather-date-location">
+					<h3>Monday</h3>
+					<p class="text-gray">
+						<span class="weather-date">25 October, 2016</span>
+						<span class="weather-location">London, UK</span>
+					</p>
+					</div>
+					<div class="weather-data d-flex">
+					<div class="mr-auto">
+						<h4 class="display-3">21
+						<span class="symbol">&deg;</span>C</h4>
+						<p>
+						Mostly Cloudy
 						<p class="profile-name">{{ Auth::user()->fullname }}</p>
 						<div class="text-wrapper">
 							Member since:
@@ -112,48 +284,7 @@
 		</div>
 		
 			<div class="collapse" id="collapseFoto" data-parent="#profileParent">
-				<div class="row d-flex justify-content-center">
-					<div class="col-xs-1 center-block text-center">
-						<div class="content-center">
-							<h1>Foto Profil</h1>
-							<div class="profile-image">
-								<img class="img-fluid img-thumbnail" src="images/faces/face1.jpg" alt="profile image">
-							</div>
-							<div class="text-wrapper">
-								<p class="profile-name">{{ Auth::user()->fullname }}</p>
-							</div>
-							<form>
-								<button type="submit" class="btn btn-primary">Hapus Foto</button>
-								<!-- Modal: Konfirmasi hapus foto -->
-									
-								<!-- -->
-							</form>
-							
-							<!-- Form update avatar -->
-							<div class="mx-auto">
-								<div class="card border border-secondary">
-									<div class="card-body">
-										<form action="" enctype="multipart/form-data" method="post">
-											{{ csrf_field() }}
-											<div class="form-group">
-												<label for="input_avatar">Pilih file gambar profile...</label>
-												<div class="row">
-													<div class="col-8.9">
-														<input type="file" class="form-control-file" id="input_avatar" name="input_avatar" accept=".jpg,.png" required>
-														<div class="invalid-feedback">Example invalid custom file feedback</div>
-													</div>
-													<div class="col">
-														<button type="submit" class="btn btn-primary">Update</button>
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		<div>
 		

@@ -78,9 +78,29 @@
                     @endauth
                 </div>
             @endif
-
+			
             <div class="content">
-                
+			
+                <div class="container-fluid">
+					<div class="row">
+						<a class="col" href="{{ route('privacy-policy') }}">
+							<h1 class="display-1">Privacy Policy</h1>
+						</a>
+						<div class="col">
+							<b>•</b>
+						</div>
+						<a class="col" href="{{ route('contact-us') }}">
+							<h1 class="display-1">Contact Us</h1>
+						</a>
+						<div class="col">
+							<b>•</b>
+						</div>
+						<a class="col" href="{{ route('tos') }}">
+							<h1 class="display-1">Term of Service</h1>
+						</a>
+					</div>
+				</div>
+				
             </div>
         </div>
     </body>
