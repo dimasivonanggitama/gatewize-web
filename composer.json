@@ -12,7 +12,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.7.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "rackbeat/laravel-ui-avatars": "^0.6.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
