@@ -44,7 +44,10 @@
                                         Expired Date
                                     </th>
                                     <th class="sorting" >
-                                        Is Enabled
+                                        Active
+                                    </th>
+                                    <th class="sorting">
+                                        Is Promo
                                     </th>
                                     <th class="sorting" >
                                         Actions
@@ -64,6 +67,11 @@
                                     <td>Aktif</td>
                                     @else
                                     <td>Tidak Aktif</td>
+                                    @endif
+                                    @if($account->is_promo == 1)
+                                    <td>Promo</td>
+                                    @else
+                                    <td>Tidak Promo</td>
                                     @endif
                                     <td>
                                         <button type="button" class="btn btn-move btn-warning" data-toggle="modal" data-target="#moveModal"  data-phone="{{ $account->phone }}" data-group="{{ $account->group_id }}">Move</button>
