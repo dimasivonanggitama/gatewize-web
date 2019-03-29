@@ -45,4 +45,10 @@ class DigiposClient
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/voice');
 		return json_decode($response->getBody(), true);
 	}
+
+	public function getGroups($license)
+	{
+		$response = $this->client->get('devel-digipos/group/'.$license.'/list');
+		return json_decode($response->getBody(), true);
+	}
 }

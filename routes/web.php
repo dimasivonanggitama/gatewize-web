@@ -74,6 +74,7 @@ Route::prefix('admin')->middleware('verified')->group(function () {
 	
     Route::prefix('reports')->group(function(){
         Route::get('gojek', 'ReportController@gojek')->name('reports.gojek');
+        Route::get('digipos', 'ReportController@digipos')->name('reports.digipos');
     });
 
     Route::prefix('ticket')->group(function(){
