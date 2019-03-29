@@ -38,17 +38,12 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::post('update/{id}', 'AccountController@update')->name('accounts.update');
         Route::post('delete/{id}', 'AccountController@destroy')->name('accounts.destroy');
         Route::get('/group/{group_id}/{service}', 'AccountController@group')->name('accounts.group');
-        Route::get('digipos', 'AccountController@digipos')->name('accounts.digipos');
         Route::post('move/{service}/', 'AccountController@move')->name('accounts.move');
     });
 
     Route::prefix('groups')->group(function() {
-        Route::get('/{service}', 'GroupController@index')->name('groups');
-        Route::get('create', 'GroupController@create')->name('groups.create');
         Route::post('store', 'GroupController@store')->name('groups.store');
-        Route::get('show/{service}/{id}', 'GroupController@show')->name('groups.show');
         Route::get('refresh/{service}/{id}', 'GroupController@refresh')->name('groups.refresh');
-        // Route::get('edit/{service}/{id}', 'GroupController@edit')->name('groups.edit');
         Route::post('update/{service}/', 'GroupController@update')->name('groups.update');
         Route::delete('delete/{service}', 'GroupController@destroy')->name('groups.destroy');
         Route::get('digipos', 'GroupController@digipos')->name('groups.digipos');

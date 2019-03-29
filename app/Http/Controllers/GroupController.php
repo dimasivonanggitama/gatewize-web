@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
+use App\GojekClient;
+use App\DigiposClient;
 
 class GroupController extends Controller
 {
@@ -17,52 +19,23 @@ class GroupController extends Controller
         $this->middleware('auth');
         $this->_client = new Client();
     }
-    
-    public function index($service = "")
-    {
-        $client = new Client();
-        try{
-            if($service == "gojek"){
-                $response = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list", ['User-Agent' => null]);
-            } else {
-                $response = null;
-            }
-            
-            if($response != null && $response->getStatusCode() == 200){
-                $groups = json_decode($response->getBody());
-            } else {
-                $groups = [];
-            }
-            if(isset($groups->status)){
-                $groups = [];
-            }
-            $data = [
-                'groups' => $groups,
-                'service' => $service,
-            ];
-        } catch (ClientException $e) {
-            $data = [
-                'groups' => [],
-                'service' => $service,
-            ];
-            // echo Psr7\str($e->getRequest());
-            // echo Psr7\str($e->getResponse());
-        } 
-        // catch (RequestException $e) { 
-        //     return redirect()->route('groups', 'gojek');
-        // }
 
-        return view('admin.pages.group.index')->with($data);
-    }
-
-    public function show($service = "", $id = 0)
+    public function gojek()
     {
+        $client = new GojekClient();
+        $license = auth()->user()->license_key;
+        $groups = $client->getGroups($license);
         
+        return view('admin.pages.group.gojek', compact('groups'));
     }
 
-    public function create($service = "")
+    public function digipos()
     {
-        return view('admin.pages.group.add');
+        $client = new DigiposClient();
+        $license = auth()->user()->license_key;
+        $groups = $client->getGroups($license);
+        
+        return view('admin.pages.group.digipos', compact('groups'));
     }
 
     public function store(Request $request)
@@ -71,32 +44,22 @@ class GroupController extends Controller
             'name' => 'required|string|max:191',
             'limit' => 'required|integer|min:0'
         ]);
+
+        $gojekClient = new GojekClient();
         
         if($request->service == "gojek"){
-            $response = $this->_client->post("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/add", 
-                [
-                    'json' => [
-                        'name' => $request->name,
-                        'limit' => (int)$request->limit
-                    ]
-                ]);
-            $response = json_decode($response->getBody());
+            $response = $gojekClient->addGroup(auth()->user()->license_key, $request->name, $request->limit);
         } else {
             $response = ['status' => false];
         }
         
-        if($response->status){
-            flash($response->message)->success();
+        if($response['status']){
+            flash($response["message"])->success();
         } else {
-            flash($response->message)->error();
+            flash($response["message"])->error();
         }
 
-        return redirect()->route('groups', $request->service);
-    }
-
-    public function edit($service = "")
-    {
-        return view('admin.pages.group.edit');
+        return redirect()->route("groups.$request->service");
     }
 
     public function update(Request $request, $service = "")
@@ -106,27 +69,23 @@ class GroupController extends Controller
             'name' => 'required|string|max:191',
             'limit' => 'required|integer|min:0'
         ]);
+
+        $gojekClient = new GojekClient();
+        $license = auth()->user()->license_key;
         
         if($request->service == "gojek"){
-            $response = $this->_client->post("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/$request->id/update", 
-                [
-                    'json' => [
-                        'name' => $request->name,
-                        'limit' => (int)$request->limit
-                    ]
-                ]);
-            $response = json_decode($response->getBody());
+            $response = $gojekClient->updateGroup($license, $request->id, $request->name, $request->limit);
         } else {
             $response = ['status' => false];
         }
         
-        if($response->status){
-            flash($response->message)->success();
+        if($response['status']){
+            flash($response["message"])->success();
         } else {
-            flash($response->message)->error();
+            flash($response["message"])->error();
         }
 
-        return redirect()->route('groups', $request->service);
+        return redirect()->route("groups.$request->service");
     }
 
     public function destroy(Request $request, $service = "")
@@ -134,22 +93,22 @@ class GroupController extends Controller
         $this->validate($request, [
             'id' => 'required|integer|min:0'
         ]);
+
+        $gojekClient = new GojekClient();
         
         if($request->service == "gojek"){
-            $response = $this->_client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/$request->id/delete");
-            $response = json_decode($response->getBody());
+            $response = $gojekClient->deleteGroup(auth()->user()->license_key, $request->id);
         } else {
             $response = ['status' => false];
         }
 
-        if($response->status){
-            flash($response->message)->success();
+        if($response['status']){
+            flash($response['message'])->success();
         } else {
-            flash($response->message)->error();
+            flash($response['message'])->error();
         }
-        $this->_client = null;
 
-        return redirect()->route('groups', $service);
+        return redirect()->route("groups.$service");
     }
 
     public function refresh($service = "", $id = "")

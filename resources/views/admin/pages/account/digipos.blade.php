@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
 	<div class="card-body">
-		<h4 class="card-title">Manage Accounts</h4>
+		<h4 class="card-title">Manage Accounts Digipos</h4>
         <div class="row">
             <div class="col-sm-12">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal" data-id="1">Add Account</button>
@@ -13,18 +13,6 @@
          <div class="col-md-12">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="dropdown">
-                        <small>Pilih Group :</small>
-                        <button class="btn btn-sm btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ $filterBy }}
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{ route('accounts', $service) }}">All Account</a>
-                            @foreach($groups as $group)
-                            <a class="dropdown-item" href="{{ route('accounts.group', ['service' => $service, 'group_id' => $group['id']]) }}">{{ $group['name'] }}</a>
-                            @endforeach
-                        </div>
-                    </div>
                     <table id="group-account" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
                         <thead>
                             <tr role="row">
@@ -74,9 +62,7 @@
                                     <td>Tidak Promo</td>
                                     @endif
                                     <td>
-                                        <button type="button" class="btn btn-move btn-warning" data-toggle="modal" data-target="#moveModal"  data-phone="{{ $account['phone'] }}" data-group="{{ $account['group_id'] }}">Move</button>
                                         <button type="button" class="btn btn-update btn-primary" data-toggle="modal" data-target="#updateModal"  data-phone="{{ $account['phone'] }}" data-group="{{ $account['group_id'] }}" data-license="{{ Auth::user()->license_key }}">Update OTP</button>
-                                        <button type="button" class="btn btn-list-voucher btn-success" id="btn-list-voucher" data-toggle="modal" data-target="#listModal"  data-phone="{{ $account['phone'] }}" data-group="{{ $account['group_id'] }}" data-license="{{ Auth::user()->license_key }}">List Voucher</button>
                                         <!-- <a href="{{ route('accounts.destroy', 1) }}" class="btn btn-outline-danger">Delete</a> -->
                                     </td>
                                 </tr>
@@ -115,57 +101,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-        </form>
-    </div>
-</div>
-</div>
-
-<!-- move modal -->
-<div class="modal fade" id="moveModal" tabindex="-1" role="dialog" aria-labelledby="moveModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Move Account</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <form class="forms-sample" method="POST" action="{{ route('accounts.move', $service) }}">
-            <div class="modal-body">
-                @csrf
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control phoneMove" placeholder="No. Telepon" value="{{ old('phone') }}" disabled>
-                    <input type="hidden" class="phoneMove" name="phone" name="phone" value="{{ old('phone') }}">
-                    @if ($errors->first('phone'))
-                    <small class="text-danger">{{ $errors->first('phone') }}</small>
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label for="oldGroup">Old Group</label>
-                    <input type="text" class="form-control oldGroupMove" placeholder="Grup Lama" value="{{ old('oldGroup') }}" disabled>
-                    <input type="hidden" class="oldGroupMove" name="oldGroup" value="{{ old('oldGroup') }}">
-                    @if ($errors->first('oldGroup'))
-                    <small class="text-danger">{{ $errors->first('oldGroup') }}</small>
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label for="newGroup">New Group</label>
-                    <select class="form-control" name="newGroup" id="newGroupMove">
-                        <option value="" disabled selected>Grup Baru</option>
-                        @foreach($groups as $group)
-                        <option value="{{ $group['id'] }}">{{ $group['name'] }}</option>
-                        @endforeach
-                    </select>
-                    @if ($errors->first('newGroup'))
-                    <small class="text-danger">{{ $errors->first('newGroup') }}</small>
-                    @endif
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Move</button>
             </div>
         </form>
     </div>
@@ -212,50 +147,10 @@
 </div>
 </div>
 
-<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="listModal" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="max-width: 800px; margin-top: 50px; max-height: ">
-    <div class="modal-content">
-        <div class="modal-header" style="padding: 5px 10px 0px 10px;">
-            <h5 class="modal-title">List Voucher</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body" style="padding: 0px 10px 0px 10px; overflow-y: auto; max-height: 80vh; overflow-x: hidden;">
-          <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
-           <div class="row">
-            <table class="table dataTable no-footer">
-                <thead>
-                    <tr role="row">
-                        <th>Sponsor Name</th>
-                        <th>Status</th>
-                        <th>Title</th>
-                        <th>Expire Date</th>
-                    </tr>
-                </thead>
-                <tbody id="voucherTable">
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
 @endsection
 
 @section('custom_js')
 <script>
-
-    // hide verify form and button
-
-    $('.btn-move').click(function(){
-        let groupId = $(this).data('group')
-        let phone = $(this).data('phone')
-        console.log(groupId + phone)
-        $('.phoneMove').val(phone)
-        $('.oldGroupMove').val(groupId)
-    })
 
     $('.btn-update').click(function(){
         let groupId = $(this).data('group')
@@ -305,25 +200,6 @@
                     })
                 }
             })
-    })
-
-
-    $('#btn-list-voucher').click(function(e){
-        let phoneNumber = $(this).data('phone');
-        let groupId = $(this).data('group');
-        let license = $(this).data('license');
-        $.get('https://api.gatewize.com/devel-gopay/promo/'+license+'/'+groupId+'/'+phoneNumber+'/list', function(data){
-            console.log(data);
-            $('#voucherTable').empty();
-            for (let i = 0; i < data.length; i++) {
-                let voucher = data[i];
-                $('#voucherTable').append("<tr role=\"row\"><td>"+
-                    voucher.sponsor_name+ "</td><td>"+
-                    voucher.status+"</td><td>"+
-                    voucher.title+"</td><td>"+
-                    voucher.expiry_date+"</td></tr>");
-            }            
-        })
     })
 </script>
 @endsection

@@ -49,6 +49,28 @@ class DigiposClient
 	public function getGroups($license)
 	{
 		$response = $this->client->get('devel-digipos/group/'.$license.'/list');
-		return json_decode($response->getBody(), true);
+
+		$response = json_decode($response->getBody(), true);
+		if(isset($response['status']) && $response['status'] == false){
+			$response = [];
+		}
+		return $response;
+	}
+
+	public function getAccounts($license)
+	{
+		$response = $this->client->get('devel-digipos/user/'.$license.'/list');
+
+		$response = json_decode($response->getBody(), true);
+		if(isset($response['status']) && $response['status'] == false){
+			$response = [];
+		}
+		return $response;
+	}
+	
+	public function addAccount($license, $phone)
+	{
+		$response = $this->client->get("devel-digipos/account/" . $license . "/$phone/add/years");
+		return json_decode($response->getBody(),TRUE);
 	}
 }
