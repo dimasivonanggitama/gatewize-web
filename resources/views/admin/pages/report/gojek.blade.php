@@ -43,7 +43,7 @@
         <!-- <h4 class="card-title">Manage Groups</h4> -->
         <div class="row">
             <div class="col-md-12">
-                <div class="tab-content tab-content-basic">
+                <div class="tab-content tab-content-basic" style="overflow-x: auto;">
                     <div class="tab-pane" id="tab-local" role="tabpanel" aria-labelledby="tab-bukalapak">
                         <div class="col-sm-12">
                             <table class="table local-table" id="order-listing">
