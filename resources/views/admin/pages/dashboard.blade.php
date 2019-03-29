@@ -66,3 +66,8 @@
         </div>
     </div>
 @endsection
+
+@section('custom_js')
+
+<script src="{!! asset('theme/StarAdmin/js/demo_1/dashboard.js') !!}"></script>
+@endsection
