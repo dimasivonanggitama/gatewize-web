@@ -50,7 +50,7 @@
                   <a class="nav-link" href="">Reports</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Products</a>
+                  <a class="nav-link"  href="{{ route('products.digipos') }}">Products</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="">Documentation</a>
