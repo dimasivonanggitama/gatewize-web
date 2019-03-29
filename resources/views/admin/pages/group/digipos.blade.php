@@ -35,7 +35,7 @@
                                     <td>{{ $group['name'] }}</td>
                                     <td>{{ $group['limit_account'] }}</td>
                                     <td>
-                                        <a href="{{ route('accounts.group', ['service' => 'digipos', 'group_id' => $group['id']]) }}" class="btn btn-primary">View</a>
+                                        <a href="{{ route('accounts', ['service' => 'digipos']) }}" class="btn btn-primary">View</a>
                                         @if($group['is_default'] != 1)
                                         <button type="button" class="btn btn-success btn-edit" data-toggle="modal" data-target="#editModal" data-id="{{ $group['id'] }}" data-name="{{ $group['name'] }}" data-limit="{{ $group['limit_account'] }}">Edit</button>
 

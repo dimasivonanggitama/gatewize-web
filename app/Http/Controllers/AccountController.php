@@ -92,6 +92,10 @@ class AccountController extends Controller
 
             $groups = $gojekClient->getGroups($license);
             $accounts = $gojekClient->getAccountByGroup($license, $groupId);
+        } else if($service == "digipos"){
+            $digiposClient = new DigiposClient();
+            $accounts = $digiposClient->getAccounts($license);
+            $groups = $digiposClient->getGroups($license);
         } else {
             $groups = [];
             $accounts = [];
