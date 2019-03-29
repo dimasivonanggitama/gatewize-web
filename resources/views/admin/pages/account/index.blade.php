@@ -245,7 +245,6 @@
 @endsection
 
 @section('custom_js')
-<script src="{!! asset('bootstrap/js/bootstrap.min.js') !!}"></script>
 <script>
 
     // hide verify form and button
@@ -310,7 +309,6 @@
 
 
     $('#btn-list-voucher').click(function(e){
-        e.stopPropagation();
         let phoneNumber = $(this).data('phone');
         let groupId = $(this).data('group');
         let license = $(this).data('license');
@@ -324,8 +322,7 @@
                     voucher.status+"</td><td>"+
                     voucher.title+"</td><td>"+
                     voucher.expiry_date+"</td></tr>");
-            }
-            $('#listModal').modal('show');
+            }            
         })
     })
 </script>
