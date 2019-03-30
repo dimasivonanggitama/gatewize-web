@@ -17,7 +17,7 @@ class AccountController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index($service = "")
     {
         $license = auth()->user()->license_key;
@@ -34,14 +34,14 @@ class AccountController extends Controller
         } else {
 
         }
-    
+
         $data = [
             'accounts' => $accounts,
             'groups' => $groups,
             'service' => $service,
             'filterBy' => 'All Account'
         ];
-        
+
         return view("admin.pages.account.$service")->with($data);
     }
 
@@ -52,20 +52,20 @@ class AccountController extends Controller
         ]);
 
         $license = auth()->user()->license_key;
-        
+
         if($service == "gojek") {
             $client = new GojekClient();
 
             $groups = $client->getGroups($license);
-            
+
             // search default group
             $defaultGroup = 0;
             foreach ($groups as $group) {
-                if($group['is_default']) 
+                if($group['is_default'])
                     $defaultGroup = $group['id'];
             }
 
-            $response = $gojekClient->addAccount($license, $defaultGroup, $request->phone);
+            $response = $client->addAccount($license, $defaultGroup, $request->phone);
         } else if($service == "digipos"){
             $client = new DigiposClient();
 
@@ -73,7 +73,7 @@ class AccountController extends Controller
         } else {
             $response = ['status' => false, 'message' => 'Failed to add account to default group'];
         }
-        
+
         if($response['status']) {
             flash($response['message'])->success();
         } else {
@@ -121,14 +121,14 @@ class AccountController extends Controller
 
         if($service == "gojek") {
             $gojekClient = new GojekClient();
-            
+
             $response = $gojekClient->moveAccount(Auth::user()->license_key, $request->oldGroup, $request->phone, $request->newGroup);
         } else if($service == "digipos"){
             $digiposClient = new DigiposClient();
         } else {
             $response = ['status' => false, 'message' => 'Account move failed'];
         }
-        
+
         if($response['status']) {
             flash($response['message'])->success();
         } else {
