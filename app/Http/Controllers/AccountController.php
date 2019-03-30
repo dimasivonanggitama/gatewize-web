@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use App\GojekClient;
+use App\DigiposClient;
 
 class AccountController extends Controller
 {
@@ -15,33 +17,32 @@ class AccountController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index($service = "")
     {
-        try {
-            $client = new Client();
-            $accounts = $this->getAllAccount($client, $service);
-            $groups = $this->getAllGroup($client, $service);
-        
-            $data = [
-                'accounts' => $accounts,
-                'groups' => $groups,
-                'service' => $service,
-                'filterBy' => 'All Account'
-            ];
-        } catch (ClientException $e) {
-            $data = [
-                'accounts' => [],
-                'groups' => [],
-                'service' => $service,
-                'filterBy' => 'All Account'
-            ];
-        } 
-        // catch (RequestException $e) { 
-        //     return redirect()->route('groups', 'gojek');
-        // }
+        $license = auth()->user()->license_key;
 
-        return view('admin.pages.account.index')->with($data);
+        if($service == "gojek"){
+            $gojekClient = new GojekClient();
+
+            $accounts = $gojekClient->getAccounts($license);
+            $groups = $gojekClient->getGroups($license);
+        } else if($service == "digipos"){
+            $digiposClient = new DigiposClient();
+            $accounts = $digiposClient->getAccounts($license);
+            $groups = $digiposClient->getGroups($license);
+        } else {
+
+        }
+
+        $data = [
+            'accounts' => $accounts,
+            'groups' => $groups,
+            'service' => $service,
+            'filterBy' => 'All Account'
+        ];
+
+        return view("admin.pages.account.$service")->with($data);
     }
 
     public function store(Request $request, $service)
@@ -49,21 +50,30 @@ class AccountController extends Controller
         $this->validate($request, [
             'phone' => 'required|string|max:191'
         ]);
-        $client = new Client();
+
+        $license = auth()->user()->license_key;
+
         if($service == "gojek") {
-            $groups = $this->getAllGroup($client, $service);
+            $client = new GojekClient();
+
+            $groups = $client->getGroups($license);
+
+            // search default group
             $defaultGroup = 0;
             foreach ($groups as $group) {
-                if($group->is_default){
-                    $defaultGroup = $group->id;
-                }
+                if($group['is_default'])
+                    $defaultGroup = $group['id'];
             }
-            $response = $client->get("https://api.gatewize.com/devel-gopay/account/" . Auth::user()->license_key . "/$defaultGroup/$request->phone/add/years");
-            $response = json_decode($response->getBody(),TRUE);
+
+            $response = $client->addAccount($license, $defaultGroup, $request->phone);
+        } else if($service == "digipos"){
+            $client = new DigiposClient();
+
+            $response = $client->addAccount($license, $request->phone);
         } else {
             $response = ['status' => false, 'message' => 'Failed to add account to default group'];
         }
-        
+
         if($response['status']) {
             flash($response['message'])->success();
         } else {
@@ -73,49 +83,32 @@ class AccountController extends Controller
         return redirect()->route('accounts', $service);
     }
 
-    public function edit($id = 0)
-    {
-        return view('admin.pages.account.edit');
-    }
-
-    public function update($id = 0)
-    {
-        
-    }
-
-    public function destroy($id = 0)
-    {
-        
-    }
-
     public function group($groupId = 0, $service = "")
     {
-        try {
-            $client = new Client();
+        $license = auth()->user()->license_key;
 
-            $accounts = $this->getAccountByGroup($client, $service, $groupId);
+        if($service == "gojek"){
+            $gojekClient = new GojekClient();
 
-            $groups = $this->getAllGroup($client, $service);
-        
-            $data = [
-                'accounts' => $accounts,
-                'groups' => $groups,
-                'service' => $service,
-                'filterBy' => 'Group'
-            ];
-        } catch (ClientException $e) {
-            $data = [
-                'accounts' => [],
-                'groups' => [],
-                'service' => $service,
-                'filterBy' => 'Group'
-            ];
-        }  
-        // catch (RequestException $e) { 
-        //     return redirect()->route('groups', 'gojek');
-        // }
+            $groups = $gojekClient->getGroups($license);
+            $accounts = $gojekClient->getAccountByGroup($license, $groupId);
+        } else if($service == "digipos"){
+            $digiposClient = new DigiposClient();
+            $accounts = $digiposClient->getAccounts($license);
+            $groups = $digiposClient->getGroups($license);
+        } else {
+            $groups = [];
+            $accounts = [];
+        }
 
-        return view('admin.pages.account.index')->with($data);
+        $data = [
+            'accounts' => $accounts,
+            'groups' => $groups,
+            'service' => $service,
+            'filterBy' => 'Group'
+        ];
+
+        return view("admin.pages.account.$service")->with($data);
     }
 
     public function move(Request $request, $service = "")
@@ -125,15 +118,17 @@ class AccountController extends Controller
             'oldGroup' => 'required|integer|min:0',
             'newGroup' => 'required|integer|min:0'
         ]);
-        $client = new Client();
+
         if($service == "gojek") {
-            // {{ api_url  }}/account/{{ license  }}/9/085893539852/move/7
-            $response = $client->post("https://api.gatewize.com/devel-gopay/account/" . Auth::user()->license_key . "/$request->oldGroup/$request->phone/move/$request->newGroup");
-            $response = json_decode($response->getBody(),TRUE);
+            $gojekClient = new GojekClient();
+
+            $response = $gojekClient->moveAccount(Auth::user()->license_key, $request->oldGroup, $request->phone, $request->newGroup);
+        } else if($service == "digipos"){
+            $digiposClient = new DigiposClient();
         } else {
             $response = ['status' => false, 'message' => 'Account move failed'];
         }
-        
+
         if($response['status']) {
             flash($response['message'])->success();
         } else {
@@ -141,73 +136,5 @@ class AccountController extends Controller
         }
 
         return redirect()->route('accounts.group', ['group_id' => $request->newGroup, 'service' => $service]);
-    }
-
-    private function getAllGroup($client, $service)
-    {
-        if($service == "gojek"){
-            $responseGroup = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/list", ['User-Agent' => null]);
-        } else {
-            $responseGroup = null;
-        }
-
-        if($responseGroup != null && $responseGroup->getStatusCode() == 200){
-            $groups = json_decode($responseGroup->getBody());
-        } else {
-            $groups = array();
-        }
-
-        if(isset($responseGroup->status)){
-            $groups = array();
-        }
-
-        return $groups;
-    }
-
-    private function getAllAccount($client, $service)
-    {
-        $account = array();
-        // if service not listed, then response null
-        if($service == "gojek"){
-            $response = $client->get("https://api.gatewize.com/devel-gopay/user/" . Auth::user()->license_key . "/list");
-        } else {
-            $response = null;
-        }
-        
-        if($response != null && $response->getStatusCode() == 200){
-            $accounts = json_decode($response->getBody());
-        } else {
-            $accounts = array();
-        }
-
-        // check is user subscribed
-        if(isset($accounts->status)){
-            $accounts = array();
-        }
-
-        return $accounts;
-    }
-
-    private function getAccountByGroup($client, $service, $groupId)
-    {
-        // if service not listed, then response null
-        if($service == "gojek"){
-            $response = $client->get("https://api.gatewize.com/devel-gopay/group/" . Auth::user()->license_key . "/$groupId/list");
-        } else {
-            $response = null;
-        }
-        
-        if($response != null && $response->getStatusCode() == 200){
-            $accounts = json_decode($response->getBody());
-        } else {
-            $accounts = array();
-        }
-
-        // check is user subscribed
-        if(isset($accounts->status)){
-            $accounts = array();
-        }
-
-        return $accounts;
     }
 }

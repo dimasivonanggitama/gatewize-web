@@ -41,16 +41,16 @@
             <div class="collapse" id="digipos">
               <ul class="nav flex-column sub-menu" style="padding: 0 0 0 1rem;">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('groups', 'digipos') }}">Groups</a>
+                  <a class="nav-link" href="{{ route('groups.digipos') }}">Groups</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('accounts', 'digipos') }}">Accounts</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Reports</a>
+                  <a class="nav-link" href="{{ route('reports.digipos') }}">Reports</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Products</a>
+                  <a class="nav-link"  href="{{ route('products.digipos') }}">Products</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="">Documentation</a>
@@ -66,7 +66,7 @@
             <div class="collapse" id="gojek">
               <ul class="nav flex-column sub-menu" style="padding: 0 0 0 1rem;">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('groups', 'gojek') }}">Groups</a>
+                  <a class="nav-link" href="{{ route('groups.gojek') }}">Groups</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('accounts', 'gojek') }}">Accounts</a>

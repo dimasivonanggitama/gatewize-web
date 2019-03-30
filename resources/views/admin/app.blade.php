@@ -14,14 +14,15 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- plugins:css -->
   <link rel="stylesheet" href="{!! asset('theme/StarAdmin/vendors/iconfonts/mdi/css/materialdesignicons.min.css') !!}">
+  <link rel="stylesheet" href="{!! asset('theme/StarAdmin/vendors/iconfonts/puse-icons-feather/feather.css') !!}">
   <link rel="stylesheet" href="{!! asset('theme/StarAdmin/vendors/css/vendor.bundle.base.css') !!}">
   <link rel="stylesheet" href="{!! asset('theme/StarAdmin/vendors/css/vendor.bundle.addons.css') !!}">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="{!! asset('theme/StarAdmin/css/style.css') !!}">
-  <link rel="stylesheet" href="{!! asset('theme/StarAdmin/css/demo-1.css') !!}">
+  <link rel="stylesheet" href="{!! asset('theme/StarAdmin/css/shared/style.css') !!}">
+  <link rel="stylesheet" href="{!! asset('theme/StarAdmin/css/demo_1/style.css') !!}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{!! asset('theme/StarAdmin/images/favicon.png') !!}" />
   <style type="text/css">
@@ -56,7 +57,6 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          @include('flash::message')
           @yield('content')
         </div>
       </div>
@@ -72,14 +72,17 @@
   <!-- endinject -->
   
   <!-- inject:js -->
-  <script src="{!! asset('theme/StarAdmin/js/off-canvas.js') !!}"></script>
-  <script src="{!! asset('theme/StarAdmin/js/misc.js') !!}"></script>
+  <script src="{!! asset('theme/StarAdmin/js/shared/off-canvas.js') !!}"></script>
+  <script src="{!! asset('theme/StarAdmin/js/shared/hoverable-collapse.js') !!}"></script>
+  <script src="{!! asset('theme/StarAdmin/js/shared/misc.js') !!}"></script>
+  <script src="{!! asset('theme/StarAdmin/js/shared/settings.js') !!}"></script>
+  <script src="{!! asset('theme/StarAdmin/js/shared/todolist.js') !!}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="{!! asset('theme/StarAdmin/js/dashboard.js') !!}"></script>
+<!--   <script src="{!! asset('theme/StarAdmin/js/dashboard.js') !!}"></script>
   <script src="{!! asset('theme/StarAdmin/js/tabs.js') !!}"></script>
-  <script src="{!! asset('theme/StarAdmin/js/data-table.js') !!}"></script>
-  <script src="{!! asset('theme/StarAdmin/js/jquery-3.3.1.min.js') !!}"></script>
+  <script src="{!! asset('theme/StarAdmin/js/data-table.js') !!}"></script> -->
+  <!-- <script src="{!! asset('theme/StarAdmin/js/jquery-3.3.1.min.js') !!}"></script> -->
   <script>
     $(".service-menu a").click(function(event){
       event.stopPropagation();
