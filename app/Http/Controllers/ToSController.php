@@ -6,6 +6,6 @@ use Illuminate\Http\Request;
 
 class ToSController extends Controller {
     public function index() {
-		return view('layouts.pages.tos.tos');
+		return view('layouts.pages.tos');
 	}
 }
