@@ -87,6 +87,10 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::post('', 'CommentsController@postComment');
         Route::post('{ticketId}/close', 'CommentsController@close');
     });
+
+    Route::prefix('product')->group(function(){
+        Route::get('/', 'ProductController@index');
+    });
 });
 		
 Route::get('/home', 'HomeController@index')->name('home');

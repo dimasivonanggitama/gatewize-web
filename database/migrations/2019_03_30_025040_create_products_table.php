@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->integer('service_id')->unsigned();
             $table->string('code');
             $table->string('name');
+            $table->text('description');
             $table->string('image');
             $table->decimal('price', 13, 0);
             $table->enum('termin', [
