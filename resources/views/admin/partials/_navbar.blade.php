@@ -37,15 +37,7 @@
 						<i class="mdi mdi-account"></i>
 						Manage Accounts
 					</a>
-<<<<<<< HEAD
-					<a class="dropdown-item" href="{{ route('change-password') }}">
-						<i class="mdi mdi-key-change"></i>
-						Change Password
-					</a>
 					<a class="dropdown-item text-danger" href="{{ route('logout') }}"
-=======
-					<a class="dropdown-item" href="{{ route('logout') }}"
->>>>>>> eb6060226c3e7b8ca4a35faf49e10bb7f8020bd1
 						onclick="event.preventDefault();
 						document.getElementById('logout-form').submit();">
 						<i class="mdi mdi-power"></i>
