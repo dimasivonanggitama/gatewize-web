@@ -16,16 +16,14 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes(['verify' => true]);
 
-Route::prefix('admin')->middleware('verified')->group(function () {
-    Route::get('/', 'DashboardController@index')->name('dashboard');
+// Route::prefix('admin')->middleware('verified')->group(function () {
+Route::middleware('verified')->group(function () {
+    // Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     
     Route::get('documentation', 'DocumentationController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
-
-    // Route::prefix('digipos')->group(function(){
-    //     Route::get('/', )
-    // });
+    
     Route::prefix('profile')->group(function(){
         Route::get('/', 'ProfileController@index')->name('profile');
         Route::post('/update', 'ProfileController@update')->name('profile.update');
