@@ -120,26 +120,27 @@
         <form class="forms-sample">
             <div class="modal-body">
                 @csrf
+                <input type="hidden" id="license-update" name="license">
+                <input type="hidden" id="phone-update" name="phone">
                 <div class="form-group">
-                    <label for="token">Token</label>
-                    <input type="hidden" id="license-update" name="license">
-                    <input type="hidden" id="phone-update" name="phone">
-                    <input type="hidden" id="group-update" name="group">
-                    <input type="text" class="form-control" id="token-update" name="token" placeholder="Token" value="{{ old('token') }}" require>
-                    @if ($errors->first('token'))
-                    <small class="text-danger">{{ $errors->first('token') }}</small>
-                    @endif
+                    <label for="password-update">Masukkan Password</label>
+                    <input type="text" class="form-control" id="password-update" name="password-update" placeholder="Password" value="{{ old('password-update') }}" require>
+                </div>
+                <hr>
+                <div id="form-verify">
+                <div class="form-group">
+                    <label for="otp-update">Token</label>
+                    <input type="text" class="form-control" id="token-update" name="token-update" placeholder="Token" require>
                 </div>
                 <div class="form-group">
                     <label for="otp-update">Masukkan Kode OTP</label>
-                    <input type="text" class="form-control" id="otp-update" name="otp-update" placeholder="Kode OTP" value="{{ old('otp-update') }}" require>
-                    @if ($errors->first('otp-update'))
-                    <small class="text-danger">{{ $errors->first('otp-update') }}</small>
-                    @endif
+                    <input type="text" class="form-control" id="otp-update" name="otp-update" placeholder="Kode OTP" require>
+                </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-update-otp">Update</button>
                 <button type="button" class="btn btn-success" id="btn-verify-otp">Verify</button>
             </div>
         </form>
@@ -151,25 +152,40 @@
 
 @section('custom_js')
 <script>
+    hideOTP()
+    // hide otp form
+    function hideOTP(params) {
+        $('#btn-verify-otp').hide();
+        $('#form-verify').hide();
+        $('#btn-update-otp').show()
+        $('#token-update').val("")
+        $('#password-update').val("")
+        $('#otp-update').val("")
+    }
 
     $('.btn-update').click(function(){
-        let groupId = $(this).data('group')
         let phone = $(this).data('phone')
         let license = $(this).data('license')
         $('#phone-update').val(phone)
         $('#license-update').val(license)
-        $('#group-update').val(groupId)
-        $.post('https://api.gatewize.com/devel-gopay/account/'+ license +'/'+ groupId +'/'+ phone +'/update', function(data){
+    })
+
+    $('#btn-update-otp').click(function(){
+        let phone = $('#phone-update').val()
+        let license = $('#license-update').val()
+        let password = $('#password-update').val()
+        console.log(phone + " " + license + " " + password)
+        $.post('https://api.gatewize.com/devel-digipos/account/'+ license +'/'+ phone +'/update', {password: password}, function(data){
             console.log(data)
             if(data.status){
-                $('#token-update').val(data.token)
-                $('#btn-update-otp').hide()
                 $('#btn-verify-otp').show()
                 $('#form-verify').show()
+                $('#btn-update-otp').hide()
+                $('#token-update').val(data.data.token)
             } else {
                 swal({
-                    title: 'Update Gagal',
-                    text: "Silahkan coba lagi",
+                    title: 'Update Failed',
+                    text: data.message,
                     icon: 'error',
                 })
             }
@@ -179,10 +195,9 @@
     $('#btn-verify-otp').click(function(){
         let phone = $('#phone-update').val()
         let license = $('#license-update').val()
-        let groupId = $('#group-update').val()
-        let token = $('#token-update').val()
         let otp = $('#otp-update').val()
-        $.post('https://api.gatewize.com/devel-gopay/account/'+ license +'/'+ groupId +'/'+ phone +'/verify',
+        let token = $('#token-update').val()
+        $.post('https://api.gatewize.com/devel-digipos/account/'+ license +'/'+ phone +'/verify',
             {   token: token, 
                 otp: otp,
             }, function(data){
@@ -192,12 +207,14 @@
                         text: "Berhasil update otp",
                         icon: 'success',
                     })
+                    hideOTP()
                 } else {
                     swal({
                         title: 'Update Gagal',
                         text: data.message,
                         icon: 'error',
                     })
+                    hideOTP()
                 }
             })
     })
