@@ -101,7 +101,10 @@ Route::prefix('pages')->group(function() {
 
 
 // super admin routes
-// Route::prefix('admin')->group(function(){
-//     Route::get('/products', 'ProductController@index');
-//     Route::get('/products/create', 'ProductController@create')->middleware('role:superadmin');
-// }); 
+Route::prefix('admin')->group(function(){
+    Route::get('/products', 'ProductController@index');
+    Route::get('/products/create', 'ProductController@create')->middleware('role:superadmin');
+    Route::post('/products/create', 'ProductController@store')->middleware('role:superadmin');
+    Route::delete('/products/{productId}', 'ProductController@destroy')->middleware('role:superadmin');
+    Route::put('/products/{productId}', 'ProductController@update')->middleware('role:superadmin');
+}); 

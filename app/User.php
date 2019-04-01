@@ -35,9 +35,14 @@ class User extends Authenticatable implements MustVerifyEmail
        return $this->getGravatar( $this->email, $size );
     }
 
+    public function isAdmin()
+    {
+        return $this->hasRole('superadmin');
+    }
+
     public function hasRole($role)
     {
-        return str_replace(' ','',strtolower('Super Admin')) == $role;
+        return str_replace(' ','',strtolower($this->role->name)) == $role;
     }
 
     public function role()
