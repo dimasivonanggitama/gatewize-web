@@ -98,3 +98,10 @@ Route::prefix('pages')->group(function() {
 	Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');
 	Route::get('/term-of-service', 'ToSController@index')->name('tos');
 });
+
+
+// super admin routes
+// Route::prefix('admin')->group(function(){
+//     Route::get('/products', 'ProductController@index');
+//     Route::get('/products/create', 'ProductController@create')->middleware('role:superadmin');
+// }); 

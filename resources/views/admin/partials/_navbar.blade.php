@@ -14,7 +14,7 @@
               <i class="mdi mdi-elevation-rise"></i>Integration</a>
           </li>
           <li class="nav-item">
-            <a href="/admin/product" class="nav-link">
+            <a href="/product" class="nav-link">
               <i class="mdi mdi-bookmark-plus-outline"></i>Store</a>
           </li>
         </ul>

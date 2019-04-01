@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\GojekClient;
 use App\DigiposClient;
+use App\GojekClient;
+use App\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,6 +12,17 @@ class ProductController extends Controller
 	public function __construct()
 	{
 		$this->middleware('auth');
+	}
+
+	public function index()
+	{
+		$products = Product::all();
+		return view('admin.pages.product.index', compact('products'));
+	}
+
+	public function create()
+	{
+		return view('admin.pages.product.create');
 	}
 
     public function gojek()

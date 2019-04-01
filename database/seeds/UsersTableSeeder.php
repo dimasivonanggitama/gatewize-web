@@ -14,6 +14,12 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
+        $superAdmin = factory('App\Role')->create([
+            'name' => 'Super Admin'
+        ]);
+        $normalUser = factory('App\Role')->create([
+            'name' => 'Normal User'
+        ]);
         User::create([
             'email' => "admin@admin.com",
             'fullname' => "Administrator",
@@ -21,7 +27,9 @@ class UsersTableSeeder extends Seeder
             'address' => "Surabaya",
             'balance' => 10000,
             'password' => bcrypt('123456'),
-            'type' => 'admin'
+            'email_verified_at' => now(),
+            'license_key' => 'a32a3507234f2d69bb1c35849da52643',
+            'role_id' => $superAdmin->id
         ]);
         for ($i=1; $i <= 5; $i++) { 
             $email = $faker->email;
@@ -32,7 +40,9 @@ class UsersTableSeeder extends Seeder
                 'address' => $faker->address,
                 'balance' => 10000,
                 'password' => Hash::make('secret'),
-                'type' => 'user'
+                'email_verified_at' => now(),
+                'license_key' => 'a32a3507234f2d69bb1c35849da52643',
+                'role_id' => $normalUser->id
             ]);
         }
     }
