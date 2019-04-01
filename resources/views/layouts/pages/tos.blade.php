@@ -5,141 +5,449 @@
 @section('content')
 	
 	<!-- hero -->
-		<section class="jumbotron sub-page text-center d-flex align-items-center">
+		<section class="jumbotron text-center">
 			<div class="container">
+				<h1 class="display-4">
+					<img src="{{ asset('images/logo/Gatewize Logo.png') }}" alt="Gatewize" class="img-fluid">
+				</h1>
 				<h1 class="display-4">Term of Service</h1>
 			</div>
-			<!-- // end .scroll-down -->
 		</section>
 	<!-- // end hero -->
-		
-	<div class="section my-4" id="blog">
+
+	<!-- hero1 -->
+		<section class="jumbotron-two">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-12 col-md-5">
+						<h1 class="display-5">Best Software Ever.</h1>
+						<p class="text-muted mb-3">Holisticly syndicate unique technology after clicks and mortar growth strategies. Credibly expedite frictionless relationships after revolutionary.</p>
+						<p>
+							<a href="#signup" class="btn btn-xl btn-primary">Get started free</a>
+						</p>
+					</div>
+					<div class="col-12 col-md-7 my-3 my-md-lg">
+						<div class="youtube cast-shadow" data-video-id="rm5sdAYCqqc" data-params="modestbranding=1&amp;showinfo=0&amp;controls=1&amp;vq=hd720">
+							<img src="{{ asset('images/screen2.jpg') }}" alt="image" class="img-fluid">
+							<div class="play"><span class="pe-7s-play pe-3x"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	<!-- // end hero1 -->
+
+
+	<div class="bg-shape"></div>
+	<div class="bg-circle"></div>
+	<div class="bg-circle-two"></div>
+
+	<div class="section" id="intro">
 		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8">
-					<div class="entry-content">
-						<p class="lead">
-							Assertively create innovative intellectual capital after top-line bandwidth. Monotonectally promote robust collaboration and idea-sharing rather than flexible technologies. Progressively utilize cutting-edge experiences. </p>
-						<p>
-							Interactively reintermediate efficient materials after superior interfaces. Professionally fashion value-added convergence before excellent process improvements. Dramatically leverage existing reliable initiatives before leveraged ideas. Rapidiously develop
-							equity invested expertise rather than enabled channels. Monotonectally reintermediate distinctive networks before highly efficient core competencies.
-						</p>
-						<blockquote class="blockquote">
-							<p class="my-0"> Phosfluorescently evolve performance based initiatives without goal-oriented materials. Globally expedite enterprise-wide intellectual capital whereas installed base outsourcing. </p>
-						</blockquote>
-						<p>
-							Reintermediate efficient materials after superior interfaces. Professionally fashion value-added convergence before excellent process improvements. Dramatically leverage existing reliable initiatives before leveraged ideas. Rapidiously develop equity
-							invested expertise rather than enabled channels. Monotonectally reintermediate distinctive networks before highly efficient core competencies.
-						</p>
-						<h2>Seamlessly promote flexible growth strategies. </h2>
-						<p> <img src="{{ asset('images/blog-1.jpg') }}" alt="blog" class="alignleft" /> Dramatically harness extensive value through fully researched human capital. Seamlessly transition premium schemas vis-a-vis efficient convergence. Intrinsicly build
-							competitive e-commerce with cross-unit information. Collaboratively e-enable real-time processes before extensive technology. Authoritatively fabricate efficient metrics after intuitive quality vectors.
-						</p>
-						<p>
-							Collaboratively deliver optimal vortals whereas backward-compatible models. Globally syndicate diverse leadership rather than high-payoff experiences. Uniquely pontificate unique metrics for cross-media human capital. Completely procrastinate professional
-							collaboration and idea-sharing rather than 24/365 paradigms. Phosfluorescently initiate multimedia based outsourcing before interoperable benefits.
-						</p>
-						<h3>Seamlessly promote flexible growth strategies. </h3>
-						<p>
-							Progressively leverage other's e-business functionalities through corporate e-markets. Holisticly repurpose timely systems via seamless total linkage. Appropriately maximize impactful "outside the box" thinking vis-a-vis visionary value. Authoritatively
-							deploy interdependent technology through process-centric "outside the box" thinking. Interactively negotiate pandemic internal or "organic" sources whereas competitive relationships.
-						</p>
-						<figure class="wp-caption">
-							<img src="{{ asset('images/wide-img.jpg') }}" alt="wide" class="alignnone" />
-							<figcaption class="wp-caption-text">Keep working until you find success.</figcaption>
-						</figure>
-						<p>
-							Enthusiastically deliver viral potentialities through multidisciplinary products. Synergistically plagiarize client-focused partnerships for adaptive applications. Seamlessly morph process-centric synergy whereas bricks-and-clicks deliverables. Continually
-							disintermediate holistic action items without distinctive customer service. Enthusiastically seize enterprise web-readiness without effective schemas.
-						</p>
-						<h4>Seamlessly promote flexible growth strategies. </h4>
-						<p>
-							Assertively restore installed base data before sustainable platforms. Globally recaptiualize orthogonal systems via clicks-and-mortar web services. Efficiently grow visionary action items after collaborative e-commerce. Efficiently architect highly efficient
-							"outside the box" thinking before customer directed infomediaries. Proactively mesh holistic human capital rather than exceptional niches.
-						</p>
-						<p>
-							Intrinsicly create innovative value and pandemic resources. Progressively productize turnkey e-markets and economically sound synergy. Objectively supply turnkey imperatives vis-a-vis high standards in outsourcing. Dynamically exploit unique imperatives
-							with dynamic systems. Appropriately formulate technically sound users and excellent expertise.
-						</p>
-						<p>
-							Competently redefine long-term high-impact relationships rather than effective metrics. Distinctively maintain impactful platforms after strategic imperatives. Intrinsicly evolve mission-critical deliverables after multimedia based e-business. Interactively
-							mesh cooperative benefits whereas distributed process improvements. Progressively monetize an expanded array of e-services whereas.
-						</p>
-					</div>
-				</div>
-				<!-- // end .col-md-8 -->
+			<div class="client-logos text-center">
+				<p class="text-muted">TRUSTED BY MOST POPULAR BRANDS</p>
+				<img src="{{ asset('images/client_logo_1.png') }}" alt="client logo" />
+				<img src="{{ asset('images/client_logo_2.png') }}" alt="client logo" />
+				<img src="{{ asset('images/client_logo_3.png') }}" alt="client logo" />
+				<img src="{{ asset('images/client_logo_4.png') }}" alt="client logo" />
+				<img src="{{ asset('images/client_logo_5.png') }}" alt="client logo" />
+				<img src="{{ asset('images/client_logo_6.png') }}" alt="client logo" />
+				<img src="{{ asset('images/client_logo_7.png') }}" alt="client logo" />
+				<img src="{{ asset('images/client_logo_8.png') }}" alt="client logo" />
+				<img src="{{ asset('images/client_logo_9.png') }}" alt="client logo" />
+				<img src="{{ asset('images/client_logo_10.png') }}" alt="client logo" />
 			</div>
-			<!-- // end .row justify-content-center -->
-			<div class="media author-box">
-				<img class="d-flex mr-3 rounded-circle" src="{{asset ('images/thumb3.jpg') }}" alt="Author">
-				<div class="media-body">
-					<h5 class="mt-0">Linda Carter</h5> Project Lead at Startly. I swim, cycle, and run a lot. When I’m not doing all those, I love to read and try new things.
-					<br>
-					<div class="mt-2"> <a href="#">Follow me on Twitter →</a> </div>
-				</div>
-			</div>
-			<div id="comments" class="comments-area">
-				<h3 class="display-5 text-center my-5">3 Comments</h3>
-				<ol class="comment-list list-unstyled">
-					<li class="media comment">
-						<img class="d-flex avatar" src="{{ asset('images/thumb2.jpg') }}" alt="image">
-						<div class="media-body">
-							<h5 class="mt-0 mb-1">Charles Lewis</h5>
-							<p><small class="text-muted">JULY 22, 2017 AT 10:40 PM <a href="#">REPLY</a></small></p> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at,
-							tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-							<ol class="children">
-								<li class="media comment my-4">
-									<img class="d-flex avatar" src="{{ asset('images/thumb1.jpg') }}" alt="image">
-									<div class="media-body">
-										<h5 class="mt-0 mb-1">Carol Valdez</h5>
-										<p><small class="text-muted">JULY 23, 2017 AT 11:25 AM <a href="#">REPLY</a></small></p> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum
-										nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-									</div>
-								</li>
-							</ol>
-						</div>
-					</li>
-					<li class="media comment">
-						<img class="d-flex avatar" src="{{ asset('images/thumb3.jpg') }}" alt="image">
-						<div class="media-body">
-							<h5 class="mt-0 mb-1">Linda Carter</h5>
-							<p><small class="text-muted">JULY 25, 2017 AT 12:30 PM <a href="#">REPLY</a></small></p>
-							Amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-						</div>
-					</li>
-				</ol>
-			</div>
-			<!-- // end .comments-area -->
-			<div id="respond" class="comment-respond">
-				<h3 class="display-5 text-center">Leave a Reply </h3>
-				<form action="#" method="post" id="commentform" class="comment-form" novalidate="">
-					<p class="comment-notes text-center text-muted"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>
-					<div class="form-group">
-						<label for="comment">Comment</label>
-						<textarea id="comment" name="comment" rows="8" class="form-control" required="required"></textarea>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-6">
-							<label for="author">Name <span class="required">*</span></label>
-							<input id="author" name="author" type="text" size="30" maxlength="245" class="form-control" required="required">
-						</div>
-						<div class="form-group col-md-6">
-							<label for="email">Email <span class="required">*</span></label>
-							<input id="email" name="email" type="email" size="30" maxlength="100" class="form-control" required="required">
-						</div>
-					</div>
-					<!-- // end .row -->
-					<div class="form-group">
-						<label for="url">Website</label>
-						<input id="url" name="url" type="url" class="form-control" size="30" maxlength="200">
-					</div>
-					<div class="form-group pt-2">
-						<input name="submit" type="submit" id="submit" class="btn btn-lg btn-block btn-primary" value="Post Comment">
-					</div>
-				</form>
-			</div>
+			<!-- // end .client-logos -->
+
 		</div>
 		<!-- // end .container -->
+		
 	</div>
-	<!-- // end #blog.section -->
+	<!-- // end #services.section -->
+	
+	<div class="section bg-light pt-lg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-4">
+					<div class="media mb-5">
+						<div class="media-icon d-flex mr-3"> <i class="pe-7s-paint-bucket pe-3x"></i> </div>
+						<!-- // end .di -->
+						<div class="media-body">
+							<h5 class="mt-0">Easy Customization</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="media mb-5">
+						<div class="media-icon d-flex mr-3"> <i class="pe-7s-rocket pe-3x"></i> </div>
+						<!-- // end .di -->
+						<div class="media-body">
+							<h5 class="mt-0">Super Fast</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante.
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="media mb-5">
+						<div class="media-icon d-flex mr-3"> <i class="pe-7s-piggy pe-3x"></i> </div>
+						<!-- // end .di -->
+						<div class="media-body">
+							<h5 class="mt-0">Save Money</h5>in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="media mb-5">
+						<div class="media-icon d-flex mr-3"> <i class="pe-7s-cloud-upload pe-3x"></i> </div>
+						<!-- // end .di -->
+						<div class="media-body">
+							<h5 class="mt-0">Cloud Upload</h5> sit amet nibh libero, in gravida nulla. vel metus scelerisque ante sollicitudin.
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="media mb-5">
+						<div class="media-icon d-flex mr-3"> <i class="pe-7s-science pe-3x"></i> </div>
+						<!-- // end .di -->
+						<div class="media-body">
+							<h5 class="mt-0">Proven Technology</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus ante .
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="media mb-5">
+						<div class="media-icon d-flex mr-3"> <i class="pe-7s-like2 pe-3x"></i> </div>
+						<!-- // end .di -->
+						<div class="media-body">
+							<h5 class="mt-0">100% Satisfaction</h5>Amet nibh libero, in gravida nulla. Nulla vel metus ante sollicitudin.
+						</div>
+					</div>
+				</div>
+				<!-- // end .col -->
+			</div>
+		</div>
+	</div>
+
+	<!-- Features -->
+	<div class="section" id="features">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-sm-8">
+					<div class="browser-window limit-height my-5 mr-0 mr-sm-5">
+						<div class="top-bar">
+							<div class="circles">
+								<div class="circle circle-red"></div>
+								<div class="circle circle-yellow"></div>
+								<div class="circle circle-blue"></div>
+							</div>
+						</div>
+						<div class="content">
+							<img src="{{ asset('images/dashboard.png') }}" alt="image">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="media">
+						<div class="media-body">
+							<div class="media-icon mb-3"> <i class="pe-7s-like2 pe-3x"></i> </div>
+							<h3 class="mt-0">Perfect Dashboard</h3>
+							<p> Reprehenderit nemo quod tempore doloribus ratione distinctio quis quidem vitae sunt reiciendis, molestias omnis soluta?</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row align-items-center mt-5">
+				<div class="col-sm-4">
+					<div class="media">
+						<div class="media-body">
+							<div class="media-icon mb-3"> <i class="pe-7s-graph1 pe-3x"></i> </div>
+							<h3 class="mt-0">Charts, Diagrams & more</h3>
+							<p> Reprehenderit nemo quod tempore doloribus ratione distinctio quis quidem vitae sunt reiciendis, molestias omnis soluta?</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-8">
+					<img src="{{ asset('images/screen.jpg') }}" alt="image" class="img-fluid cast-shadow my-5">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- features -->
+	<div class="section bg-light py-lg">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-6 col-lg-4">
+					<div class="media">
+
+						<!-- // end .di -->
+						<div class="media-body text-center">
+							<div class="color-icon mb-3"> <i class="pe-7s-medal pe-3x"></i> </div>
+							<h5 class="mt-0">Award Winning Design</h5> Monotonectally envisioneer e-business niche markets vis-a-vis cost effective information. objectively promote worldwide.
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="media">
+						<!-- // end .di -->
+						<div class="media-body text-center">
+							<div class="color-icon mb-3"> <i class="pe-7s-diamond pe-3x"></i> </div>
+							<h5 class="mt-0">Carefully Crafted</h5> Authoritatively streamline strategic markets without user-centric potentialities. Credibly integrate progressive technologies
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="media">
+						<!-- // end .di -->
+						<div class="media-body text-center">
+							<div class="color-icon mb-3"> <i class="pe-7s-cloud-upload pe-3x"></i> </div>
+							<h5 class="mt-0">Cloud Sync</h5>Objectively underwhelm e-business leadership skills after cross-unit best practices. Continually innovate robust action items
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<!-- // end features -->
+
+	<!-- Testimonials -->
+	<div class="section">
+		<div class="container">
+			<div class="section-title text-center">
+				<h3>What our users say</h3>
+				<p>They love it. Read what our customers had to say!</p>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="embed-tweet-item">
+						<blockquote class="twitter-tweet" data-cards="hidden" lang="en" data-width="550" data-link-color="#7642FF" data-align="center">
+							<a href="https://twitter.com/kmin/status/943914224329347072"></a>
+						</blockquote>
+					</div>
+					<!-- end .embed-tweet-item -->
+				</div>
+				<!-- end .col -->
+				<div class="col-md-4">
+					<div class="embed-tweet-item">
+						<blockquote class="twitter-tweet" data-cards="hidden" lang="en" data-width="550" data-link-color="#7642FF" data-align="center">
+							<a href="https://twitter.com/halarewich/status/954224121784688640"></a>
+						</blockquote>
+					</div>
+					<!-- end .embed-tweet-item -->
+				</div>
+				<!-- end .col -->
+				<div class="col-md-4">
+					<div class="embed-tweet-item">
+						<blockquote class="twitter-tweet" data-cards="hidden" lang="en" data-width="550" data-link-color="#7642FF" data-align="center">
+							<a href="https://twitter.com/scottbelsky/status/921417663859052544"></a>
+						</blockquote>
+					</div>
+					<!-- end .embed-tweet-item -->
+				</div>
+				<!-- end .col -->
+			</div>
+			<!-- end .row -->
+		</div>
+	</div>
+	<!-- // end Testimonials -->
+
+	<!-- Pricing -->
+	<div class="section bg-light py-lg" id="pricing">
+		<div class="container">
+			<div class="section-title text-center mt-0 mb-5">
+				<h3>Choose your plan</h3>
+				<p>Simple pricing. no hidden charges. Choose a plan fit your needs</p>
+			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="card pricing">
+						<div class="card-body">
+							<small class="text-muted">PERSONAL</small>
+							<h5 class="card-title">$9</h5>
+							<p class="card-text">
+								<ul class="list-unstyled">
+									<li>3 Projects</li>
+									<li class="plan-muted">Team Collaboration</li>
+									<li class="plan-muted">Analytics &amp; Reports</li>
+									<li>One user</li>
+								</ul>
+							</p>
+							<a href="#" class="btn btn-xl btn-outline-primary">Choose this plan</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="card pricing">
+						<div class="card-body">
+							<small class="text-muted">STARTUP</small>
+							<h5 class="card-title">$29</h5>
+							<p class="card-text">
+								<ul class="list-unstyled">
+									<li>20 Projects</li>
+									<li>Team Collaboration</li>
+									<li>Analytics &amp; Reports</li>
+									<li>10 Active users</li>
+								</ul>
+							</p>
+							<a href="#" class="btn btn-xl btn-primary">Choose this plan</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="card pricing">
+						<div class="card-body">
+							<small class="text-muted">ENTERPRISE</small>
+							<h5 class="card-title">$149</h5>
+							<p class="card-text">
+								<ul class="list-unstyled">
+									<li>Unlimited Projects</li>
+									<li>Team Collaboration</li>
+									<li>Analytics &amp; Reports</li>
+									<li>Priority Support</li>
+								</ul>
+							</p>
+							<a href="#" class="btn btn-xl btn-outline-primary">Choose this plan</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- // end Pricing -->
+
+	<!-- Signup -->
+	<div class="section" id="signup">
+		<div class="container">
+			<div class="section-title text-center">
+				<h3>Start your free trial</h3>
+				<p>Signup now. Its free and takes less than 3 minutes</p>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="auto-form-wrapper">
+                    <form action="{{ route('register') }}" method="POST">
+                        @csrf
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Fullname" name="fullname" value="{{ old('fullname') }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="mdi mdi-check-circle-outline"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            @if ($errors->has('fullname'))
+                                <small id="fullnameHelpBlock" class="form-text text-muted">
+                                    <strong>{{ $errors->first('fullname') }}</strong>
+                                </small>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="mdi mdi-check-circle-outline"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            @if ($errors->has('username'))
+                                <small id="usernameHelpBlock" class="form-text text-muted">
+                                    <strong>{{ $errors->first('username') }}</strong>
+                                </small>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="E-mail address" name="email" value="{{ old('email') }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="mdi mdi-check-circle-outline"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            @if ($errors->has('email'))
+                                <small id="emailHelpBlock" class="form-text text-muted">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </small>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="password" class="form-control" placeholder="Password" name="password" >
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="mdi mdi-check-circle-outline"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            @if ($errors->has('password'))
+                                <small class="form-text text-muted">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </small>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation" required>
+                                <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="mdi mdi-check-circle-outline"></i>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Telegram Id" name="telegram" value="{{ old('telegram') }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="mdi mdi-check-circle-outline"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            @if ($errors->has('telegram'))
+                                <small id="telegramHelpBlock" class="form-text text-muted">
+                                    <strong>{{ $errors->first('telegram') }}</strong>
+                                </small>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Address" name="address" value="{{ old('address') }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="mdi mdi-check-circle-outline"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            @if ($errors->has('address'))
+                                <small id="addressHelpBlock" class="form-text text-muted">
+                                    <strong>{{ $errors->first('address') }}</strong>
+                                </small>
+                            @endif
+                        </div>
+                        <div class="form-group d-flex justify-content-center">
+                            <div class="form-check form-check-flat mt-0">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" checked> I agree to the terms
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary submit-btn btn-block" type="submit">Register</button>
+                        </div>
+                        <div class="text-block text-center my-3">
+                            <span class="text-small font-weight-semibold">Already have and account ?</span>
+                            <a href="{{ route('login') }}" class="text-black text-small">Login</a>
+                        </div>
+                    </form>
+                </div>
+			</div>
+		</div>
+	</div>
 @endsection
