@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Deposit;
 use App\Http\Controllers\Controller;
+use App\Role;
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
