@@ -16,16 +16,14 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes(['verify' => true]);
 
-Route::prefix('admin')->middleware('verified')->group(function () {
-    Route::get('/', 'DashboardController@index')->name('dashboard');
+// Route::prefix('admin')->middleware('verified')->group(function () {
+Route::middleware('verified')->group(function () {
+    // Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     
     Route::get('documentation', 'DocumentationController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
-
-    // Route::prefix('digipos')->group(function(){
-    //     Route::get('/', )
-    // });
+    
     Route::prefix('profile')->group(function(){
         Route::get('/', 'ProfileController@index')->name('profile');
         Route::post('/update', 'ProfileController@update')->name('profile.update');
@@ -87,6 +85,10 @@ Route::prefix('admin')->middleware('verified')->group(function () {
         Route::post('', 'CommentsController@postComment');
         Route::post('{ticketId}/close', 'CommentsController@close');
     });
+
+    Route::prefix('product')->group(function(){
+        Route::get('/', 'ProductController@index');
+    });
 });
 		
 Route::get('/home', 'HomeController@index')->name('home');
@@ -96,3 +98,13 @@ Route::prefix('pages')->group(function() {
 	Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');
 	Route::get('/term-of-service', 'ToSController@index')->name('tos');
 });
+
+
+// super admin routes
+Route::prefix('admin')->group(function(){
+    Route::get('/products', 'ProductController@index');
+    Route::get('/products/create', 'ProductController@create')->middleware('role:superadmin');
+    Route::post('/products/create', 'ProductController@store')->middleware('role:superadmin');
+    Route::delete('/products/{productId}', 'ProductController@destroy')->middleware('role:superadmin');
+    Route::put('/products/{productId}', 'ProductController@update')->middleware('role:superadmin');
+}); 

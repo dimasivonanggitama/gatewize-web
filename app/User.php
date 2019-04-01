@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'fullname', 'email', 'password', 'address', 'username', 'telegram', 'balance', 'license_key'
+        'fullname', 'email', 'password', 'address', 'username', 'telegram', 'balance', 'license_key', 'role_id'
     ];
 
     /**
@@ -33,5 +33,20 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getAvatar( $size = 64 ) {
        return $this->getGravatar( $this->email, $size );
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRole('superadmin');
+    }
+
+    public function hasRole($role)
+    {
+        return str_replace(' ','',strtolower($this->role->name)) == $role;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

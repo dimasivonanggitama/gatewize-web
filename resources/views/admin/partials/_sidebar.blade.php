@@ -25,6 +25,14 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    @if(Auth::user()->isAdmin())
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/products">
+        <i class="menu-icon mdi mdi-package-variant"></i>
+        <span class="menu-title">Product</span>
+      </a>
+    </li>
+    @endif
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse1" href="#service" aria-expanded="false" aria-controls="service">
         <i class="menu-icon mdi mdi-currency-usd"></i>
