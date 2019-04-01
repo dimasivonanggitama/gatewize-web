@@ -75,7 +75,8 @@ class RegisterController extends Controller
             'balance' => 10000,
             'telegram' => $data['telegram'],
             'address' => $data['address'],
-            'license_key' => md5($data['email'] . rand(0,1000))
+            'license_key' => md5($data['email'] . rand(0,1000)),
+            'role_id' => Role::where('name', 'Normal User')->first()->id
         ]);
 
         // $now = Carbon::now();
