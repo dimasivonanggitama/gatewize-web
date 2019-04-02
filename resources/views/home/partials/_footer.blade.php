@@ -9,10 +9,10 @@
                 <!-- // end .col-sm-3 -->
                 <div class="col-sm-2">
                     <ul class="list-unstyled footer-links ml-1">
-                        <li><a href="#portfolio">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Feature</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="{{ route('homepage') }}#portfolio">Home</a></li>
+                        <li><a href="{{ route('homepage') }}#about">About</a></li>
+                        <li><a href="{{ route('homepage') }}#services">Feature</a></li>
+                        <li><a href="{{ route('homepage') }}#contact">Contact</a></li>
                     </ul>
                 </div>
                 <!-- // end .col-sm-3 -->

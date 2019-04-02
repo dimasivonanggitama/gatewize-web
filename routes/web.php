@@ -12,7 +12,7 @@ use App\Gopay;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('homepage');
 
 Auth::routes(['verify' => true]);
 

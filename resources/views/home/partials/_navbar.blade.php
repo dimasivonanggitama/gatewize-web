@@ -10,16 +10,16 @@
                 <div class="collapse navbar-collapse" id="site-nav">
                     <ul class="navbar-nav text-sm-left ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="{{ route('homepage') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
+                            <a class="nav-link" href="{{ route('homepage') }}#about">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#feature">Feature</a>
+                            <a class="nav-link" href="{{ route('homepage') }}#feature">Feature</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
+                            <a class="nav-link" href="{{ route('homepage') }}#contact">Contact</a>
                         </li>
 
 
