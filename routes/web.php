@@ -20,15 +20,15 @@ Auth::routes(['verify' => true]);
 Route::middleware('verified')->group(function () {
     // Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-    
+
     Route::get('documentation', 'DocumentationController@index')->name('documentation');
     Route::get('billing', 'DashboardController@index')->name('billing');
-    
+
     Route::prefix('profile')->group(function(){
         Route::get('/', 'ProfileController@index')->name('profile');
         Route::post('/update', 'ProfileController@update')->name('profile.update');
     });
-	
+
 	Route::prefix('change-password')->group(function() {
         Route::get('/', 'Auth/ResetPasswordController@index')->name('change-password');
 	});
@@ -50,6 +50,7 @@ Route::middleware('verified')->group(function () {
         Route::delete('delete/{service}', 'GroupController@destroy')->name('groups.destroy');
         Route::get('digipos', 'GroupController@digipos')->name('groups.digipos');
         Route::get('gojek', 'GroupController@gojek')->name('groups.gojek');
+        Route::get('ovo', 'GroupController@ovo')->name('groups.ovo');
     });
 
     Route::prefix('deposit')->group(function(){
@@ -68,7 +69,7 @@ Route::middleware('verified')->group(function () {
         // Route::get('ovo', 'ProductController@ovo')->name('product.ovo');
         // Route::get('linkaja', 'ProductController@ovo')->name('product.linkaja');
     });
-	
+
     Route::prefix('reports')->group(function(){
         Route::get('gojek', 'ReportController@gojek')->name('reports.gojek');
         Route::get('digipos', 'ReportController@digipos')->name('reports.digipos');
@@ -90,7 +91,7 @@ Route::middleware('verified')->group(function () {
         Route::get('/', 'ProductController@index');
     });
 });
-		
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('pages')->group(function() {
@@ -107,4 +108,4 @@ Route::prefix('admin')->group(function(){
     Route::post('/products/create', 'ProductController@store')->middleware('role:superadmin');
     Route::delete('/products/{productId}', 'ProductController@destroy')->middleware('role:superadmin');
     Route::put('/products/{productId}', 'ProductController@update')->middleware('role:superadmin');
-}); 
+});
