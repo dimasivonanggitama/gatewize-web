@@ -76,11 +76,11 @@
                           <span class="dot-indicator bg-success"></span>
                           <p class="mb-0 ml-2 text-muted">Sukses</p>
                         </div>
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center mr-3">
                           <span class="dot-indicator bg-danger"></span>
                           <p class="mb-0 ml-2 text-muted">Gagal</p>
                         </div>
-                         <div class="d-flex align-items-center">
+                         <div class="d-flex align-items-center mr-3">
                           <span class="dot-indicator bg-warning"></span>
                           <p class="mb-0 ml-2 text-muted">Suspect</p>
                         </div>
@@ -218,6 +218,164 @@
                         </div>
                       </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-5 d-flex align-items-center"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                        <canvas id="UsersDoughnutChart" class="400x160 mb-4 mb-md-0 chartjs-render-monitor" height="256" width="386" style="display: block; height: 128px; width: 193px;"></canvas>
+                      </div>
+                      <div class="col-md-7">
+                        <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistik DIGIPOS</h4>
+                        <div class="wrapper mt-4">
+                          <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex align-items-center">
+                              <p class="mb-0 font-weight-medium">67,550</p>
+                              <small class="text-muted ml-2">Email account</small>
+                            </div>
+                            <p class="mb-0 font-weight-medium">80%</p>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                        <div class="wrapper mt-4">
+                          <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex align-items-center">
+                              <p class="mb-0 font-weight-medium">21,435</p>
+                              <small class="text-muted ml-2">Requests</small>
+                            </div>
+                            <p class="mb-0 font-weight-medium">34%</p>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-5 d-flex align-items-center"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                        <canvas id="UsersDoughnutChart" class="400x160 mb-4 mb-md-0 chartjs-render-monitor" height="256" width="386" style="display: block; height: 128px; width: 193px;"></canvas>
+                      </div>
+                      <div class="col-md-7">
+                        <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistik GO-JEK</h4>
+                        <div class="wrapper mt-4">
+                          <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex align-items-center">
+                              <p class="mb-0 font-weight-medium">67,550</p>
+                              <small class="text-muted ml-2">Email account</small>
+                            </div>
+                            <p class="mb-0 font-weight-medium">80%</p>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                        <div class="wrapper mt-4">
+                          <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex align-items-center">
+                              <p class="mb-0 font-weight-medium">21,435</p>
+                              <small class="text-muted ml-2">Requests</small>
+                            </div>
+                            <p class="mb-0 font-weight-medium">34%</p>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-5 d-flex align-items-center"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                        <canvas id="UsersDoughnutChart" class="400x160 mb-4 mb-md-0 chartjs-render-monitor" height="256" width="386" style="display: block; height: 128px; width: 193px;"></canvas>
+                      </div>
+                      <div class="col-md-7">
+                        <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistik OVO</h4>
+                        <div class="wrapper mt-4">
+                          <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex align-items-center">
+                              <p class="mb-0 font-weight-medium">67,550</p>
+                              <small class="text-muted ml-2">Email account</small>
+                            </div>
+                            <p class="mb-0 font-weight-medium">80%</p>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                        <div class="wrapper mt-4">
+                          <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex align-items-center">
+                              <p class="mb-0 font-weight-medium">21,435</p>
+                              <small class="text-muted ml-2">Requests</small>
+                            </div>
+                            <p class="mb-0 font-weight-medium">34%</p>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-5 d-flex align-items-center"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                        <canvas id="UsersDoughnutChart" class="400x160 mb-4 mb-md-0 chartjs-render-monitor" height="256" width="386" style="display: block; height: 128px; width: 193px;"></canvas>
+                      </div>
+                      <div class="col-md-7">
+                        <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistik Link Aja</h4>
+                        <div class="wrapper mt-4">
+                          <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex align-items-center">
+                              <p class="mb-0 font-weight-medium">67,550</p>
+                              <small class="text-muted ml-2">Email account</small>
+                            </div>
+                            <p class="mb-0 font-weight-medium">80%</p>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                        <div class="wrapper mt-4">
+                          <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex align-items-center">
+                              <p class="mb-0 font-weight-medium">21,435</p>
+                              <small class="text-muted ml-2">Requests</small>
+                            </div>
+                            <p class="mb-0 font-weight-medium">34%</p>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
