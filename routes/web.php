@@ -66,13 +66,14 @@ Route::middleware('verified')->group(function () {
     Route::prefix('products')->group(function(){
         Route::get('gojek', 'ProductController@gojek')->name('products.gojek');
         Route::get('digipos', 'ProductController@digipos')->name('products.digipos');
-        // Route::get('ovo', 'ProductController@ovo')->name('product.ovo');
+        Route::get('ovo', 'ProductController@ovo')->name('product.ovo');
         // Route::get('linkaja', 'ProductController@ovo')->name('product.linkaja');
     });
 
     Route::prefix('reports')->group(function(){
         Route::get('gojek', 'ReportController@gojek')->name('reports.gojek');
         Route::get('digipos', 'ReportController@digipos')->name('reports.digipos');
+        Route::get('ovo', 'ReportController@ovo')->name('reports.ovo');
     });
 
     Route::prefix('ticket')->group(function(){
