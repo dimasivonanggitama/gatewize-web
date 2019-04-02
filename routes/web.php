@@ -66,7 +66,7 @@ Route::middleware('verified')->group(function () {
     Route::prefix('products')->group(function(){
         Route::get('gojek', 'ProductController@gojek')->name('products.gojek');
         Route::get('digipos', 'ProductController@digipos')->name('products.digipos');
-        Route::get('ovo', 'ProductController@ovo')->name('product.ovo');
+        Route::get('ovo', 'ProductController@ovo')->name('products.ovo');
         // Route::get('linkaja', 'ProductController@ovo')->name('product.linkaja');
     });
 
