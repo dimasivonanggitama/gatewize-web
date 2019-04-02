@@ -99,16 +99,16 @@
             <div class="collapse" id="ovo">
               <ul class="nav flex-column sub-menu" style="padding: 0 0 0 1rem;">
                 <li class="nav-item">
-                  <a class="nav-link" href="">Groups</a>
+                  <a class="nav-link" href="{{ route('groups.gojek') }}">Groups</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Accounts</a>
+                  <a class="nav-link" href="{{ route('accounts', 'gojek') }}">Accounts</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Reports</a>
+                  <a class="nav-link" href="{{ route('reports.gojek') }}">Reports</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Products</a>
+                  <a class="nav-link" href="{{ route('products.gojek') }}">Products</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="">Documentation</a>
