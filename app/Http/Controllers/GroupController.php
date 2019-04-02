@@ -44,6 +44,8 @@ class GroupController extends Controller
         $client = new OvoClient();
         $license = auth()->user()->license_key;
         $groups = $client->getGroups($license);
+
+        return view('admin.pages.group.ovo', compact('groups'));
     }
 
     public function store(Request $request)
