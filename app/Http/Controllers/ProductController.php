@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DigiposClient;
 use App\GojekClient;
+use App\OvoClient;
 use App\Product;
 use App\Service;
 use Illuminate\Http\Request;
@@ -103,7 +104,7 @@ class ProductController extends Controller
 		return back()->with('flash', 'Product has been deleted.');
 	}
 
-	
+
 
 	public function gojek()
 	{
@@ -111,9 +112,9 @@ class ProductController extends Controller
 		$license = auth()->user()->license_key;
 		$pulsaProducts = $client->pulsaProducts($license, '082268888859');
 		$tokenProducts = $client->tokenProducts($license);
-		return view('admin.pages.product.gojek', compact('pulsaProducts', 'tokenProducts'));	
+		return view('admin.pages.product.gojek', compact('pulsaProducts', 'tokenProducts'));
 	}
-	
+
 	public function digipos()
 	{
 		$client = new DigiposClient();
@@ -126,5 +127,14 @@ class ProductController extends Controller
 		$voiceProducts = $client->voiceProducts($license);
 
 		return view('admin.pages.product.digipos', compact('voucherProducts', 'digitalProducts', 'smsProducts', 'bulkProducts', 'voiceProducts'));
-	}
+    }
+
+    public function ovo()
+    {
+        $client = new OvoClient();
+		$license = auth()->user()->license_key;
+		$pulsaProducts = $client->pulsaProducts($license, 'TELKOMSEL');
+		$bankProducts = $client->bankProducts($license);
+		return view('admin.pages.product.ovo', compact('pulsaProducts', 'bankProducts'));
+    }
 }
