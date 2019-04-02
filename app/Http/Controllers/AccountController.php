@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use App\GojekClient;
 use App\DigiposClient;
+use App\OvoClient;
 
 class AccountController extends Controller
 {
@@ -31,6 +32,11 @@ class AccountController extends Controller
             $digiposClient = new DigiposClient();
             $accounts = $digiposClient->getAccounts($license);
             $groups = $digiposClient->getGroups($license);
+        } else if($service == "ovo") {
+            $ovoClient = new OvoClient();
+
+            $accounts = $ovoClient->getAccounts($license);
+            $groups = $ovoClient->getGroups($license);
         } else {
 
         }
@@ -96,6 +102,11 @@ class AccountController extends Controller
             $digiposClient = new DigiposClient();
             $accounts = $digiposClient->getAccounts($license);
             $groups = $digiposClient->getGroups($license);
+        } else if($service == "ovo"){
+            $ovoClient = new OvoClient();
+
+            $groups = $ovoClient->getGroups($license);
+            $accounts = $ovoClient->getAccountByGroup($license, $groupId);
         } else {
             $groups = [];
             $accounts = [];
