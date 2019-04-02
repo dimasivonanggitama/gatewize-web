@@ -13,7 +13,7 @@ return [
 	|
 	| 'local' will use your server to generate the avatars.
 	*/
-	'provider'         => 'local',
+	'provider'         => 'api',
 
 	/*
 	|--------------------------------------------------------------------------
