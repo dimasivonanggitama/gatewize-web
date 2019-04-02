@@ -14,11 +14,11 @@
     <link href="https://fonts.googleapis.com/css?family=Product+Sans:300,400,700" rel="stylesheet">
     <!-- build:css css/app.min.css -->
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/global/bootstrap.min.css">
+    <link rel="stylesheet" href="{!! asset('css/global/bootstrap.min.css') !!}">
     <!-- Plugins -->
-    <link rel="stylesheet" href="css/global/plugins/icon-font.css">
+    <link rel="stylesheet" href="{!! asset('css/global/plugins/icon-font.css') !!}">
     <!-- Main CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{!! asset('css/style.css') !!}">
     <!-- /build -->
 </head>
 
@@ -38,11 +38,11 @@
     <!-- JS Files -->
     <!-- build:js js/app.min.js -->
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="js/global/jquery-3.2.1.min.js"></script>
+    <script src="{!! asset('js/global/jquery-3.2.1.min.js') !!}"></script>
     <!-- Bootstrap JS -->
-    <script src="js/global/bootstrap.bundle.min.js"></script>
+    <script src="{!! asset('js/global/bootstrap.bundle.min.js') !!}"></script>
     <!-- Main JS -->
-    <script src="js/script.js"></script>
+    <script src="{!! asset('js/script.js') !!}"></script>
     <!-- /build -->
 </body>
 

@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home.pages.main');
     }
+
+    public function terms()
+    {
+        return view('home.pages.tos');
+    }
+
+    public function privacy()
+    {
+        return view('home.pages.privacy');
+    }
 }

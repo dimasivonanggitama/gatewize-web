@@ -18,8 +18,8 @@
                 <!-- // end .col-sm-3 -->
                 <div class="col-sm-2">
                     <ul class="list-unstyled footer-links ml-1">
-                        <li><a href="{{ route('tos') }}">Terms</a></li>
-                        <li><a href="{{ route('privacy-policy') }}">Privacy</a></li>
+                        <li><a href="{{ route('terms') }}">Terms</a></li>
+                        <li><a href="{{ route('privacy') }}">Privacy</a></li>
                     </ul>
                 </div>
                 <!-- // end .col-sm-3 -->

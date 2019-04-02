@@ -93,12 +93,9 @@ Route::middleware('verified')->group(function () {
     });
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::prefix('pages')->group(function() {
-	Route::get('/privacy-policy', 'PrivacyPolicyController@index')->name('privacy-policy');
-	Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');
-	Route::get('/term-of-service', 'ToSController@index')->name('tos');
+	Route::get('privacy', 'HomeController@privacy')->name('privacy');
+	Route::get('terms', 'HomeController@terms')->name('terms');
 });
 
 

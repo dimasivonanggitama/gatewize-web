@@ -29,9 +29,7 @@
                     <select class="form-control form-control-lg" id="typeSelect">
                         <option disabled selected value=""></option>
                         <option value="local">Local</option>
-                        <option value="pulsa">GoPulsa</option>
-                        <option value="bills">GoBills</option>
-                        <option value="gopay">GoPay</option>
+                        <option value="ovo">OVO</option>
                     </select>
                 </div>
             </div>
@@ -78,9 +76,9 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane" id="tab-goPay" role="tabpanel" aria-labelledby="tab-bukalapak">
+                    <div class="tab-pane" id="tab-ovo" role="tabpanel" aria-labelledby="tab-ovo">
                         <div class="col-sm-12">
-                            <table id="" class="table gopay-table" id="order-listing">
+                            <table id="" class="table ovo-table" id="order-listing">
                                 <thead>
                                     <tr>
                                         <th>
@@ -115,74 +113,6 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane" id="tab-goBills" role="tabpanel" aria-labelledby="tab-bukalapak">
-                        <table id="order-listing" class="table gobills-table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        No.
-                                    </th>
-                                    <th>
-                                        Waktu
-                                    </th>
-                                    <th>
-                                        Ref
-                                    </th>
-                                    <th>
-                                        Tujuan
-                                    </th>
-                                    <th>
-                                        Nominal
-                                    </th>
-                                    <th>
-                                        Status
-                                    </th>
-                                    <th>
-                                        Token
-                                    </th>
-                                </tr>
-                            </thead>
-
-                            <tbody id="goBillsTable">
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane" id="tab-goPulsa" role="tabpanel" aria-labelledby="tab-bukalapak">
-                        <div class="col-sm-12">
-                            <table id="order-listing" class="table gopulsa-table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            No.
-                                        </th>
-                                        <th>
-                                            Order Number
-                                        </th>
-                                        <th>
-                                            Target MSISDN
-                                        </th>
-                                        <th>
-                                            Voucher Denom
-                                        </th>
-                                        <th>
-                                            Transaction Amount
-                                        </th>
-                                        <th>
-                                            Serial Number
-                                        </th>
-                                        <th>
-                                            Status
-                                        </th>
-                                        <th>
-                                            Created Date
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="goPulsaTable">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -200,7 +130,7 @@
         groupId = this.value;
         $('#accountSelect').empty();
         $('#accountSelect').append($('<option disabled selected value=""></option>'));
-        $.get('https://api.gatewize.com/devel-gopay/group/{{Auth::user()->license_key}}/'+groupId+'/list', function(data){
+        $.get('https://api.gatewize.com/devel-ovo/group/{{Auth::user()->license_key}}/'+groupId+'/list', function(data){
             for (var i = 0; i < data.length; i++) {
                 $('select#accountSelect')
                 .append($("<option></option>").attr("value", data[i].phone).text(data[i].phone));
@@ -218,20 +148,14 @@
         requestApi();
     });
     function requestApi(){
-        $.get('https://api.gatewize.com/devel-gopay/history/{{Auth::user()->license_key}}/'+groupId+'/'+phoneNumber+'/'+type+'/1/100', function(data){
+        $.get('https://api.gatewize.com/devel-ovo/history/{{Auth::user()->license_key}}/'+groupId+'/'+phoneNumber+'/'+type+'/1/100', function(data){
             console.log(data);
             switch(type){
                 case 'local':
                 insertLocalTable(data);
                 break;
-                case 'pulsa':
-                insertGoPulsaTable(data);
-                break;
-                case 'bills':
-                insertGoBillsTable(data);
-                break;
-                case 'gopay':
-                insertGoPayTable(data);
+                case 'ovo':
+                insertOvoTable(data);
                 break;
             }
         });
@@ -252,7 +176,7 @@
         }
         $('.local-table').DataTable();
     }
-    function insertGoBillsTable(data){
+    function insertOvoTable(data){
         $('#goBillsTable').empty();
         $('#tab-goBills').show();
         let array = data.bills;
@@ -269,40 +193,7 @@
         }
         $('.gobills-table').DataTable();
     }
-    function insertGoPulsaTable(data){
-        $('#goPulsaTable').empty();
-        $('#tab-goPulsa').show();
-        let array = data.completedBookingOrder;
-        for (let i = 0; i < array.length; i++) {
-            let report = array[i];
-            $('#goPulsaTable').append("<tr><td>"+(i+1)+"</td><td>"+
-                report.orderNumber+"</td><td>"+
-                report.targetMsisdn+"</td><td>"+
-                report.voucherDenom+"</td><td>"+
-                report.transactionAmount +"</td><td>"+
-                report.serialNumber+"</td><td>"+
-                report.status+"</td><td>"+
-                report.createdDate+"</td></tr>");
-        }
-        $('.gopulsa-table').DataTable();
-    }
-    function insertGoPayTable(data){
-        $('#goPayTable').empty();
-        $('#tab-goPay').show();
-        let array = data.success;
-        for (let i = 0; i < array.length; i++) {
-            let report = array[i];
-            $('#goPayTable').append("<tr><td>"+(i+1)+"</td><td>"+
-                report.transacted_at+"</td><td>"+
-                report.transaction_ref+"</td><td>"+
-                report.currency+"</td><td>"+
-                report.amount+"</td><td>"+
-                report.status+"</td><td>"+
-                report.description+"</td><td>"+
-                report.effective_balance_after_transaction+"</td></tr>");
-        }
-        $('.gopay-table').DataTable();
-    }
+
     function tokenFormat(stroomToken, name, tariffAndPower, kwhTotal){
         return stroomToken + '/' + name + '/' + tariffAndPower + '/' + kwhTotal;
     }

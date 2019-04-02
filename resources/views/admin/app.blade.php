@@ -5,11 +5,11 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{{ config('app.name', 'Laravel') }} | 
+  <title>{{ config('app.name', 'Laravel') }} |
     @isset($page) {{ $page }} @endisset
     @empty($page) Admin @endempty
   </title>
-  
+
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- plugins:css -->
@@ -27,18 +27,18 @@
   <link rel="shortcut icon" href="{!! asset('theme/StarAdmin/images/favicon.png') !!}" />
   <style type="text/css">
     table {
-      counter-reset: tableCount;     
+      counter-reset: tableCount;
     }
-    .counterCell:before {              
-      content: counter(tableCount); 
-      counter-increment: tableCount; 
+    .counterCell:before {
+      content: counter(tableCount);
+      counter-increment: tableCount;
     }
 
-    .sidebar { 
+    .sidebar {
       position:fixed;
     }
 
-    .main-panel { 
+    .main-panel {
       margin-left: 17.7%;
     }
   </style>
@@ -70,7 +70,7 @@
   <script src="{!! asset('theme/StarAdmin/vendors/js/vendor.bundle.base.js') !!}"></script>
   <script src="{!! asset('theme/StarAdmin/vendors/js/vendor.bundle.addons.js') !!}"></script>
   <!-- endinject -->
-  
+
   <!-- inject:js -->
   <script src="{!! asset('theme/StarAdmin/js/shared/off-canvas.js') !!}"></script>
   <script src="{!! asset('theme/StarAdmin/js/shared/hoverable-collapse.js') !!}"></script>

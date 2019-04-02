@@ -52,7 +52,7 @@
                                         </form>
                                         @endif
                                         <button type="button" class="btn btn-refresh btn-primary" data-id="{{ $group['id'] }}">Refresh</button>
-                                        <button type="button" class="btn btn-success btn-redeem" data-toggle="modal" data-target="#redeemModal" >Redeem Promo</button>
+                                        <button type="button" class="btn btn-success btn-primary" data-toggle="modal" data-target="#refreshModal" >Refresh Session</button>
                                         <!-- <a href="#" class="btn btn-success">Redeem Promo</a> -->
                                     </td>
                                 </tr>
@@ -142,19 +142,19 @@
 </div>
 </div>
 
-<div class="modal fade" id="redeemModal" tabindex="-1" role="dialog" aria-labelledby="redeemModal" aria-hidden="true">
+<div class="modal fade" id="refreshModal" tabindex="-1" role="dialog" aria-labelledby="refreshModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Redeem Promo</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Refresh Session</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <label for="name">Promo Code</label>
-                <input type="text" class="form-control" name="code" id="code-edit" placeholder="KODEPROMO" required>
+                <label for="name">PIN</label>
+                <input type="password" class="form-control" name="pin" id="code-edit" placeholder="123456" required>
             </div>
         </div>
         <div class="modal-footer">
