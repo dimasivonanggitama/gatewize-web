@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
 	<div class="card-body">
-		<h4 class="card-title">Manage Groups Gojek</h4>
+		<h4 class="card-title">Manage Groups Ovo</h4>
         <div class="row">
             <div class="col-sm-12">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal" data-id="1">Add Group</button>
@@ -40,11 +40,11 @@
                                     <td>{{ $group['name'] }}</td>
                                     <td>{{ $group['limit_account'] }}</td>
                                     <td>
-                                        <a href="{{ route('accounts.group', ['service' => 'gojek', 'group_id' => $group['id']]) }}" class="btn btn-primary">View</a>
+                                        <a href="{{ route('accounts.group', ['service' => 'ovo', 'group_id' => $group['id']]) }}" class="btn btn-primary">View</a>
                                         @if($group['is_default'] != 1)
                                         <button type="button" class="btn btn-success btn-edit" data-toggle="modal" data-target="#editModal" data-id="{{ $group['id'] }}" data-name="{{ $group['name'] }}" data-limit="{{ $group['limit_account'] }}">Edit</button>
 
-                                        <form class="form-inline" method="POST" action="{{ route('groups.destroy', ['service' => 'gojek']) }}" style="margin:none;display:inline;">
+                                        <form class="form-inline" method="POST" action="{{ route('groups.destroy', ['service' => 'ovo']) }}" style="margin:none;display:inline;">
                                             @csrf
                                             {{ method_field('DELETE') }}
                                             <input type="hidden" name="id" value="{{ $group['id'] }}">
@@ -82,7 +82,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="name">Group Name</label>
-                    <input type="hidden" name="service" value="gojek">
+                    <input type="hidden" name="service" value="ovo">
                     <input type="text" class="form-control" name="name" id="name" placeholder="Nama Grup" value="{{ old('name') }}" required>
                     @if ($errors->first('name'))
                     <small class="text-danger">{{ $errors->first('name') }}</small>
@@ -114,7 +114,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form class="forms-sample" id="redeem-form" method="POST" action="{{ route('groups.update', ['service' => 'gojek']) }}">
+        <form class="forms-sample" id="redeem-form" method="POST" action="{{ route('groups.update', ['service' => 'ovo']) }}">
             <div class="modal-body">
                 @csrf
                 <div class="form-group">
@@ -202,7 +202,7 @@
             }
         }).then((result) => {
             if(result){
-                location.href = "{{ url('admin/groups/refresh') }}/gojek/" + id
+                location.href = "{{ url('admin/groups/refresh') }}/ovo/" + id
             }
         })
     })
