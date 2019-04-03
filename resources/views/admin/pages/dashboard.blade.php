@@ -82,8 +82,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="chart-container"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                      <canvas id="dashboard-area-chart" height="572" width="2146" class="chartjs-render-monitor" style="display: block; height: 286px; width: 1073px;"></canvas>
+                    <div class="chart-container">
+                        <canvas id="dashboard-area-chart" height="80"></canvas>
                     </div>
                 </div>
             </div>
@@ -92,6 +92,12 @@
 @endsection
 
 @section('custom_js')
+<script src="{!! asset('template/backend/node_modules/morris.js/morris.min.js') !!}"></script>
+<script src="{!! asset('template/backend/node_modules/raphael/raphael.min.js') !!}"></script>
 
-<script src="{!! asset('theme/StarAdmin/js/demo_1/dashboard.js') !!}"></script>
+<script src="{!! asset('template/backend/assets/js/main/dashboard.js') !!}"></script>
+@endsection
+
+@section('custom_css')
+<link rel="stylesheet" href="{!! asset('template/backend/node_modules/morris.js/morris.css') !!}"/>
 @endsection

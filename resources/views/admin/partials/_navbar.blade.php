@@ -1,10 +1,10 @@
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 	<div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
 		<a class="navbar-brand brand-logo" href="index.html">
-			<img src="{{ asset('theme/StarAdmin/images/gatewize-logo.png') }}" alt="logo" />
+			<img src="{{ asset('template/backend/assets/images/img_logo.png') }}" alt="logo" />
 		</a>
 		<a class="navbar-brand brand-logo-mini" href="index.html">
-			<img src="{{ asset('theme/StarAdmin/images/logo-mini.svg') }}" alt="logo" />
+			<img src="{{ asset('template/backend/assets/images/logo-mini.svg') }}" alt="logo" />
 		</a>
 	</div>
 	<div class="navbar-menu-wrapper d-flex align-items-center">
@@ -42,7 +42,7 @@
 						document.getElementById('logout-form').submit();">
 						<i class="mdi mdi-power"></i>
 						{{ __('Logout') }}
-						
+
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							@csrf
 						</form>

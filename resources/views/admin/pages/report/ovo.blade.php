@@ -119,7 +119,6 @@
 @endsection
 
 @section('custom_js')
-<script src="{!! asset('theme/StarAdmin/js/shared/data-table.js') !!}"></script>
 <script>
     var groupId;
     var phoneNumber;
