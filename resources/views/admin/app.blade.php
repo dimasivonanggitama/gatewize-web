@@ -35,20 +35,12 @@
       content: counter(tableCount);
       counter-increment: tableCount;
     }
-
-    .sidebar {
-      position:fixed;
-    }
-
-    .main-panel {
-      margin-left: 17.7%;
-    }
   </style>
 
   @yield('custom_css')
 </head>
 
-<body>
+<body class="sidebar-fixed">
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     @include('admin.partials._navbar')
