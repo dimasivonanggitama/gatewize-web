@@ -52,7 +52,7 @@
                                         </form>
                                         @endif
                                         <button type="button" class="btn btn-refresh btn-primary" data-id="{{ $group['id'] }}">Refresh</button>
-                                        <button type="button" class="btn btn-success btn-redeem" data-toggle="modal" data-target="#redeemModal" >Redeem Promo</button>
+                                        <button type="button" class="btn btn-success btn-primary" data-toggle="modal" data-target="#refreshModal" >Refresh Session</button>
                                         <!-- <a href="#" class="btn btn-success">Redeem Promo</a> -->
                                     </td>
                                 </tr>
@@ -142,24 +142,24 @@
 </div>
 </div>
 
-<div class="modal fade" id="redeemModal" tabindex="-1" role="dialog" aria-labelledby="redeemModal" aria-hidden="true">
+<div class="modal fade" id="refreshModal" tabindex="-1" role="dialog" aria-labelledby="refreshModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Redeem Promo</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Refresh Session</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <label for="name">Promo Code</label>
-                <input type="text" class="form-control" name="code" id="code-edit" placeholder="KODEPROMO" required>
+                <label for="name">PIN</label>
+                <input type="password" class="form-control" name="pin" id="pin-edit" placeholder="123456" required>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success" id="redeem-btn" data-group="{{ $group['id'] }}" data-license="{{Auth::user()->license_key}}">Redeem</button>
+            <button type="submit" class="btn btn-success" id="refresh-btn" data-group="{{ $group['id'] }}" data-license="{{Auth::user()->license_key}}">Refresh</button>
         </div>
     </div>
 </div>
@@ -202,18 +202,18 @@
             }
         }).then((result) => {
             if(result){
-                location.href = "{{ url('admin/groups/refresh') }}/ovo/" + id
+                location.href = "{{ url('/accounts/group') }}/" + id + "/ovo/"
             }
         })
     })
-    $('#redeem-btn').click(function(){
-        let code = $('input#code-edit').val();
+    $('#refresh-btn').click(function(){
+        let pin = $('input#pin-edit').val();
         let license = $(this).data('license');
         let groupId = $(this).data('group');
-        $.get('https://api.gatewize.com/devel-ovo/promo/'+license+'/'+groupId+'/'+code+'/redeem', function(data){
+        $.get('https://api.gatewize.com/devel-ovo/refresh/'+license+'/'+groupId+'/'+pin+'/session', function(data){
             let url = window.location.href.split('/');
             let service = url[url.length - 1];
-            window.location = window.location.origin + '/admin/accounts/' + service;
+            window.location = window.location.origin + '/accounts/group/' + groupId + '/' + service;
         })
     })
 </script>
