@@ -56,6 +56,7 @@ class GroupController extends Controller
         ]);
 
         $gojekClient = new GojekClient();
+        $ovoClient = new OvoClient();
 
         if($request->service == "gojek"){
             $response = $gojekClient->addGroup(auth()->user()->license_key, $request->name, $request->limit);
@@ -109,6 +110,7 @@ class GroupController extends Controller
         ]);
 
         $gojekClient = new GojekClient();
+        $ovoClient = new OvoClient();
 
         if($request->service == "gojek"){
             $response = $gojekClient->deleteGroup(auth()->user()->license_key, $request->id);
@@ -148,6 +150,6 @@ class GroupController extends Controller
         }
         $this->_client = null;
 
-        return redirect()->route('groups', $service);
+        return redirect()->route('groups.refresh', $service);
     }
 }
