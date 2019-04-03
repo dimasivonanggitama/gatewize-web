@@ -110,7 +110,13 @@ class ProductController extends Controller
 	{
 		$client = new GojekClient();
 		$license = auth()->user()->license_key;
-		$pulsaProducts = $client->pulsaProducts($license, '082268888859');
+        $tsProducts = $client->pulsaProducts($license, '082268888859');
+        $xlProducts = $client->pulsaProducts($license, '087880892109');
+        $axProducts = $client->pulsaProducts($license, '083808921095');
+        $thProducts = $client->pulsaProducts($license, '08973502424');
+        $idProducts = $client->pulsaProducts($license, '085746089296');
+        $smProducts = $client->pulsaProducts($license, '08812345678');
+        $pulsaProducts = array_merge($tsProducts, $xlProducts, $axProducts, $thProducts, $smProducts, $idProducts);
 		$tokenProducts = $client->tokenProducts($license);
 		return view('admin.pages.product.gojek', compact('pulsaProducts', 'tokenProducts'));
 	}

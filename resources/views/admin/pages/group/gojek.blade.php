@@ -32,9 +32,9 @@
                                 </tr>
                             </thead>
 
-                            <tbody>     
+                            <tbody>
                                 @php ($no = 1)
-                                @foreach ($groups as $group)  
+                                @foreach ($groups as $group)
                                 <tr role="row">
                                     <td class="sorting_1">{{ $no }}</td>
                                     <td>{{ $group['name'] }}</td>
@@ -202,7 +202,7 @@
             }
         }).then((result) => {
             if(result){
-                location.href = "{{ url('admin/groups/refresh') }}/gojek/" + id
+                location.href = "{{ url('/accounts') }}/group/" + id + '/gojek'
             }
         })
     })
@@ -213,7 +213,7 @@
         $.get('https://api.gatewize.com/devel-gopay/promo/'+license+'/'+groupId+'/'+code+'/redeem', function(data){
             let url = window.location.href.split('/');
             let service = url[url.length - 1];
-            window.location = window.location.origin + '/admin/accounts/' + service;
+            window.location = window.location.origin + '/accounts/group/' + groupId + '/' + service;
         })
     })
 </script>

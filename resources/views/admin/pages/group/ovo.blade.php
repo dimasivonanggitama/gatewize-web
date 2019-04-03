@@ -154,12 +154,12 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="name">PIN</label>
-                <input type="password" class="form-control" name="pin" id="code-edit" placeholder="123456" required>
+                <input type="password" class="form-control" name="pin" id="pin-edit" placeholder="123456" required>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success" id="redeem-btn" data-group="{{ $group['id'] }}" data-license="{{Auth::user()->license_key}}">Redeem</button>
+            <button type="submit" class="btn btn-success" id="refresh-btn" data-group="{{ $group['id'] }}" data-license="{{Auth::user()->license_key}}">Refresh</button>
         </div>
     </div>
 </div>
@@ -202,18 +202,18 @@
             }
         }).then((result) => {
             if(result){
-                location.href = "{{ url('admin/groups/refresh') }}/ovo/" + id
+                location.href = "{{ url('/accounts/group') }}/" + id + "/ovo/"
             }
         })
     })
-    $('#redeem-btn').click(function(){
-        let code = $('input#code-edit').val();
+    $('#refresh-btn').click(function(){
+        let pin = $('input#pin-edit').val();
         let license = $(this).data('license');
         let groupId = $(this).data('group');
-        $.get('https://api.gatewize.com/devel-ovo/promo/'+license+'/'+groupId+'/'+code+'/redeem', function(data){
+        $.get('https://api.gatewize.com/devel-ovo/refresh/'+license+'/'+groupId+'/'+pin+'/session', function(data){
             let url = window.location.href.split('/');
             let service = url[url.length - 1];
-            window.location = window.location.origin + '/admin/accounts/' + service;
+            window.location = window.location.origin + '/accounts/group/' + groupId + '/' + service;
         })
     })
 </script>

@@ -172,7 +172,7 @@
 @section('custom_css')
 <style>
 	.profile-page .profile-header{
-		background: url("{{ asset('theme/StarAdmin/images/samples/profile_header_banner.jpg') }}") no-repeat center center;
+		background: url("{{ asset('template/backend/assets/images/samples/profile_header_banner.jpg') }}") no-repeat center center;
 	}
 </style>
 @endsection

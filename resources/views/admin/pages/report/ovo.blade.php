@@ -29,7 +29,8 @@
                     <select class="form-control form-control-lg" id="typeSelect">
                         <option disabled selected value=""></option>
                         <option value="local">Local</option>
-                        <option value="ovo">OVO</option>
+                        <option value="sukses">Ovo Sukses</option>
+                        <option value="pending">Ovo Pending</option>
                     </select>
                 </div>
             </div>
@@ -42,7 +43,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="tab-content tab-content-basic" style="overflow-x: auto;">
-                    <div class="tab-pane" id="tab-local" role="tabpanel" aria-labelledby="tab-bukalapak">
+                    <div class="tab-pane" id="tab-local" role="tabpanel" aria-labelledby="tab-local">
                         <div class="col-sm-12">
                             <table class="table local-table" id="order-listing">
                                 <thead>
@@ -91,7 +92,7 @@
                                             Ref
                                         </th>
                                         <th>
-                                            Currency
+                                            Deskripsi
                                         </th>
                                         <th>
                                             Nominal
@@ -100,15 +101,12 @@
                                             Status
                                         </th>
                                         <th>
-                                            Deskripsi
-                                        </th>
-                                        <th>
-                                            Sisa Saldo
+                                            Transaction Type
                                         </th>
                                     </tr>
                                 </thead>
 
-                                <tbody id="goPayTable">
+                                <tbody id="ovoTable">
                                 </tbody>
                             </table>
                         </div>
@@ -121,7 +119,6 @@
 @endsection
 
 @section('custom_js')
-<script src="{!! asset('theme/StarAdmin/js/shared/data-table.js') !!}"></script>
 <script>
     var groupId;
     var phoneNumber;
@@ -154,7 +151,9 @@
                 case 'local':
                 insertLocalTable(data);
                 break;
-                case 'ovo':
+                case 'sukses':
+                insertOvoTable(data);
+                case 'pending':
                 insertOvoTable(data);
                 break;
             }
@@ -177,25 +176,21 @@
         $('.local-table').DataTable();
     }
     function insertOvoTable(data){
-        $('#goBillsTable').empty();
-        $('#tab-goBills').show();
-        let array = data.bills;
+        $('#ovoTable').empty();
+        $('#tab-ovo').show();
+        let array = data;
         for (let i = 0; i < array.length; i++) {
             let report = array[i];
             let context = report.context;
-            $('#goBillsTable').append("<tr><td>"+(i+1)+"</td><td>"+
-                report.createdDateTime+"</td><td>"+
-                report.orderId+"</td><td>"+
-                report.context.customerId+"</td><td>"+
-                report.totalAmount.amount+"</td><td>"+
+            $('#ovoTable').append("<tr><td>"+(i+1)+"</td><td>"+
+                report.transaction_date+" " + report.transaction_time + "</td><td>"+
+                report.merchant_invoice+"</td><td>"+
+                report.desc1 + " " + report.desc2 + " " + report.desc3 +"</td><td>"+
+                report.transaction_amount+"</td><td>"+
                 report.status+"</td><td>"+
-                tokenFormat(context.stroomToken, context.customerName, context.tariffAndPower, context.kwhTotal)+"</td></tr>");
+                report.transaction_type+"</td></tr>");
         }
-        $('.gobills-table').DataTable();
-    }
-
-    function tokenFormat(stroomToken, name, tariffAndPower, kwhTotal){
-        return stroomToken + '/' + name + '/' + tariffAndPower + '/' + kwhTotal;
+        $('.ovo-table').DataTable();
     }
 </script>
 @endsection

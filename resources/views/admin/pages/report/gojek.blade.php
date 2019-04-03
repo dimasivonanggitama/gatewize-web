@@ -35,7 +35,7 @@
                     </select>
                 </div>
             </div>
-        </div>   
+        </div>
     </div>
 </div>
 <div class="card mt-4">
@@ -191,7 +191,6 @@
 @endsection
 
 @section('custom_js')
-<script src="{!! asset('theme/StarAdmin/js/shared/data-table.js') !!}"></script>
 <script>
     var groupId;
     var phoneNumber;
@@ -203,7 +202,7 @@
         $.get('https://api.gatewize.com/devel-gopay/group/{{Auth::user()->license_key}}/'+groupId+'/list', function(data){
             for (var i = 0; i < data.length; i++) {
                 $('select#accountSelect')
-                .append($("<option></option>").attr("value", data[i].phone).text(data[i].phone));   
+                .append($("<option></option>").attr("value", data[i].phone).text(data[i].phone));
             }
         })
     });
