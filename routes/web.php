@@ -14,10 +14,11 @@ use App\Gopay;
 
 
 // Routing for Homepage
-Route::get('/', 'HomeController@index')->name('homepage');
+Route::get('/', 'Home\HomeController@index')->name('homepage');
 Route::prefix('pages')->group(function() {
-	Route::get('privacy', 'HomeController@privacy')->name('privacy');
-	Route::get('terms', 'HomeController@terms')->name('terms');
+	Route::get('privacy', 'Home\HomeController@privacy')->name('privacy');
+    Route::get('terms', 'Home\HomeController@terms')->name('terms');
+    Route::get('contact-us', 'Home\HomeController@contact')->name('contact');
 });
 
 
@@ -103,15 +104,15 @@ Route::middleware('verified')->group(function () {
 
 // Routing for Backend Admin
 Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(){
-    Route::get('/dashboard', 'DashboardController@adminIndex');
-    Route::get('/products', 'ProductController@adminIndex');
-    Route::get('/products/create', 'ProductController@create');
-    Route::post('/products/create', 'ProductController@store');
-    Route::delete('/products/{productId}', 'ProductController@destroy');
-    Route::put('/products/{productId}', 'ProductController@update');
+    Route::get('/dashboard', 'Admin\DashboardController@index');
+    Route::get('/products', 'Admin\ProductController@index');
+    Route::get('/products/create', 'Admin\ProductController@create');
+    Route::post('/products/create', 'Admin\ProductController@store');
+    Route::delete('/products/{productId}', 'Admin\ProductController@destroy');
+    Route::put('/products/{productId}', 'Admin\ProductController@update');
 
-    Route::get('/users', 'UserController@index');
-    Route::post('/users', 'UserController@store');
-    Route::delete('/users/{userId}', 'UserController@destroy');
-    Route::put('/users/{userId}', 'UserController@update');
+    Route::get('/users', 'Admin\UserController@index');
+    Route::post('/users', 'Admin\UserController@store');
+    Route::delete('/users/{userId}', 'Admin\UserController@destroy');
+    Route::put('/users/{userId}', 'Admin\UserController@update');
 });
