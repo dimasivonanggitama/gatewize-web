@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace App;
 
 use GuzzleHttp\Client;
 
-class DigiposClient 
+class DigiposClient
 {
 	protected $client;
 
@@ -27,19 +27,19 @@ class DigiposClient
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/digital');
 		return json_decode($response->getBody(), true);
     }
-    
+
     public function smsProducts($license)
 	{
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/sms');
 		return json_decode($response->getBody(), true);
     }
-    
+
     public function bulkProducts($license)
 	{
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/bulk');
 		return json_decode($response->getBody(), true);
     }
-    
+
     public function voiceProducts($license)
 	{
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/voice');
@@ -55,7 +55,15 @@ class DigiposClient
 			$response = [];
 		}
 		return $response;
-	}
+    }
+
+    public function getStats($license)
+    {
+        $response = $this->client->get('/devel-digipos/stats/'.$license.'/all');
+        $response = json_decode($response->getBody(), true);
+
+        return $response;
+    }
 
 	public function getAccounts($license)
 	{
@@ -67,7 +75,7 @@ class DigiposClient
 		}
 		return $response;
 	}
-	
+
 	public function addAccount($license, $phone)
 	{
 		$response = $this->client->get("devel-digipos/account/" . $license . "/$phone/add/years");
