@@ -27,9 +27,9 @@
                                 </tr>
                             </thead>
 
-                            <tbody>     
+                            <tbody>
                                 @php ($no = 1)
-                                @foreach ($groups as $group)  
+                                @foreach ($groups as $group)
                                 <tr role="row">
                                     <td class="sorting_1">{{ $no }}</td>
                                     <td>{{ $group['name'] }}</td>
