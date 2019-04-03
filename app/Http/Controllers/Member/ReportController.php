@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use App\Deposit as Deposit;
 use App\GojekClient;
 use App\DigiposClient;
@@ -20,7 +21,7 @@ class ReportController extends Controller
 
     public function index()
     {
-        return view('admin.pages.report.index');
+        return view('backend.member.pages.report.index');
     }
 
     public function gojek()
@@ -28,7 +29,7 @@ class ReportController extends Controller
         $client = new GojekClient();
         $license = auth()->user()->license_key;
         $groups = $client->getGroups($license);
-        return view('admin.pages.report.gojek', compact('groups'));
+        return view('backend.member.pages.report.gojek', compact('groups'));
     }
 
     public function digipos()
@@ -36,7 +37,7 @@ class ReportController extends Controller
         $client = new DigiposClient();
         $license = auth()->user()->license_key;
         $groups = $client->getGroups($license);
-        return view('admin.pages.report.digipos', compact('groups'));
+        return view('backend.member.pages.report.digipos', compact('groups'));
     }
 
     public function ovo()
@@ -44,6 +45,6 @@ class ReportController extends Controller
         $client = new OvoClient();
         $license = auth()->user()->license_key;
         $groups = $client->getGroups($license);
-        return view('admin.pages.report.ovo', compact('groups'));
+        return view('backend.member.pages.report.ovo', compact('groups'));
     }
 }

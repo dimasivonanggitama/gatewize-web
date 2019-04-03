@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -27,7 +28,7 @@ class GroupController extends Controller
         $license = auth()->user()->license_key;
         $groups = $client->getGroups($license);
 
-        return view('admin.pages.group.gojek', compact('groups'));
+        return view('backend.member.pages.group.gojek', compact('groups'));
     }
 
     public function digipos()
@@ -36,7 +37,7 @@ class GroupController extends Controller
         $license = auth()->user()->license_key;
         $groups = $client->getGroups($license);
 
-        return view('admin.pages.group.digipos', compact('groups'));
+        return view('backend.member.pages.group.digipos', compact('groups'));
     }
 
     public function ovo()
@@ -45,7 +46,7 @@ class GroupController extends Controller
         $license = auth()->user()->license_key;
         $groups = $client->getGroups($license);
 
-        return view('admin.pages.group.ovo', compact('groups'));
+        return view('backend.member.pages.group.ovo', compact('groups'));
     }
 
     public function store(Request $request)

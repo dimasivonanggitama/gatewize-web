@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Deposit as Deposit;
@@ -27,13 +28,13 @@ class DepositController extends Controller
     public function index()
     {
         $this->data['depositData'] = Deposit::where(['user_id' => Auth::user()->id])->paginate(10);
-        return view('admin.pages.deposit.riwayat')->with($this->data);
+        return view('backend.member.pages.deposit.riwayat')->with($this->data);
     }
 
     public function add(){
         $this->data['payment'] = PaymentMethod::all();
 
-        return view('admin.pages.deposit.add')->with($this->data);
+        return view('backend.member.pages.deposit.add')->with($this->data);
     }
 
     public function store(Request $request){

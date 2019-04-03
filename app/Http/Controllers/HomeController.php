@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
         return view('home.pages.privacy');
     }
+
+    public function contact()
+    {
+        return view('home.pages.contact');
+    }
 }

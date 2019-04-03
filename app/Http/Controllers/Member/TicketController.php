@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use App\Category;
 use App\Mailers\AppMailer;
 use App\Ticket;
@@ -19,7 +20,7 @@ class TicketController extends Controller
 	{
 		$categories = Category::all();
 
-		return view('admin.pages.ticket.create', compact('categories'));
+		return view('backend.member.pages.ticket.create', compact('categories'));
 	}
 
 	public function index()
@@ -27,7 +28,7 @@ class TicketController extends Controller
 		$tickets = Ticket::where('user_id', Auth::user()->id)->paginate(10);
 		$categories = Category::all();
 
-		return view('admin.pages.ticket.index', compact('tickets', 'categories'));
+		return view('backend.member.pages.ticket.index', compact('tickets', 'categories'));
 	}
 
 	public function store(Request $request, AppMailer $mailer)
@@ -64,6 +65,6 @@ class TicketController extends Controller
 
 		$category = $ticket->category;
 
-		return view('admin.pages.ticket.show', compact('ticket', 'category', 'comments'));
+		return view('backend.member.pages.ticket.show', compact('ticket', 'category', 'comments'));
 	}
 }

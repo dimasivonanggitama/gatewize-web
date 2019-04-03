@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -48,7 +49,7 @@ class AccountController extends Controller
             'filterBy' => 'All Account'
         ];
 
-        return view("admin.pages.account.$service")->with($data);
+        return view("backend.member.pages.account.$service")->with($data);
     }
 
     public function store(Request $request, $service)
@@ -132,7 +133,7 @@ class AccountController extends Controller
             'filterBy' => 'Group'
         ];
 
-        return view("admin.pages.account.$service")->with($data);
+        return view("backend.member.pages.account.$service")->with($data);
     }
 
     public function move(Request $request, $service = "")

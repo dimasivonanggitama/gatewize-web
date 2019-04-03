@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User as User;
 use Auth; 
@@ -11,7 +12,7 @@ use App\Mail\UpdatePassword;
 class ProfileController extends Controller
 {
     public function index() {
-		return view('admin.pages.profile.profile');
+		return view('backend.member.pages.profile.profile');
 	}
 
 	public function update(Request $request)

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Deposit as Deposit;
@@ -16,11 +17,6 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $license = auth()->user()->license_key;
@@ -41,6 +37,6 @@ class DashboardController extends Controller
                 "ovo" => $statsOvo
             ]
         ];
-        return view('admin.pages.dashboard')->with($dataStats);
+        return view('backend.member.pages.dashboard')->with($dataStats);
     }
 }
