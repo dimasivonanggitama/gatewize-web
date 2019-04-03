@@ -35,7 +35,7 @@
                     </select>
                 </div>
             </div>
-        </div>   
+        </div>
     </div>
 </div>
 <div class="card mt-4">
@@ -229,7 +229,7 @@
         $.get('https://api.gatewize.com/devel-digipos/group/{{Auth::user()->license_key}}/'+groupId+'/list', function(data){
             for (var i = 0; i < data.length; i++) {
                 $('select#accountSelect')
-                .append($("<option></option>").attr("value", data[i].phone).text(data[i].phone));   
+                .append($("<option></option>").attr("value", data[i].phone).text(data[i].phone));
             }
         })
     });

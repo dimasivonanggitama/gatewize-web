@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-        <a href="{{ route('deposit-add') }}" class="btn btn-success btn-block">Deposit
+        <a href="{{ route('deposit.add') }}" class="btn btn-success btn-block">Deposit
           <i class="mdi mdi-plus"></i>
         </a>
       </div>
@@ -34,12 +34,12 @@
     </li>
     @endif
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse1" href="#service" aria-expanded="false" aria-controls="service">
+      <a class="nav-link" data-toggle="collapse" href="#service" aria-expanded="false" aria-controls="service">
         <i class="menu-icon mdi mdi-currency-usd"></i>
         <span class="menu-title">Service</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse1" id="service">
+      <div class="collapse" id="service">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#digipos" aria-expanded="false" aria-controls="digipos">
@@ -154,10 +154,10 @@
       <div class="collapse" id="billingbalance">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="">Tambah Deposit</a>
+            <a class="nav-link" href="{{ route('deposit.add') }}">Tambah Deposit</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Riwayat Deposit</a>
+            <a class="nav-link" href="{{ route('deposit') }}">Riwayat Deposit</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">Riwayat Transaksi</a>

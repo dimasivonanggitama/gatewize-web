@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
 	<div class="card-body">
-		<h4 class="card-title">Manage Accounts Gojek</h4>
+		<h4 class="card-title">Manage Accounts OVO</h4>
         <div class="row">
             <div class="col-sm-12">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal" data-id="1">Add Account</button>
@@ -46,9 +46,6 @@
                                     <th class="sorting" >
                                         Active
                                     </th>
-                                    <th class="sorting">
-                                        Is Promo
-                                    </th>
                                     <th class="sorting" >
                                         Actions
                                     </th>
@@ -68,15 +65,9 @@
                                     @else
                                     <td>Tidak Aktif</td>
                                     @endif
-                                    @if($account['is_promo'] == 1)
-                                    <td>Promo</td>
-                                    @else
-                                    <td>Tidak Promo</td>
-                                    @endif
                                     <td>
                                         <button type="button" class="btn btn-move btn-warning" data-toggle="modal" data-target="#moveModal"  data-phone="{{ $account['phone'] }}" data-group="{{ $account['group_id'] }}">Move</button>
                                         <button type="button" class="btn btn-update btn-primary" data-toggle="modal" data-target="#updateModal"  data-phone="{{ $account['phone'] }}" data-group="{{ $account['group_id'] }}" data-license="{{ Auth::user()->license_key }}">Update OTP</button>
-                                        <button type="button" class="btn btn-list-voucher btn-success" id="btn-list-voucher" data-toggle="modal" data-target="#listModal"  data-phone="{{ $account['phone'] }}" data-group="{{ $account['group_id'] }}" data-license="{{ Auth::user()->license_key }}">List Voucher</button>
                                         <!-- <a href="{{ route('accounts.destroy', 1) }}" class="btn btn-outline-danger">Delete</a> -->
                                     </td>
                                 </tr>
@@ -186,11 +177,10 @@
             <div class="modal-body">
                 @csrf
                 <div class="form-group">
-                    <label for="token">Token</label>
                     <input type="hidden" id="license-update" name="license">
                     <input type="hidden" id="phone-update" name="phone">
                     <input type="hidden" id="group-update" name="group">
-                    <input type="text" class="form-control" id="token-update" name="token" placeholder="Token" value="{{ old('token') }}" require>
+                    <input type="hidden" id="token-update" name="token" value="{{ old('token') }}"/>
                     @if ($errors->first('token'))
                     <small class="text-danger">{{ $errors->first('token') }}</small>
                     @endif
@@ -200,6 +190,13 @@
                     <input type="text" class="form-control" id="otp-update" name="otp-update" placeholder="Kode OTP" value="{{ old('otp-update') }}" require>
                     @if ($errors->first('otp-update'))
                     <small class="text-danger">{{ $errors->first('otp-update') }}</small>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="pin-update">Masukkan Kode PIN</label>
+                    <input type="password" class="form-control" id="pin-update" name="pin-update" placeholder="Kode PIN" value="{{ old('pin-update') }}" require>
+                    @if ($errors->first('pin-update'))
+                    <small class="text-danger">{{ $errors->first('pin-update') }}</small>
                     @endif
                 </div>
             </div>
@@ -212,33 +209,6 @@
 </div>
 </div>
 
-<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="listModal" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="max-width: 800px; margin-top: 50px; max-height: ">
-    <div class="modal-content">
-        <div class="modal-header" style="padding: 5px 10px 0px 10px;">
-            <h5 class="modal-title">List Voucher</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body" style="padding: 0px 10px 0px 10px; overflow-y: auto; max-height: 80vh; overflow-x: hidden;">
-          <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
-           <div class="row">
-            <table class="table dataTable no-footer">
-                <thead>
-                    <tr role="row">
-                        <th>Sponsor Name</th>
-                        <th>Status</th>
-                        <th>Title</th>
-                        <th>Expire Date</th>
-                    </tr>
-                </thead>
-                <tbody id="voucherTable">
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 </div>
 </div>
 </div>
@@ -264,10 +234,10 @@
         $('#phone-update').val(phone)
         $('#license-update').val(license)
         $('#group-update').val(groupId)
-        $.post('https://api.gatewize.com/devel-gopay/account/'+ license +'/'+ groupId +'/'+ phone +'/update', function(data){
+        $.post('https://api.gatewize.com/devel-ovo/account/'+ license +'/'+ groupId +'/'+ phone +'/update', function(data){
             console.log(data)
             if(data.status){
-                $('#token-update').val(data.token)
+                $('#token-update').val(data.data.token)
                 $('#btn-update-otp').hide()
                 $('#btn-verify-otp').show()
                 $('#form-verify').show()
@@ -287,11 +257,15 @@
         let groupId = $('#group-update').val()
         let token = $('#token-update').val()
         let otp = $('#otp-update').val()
-        $.post('https://api.gatewize.com/devel-gopay/account/'+ license +'/'+ groupId +'/'+ phone +'/verify',
+        let pin = $('#pin-update').val()
+        $.post('https://api.gatewize.com/devel-ovo/account/'+ license +'/'+ groupId +'/'+ phone +'/verify',
             {   token: token,
                 otp: otp,
+                pin: pin
             }, function(data){
+                $("#updateModal").modal('hide');
                 if(data.status){
+
                     swal({
                         title: 'Berhasil',
                         text: "Berhasil update otp",
@@ -305,25 +279,6 @@
                     })
                 }
             })
-    })
-
-
-    $('#btn-list-voucher').click(function(e){
-        let phoneNumber = $(this).data('phone');
-        let groupId = $(this).data('group');
-        let license = $(this).data('license');
-        $.get('https://api.gatewize.com/devel-gopay/promo/'+license+'/'+groupId+'/'+phoneNumber+'/list', function(data){
-            console.log(data);
-            $('#voucherTable').empty();
-            for (let i = 0; i < data.length; i++) {
-                let voucher = data[i];
-                $('#voucherTable').append("<tr role=\"row\"><td>"+
-                    voucher.sponsor_name+ "</td><td>"+
-                    voucher.status+"</td><td>"+
-                    voucher.title+"</td><td>"+
-                    voucher.expiry_date+"</td></tr>");
-            }
-        })
     })
 </script>
 @endsection

@@ -29,9 +29,9 @@ Route::middleware('verified')->group(function () {
         Route::post('/update', 'ProfileController@update')->name('profile.update');
     });
 
-	Route::prefix('change-password')->group(function() {
+    Route::prefix('change-password')->group(function() {
         Route::get('/', 'Auth/ResetPasswordController@index')->name('change-password');
-	});
+    });
 
     Route::prefix('accounts')->group(function() {
         Route::get('/{service}', 'AccountController@index')->name('accounts');
@@ -55,7 +55,7 @@ Route::middleware('verified')->group(function () {
 
     Route::prefix('deposit')->group(function(){
         Route::get('/', 'DepositController@index')->name('deposit');
-        Route::get('add', 'DepositController@add')->name('deposit-add');
+        Route::get('add', 'DepositController@add')->name('deposit.add');
         Route::post('store', 'DepositController@store')->name('deposit-store');
         Route::get('invoice/{id}', 'DepositController@invoice')->name('deposit-invoice');
         Route::get('cancel/{id}', 'DepositController@cancel')->name('deposit-cancel');
@@ -87,10 +87,9 @@ Route::middleware('verified')->group(function () {
         Route::post('', 'CommentsController@postComment');
         Route::post('{ticketId}/close', 'CommentsController@close');
     });
-
-    Route::prefix('product')->group(function(){
-        Route::get('/', 'ProductController@index');
-    });
+    Route::get('integration', 'IntegrationController@index')->name('integration');
+    Route::get('/store', 'ProductController@index')->middleware('role:normaluser');
+    Route::post('/subscribe', 'ProductController@subscribe')->middleware('role:normaluser');
 });
 
 Route::prefix('pages')->group(function() {
@@ -101,7 +100,7 @@ Route::prefix('pages')->group(function() {
 
 // super admin routes
 Route::prefix('admin')->group(function(){
-    Route::get('/products', 'ProductController@index');
+    Route::get('/products', 'ProductController@adminIndex');
     Route::get('/products/create', 'ProductController@create')->middleware('role:superadmin');
     Route::post('/products/create', 'ProductController@store')->middleware('role:superadmin');
     Route::delete('/products/{productId}', 'ProductController@destroy')->middleware('role:superadmin');

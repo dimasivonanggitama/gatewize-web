@@ -1,29 +1,32 @@
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 	<div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
 		<a class="navbar-brand brand-logo" href="index.html">
-			<img src="{{ asset('theme/StarAdmin/images/gatewize-logo.png') }}" alt="logo" />
+			<img src="{{ asset('template/backend/assets/images/img_logo.png') }}" alt="logo" />
 		</a>
 		<a class="navbar-brand brand-logo-mini" href="index.html">
-			<img src="{{ asset('theme/StarAdmin/images/logo-mini.svg') }}" alt="logo" />
+			<img src="{{ asset('template/backend/assets/images/logo-mini.svg') }}" alt="logo" />
 		</a>
 	</div>
 	<div class="navbar-menu-wrapper d-flex align-items-center">
+		<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+		</button>
 		<ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-          <li class="nav-item">
+<!--           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="mdi mdi-elevation-rise"></i>Integration</a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a href="/product" class="nav-link">
+            <a href="/store" class="nav-link">
               <i class="mdi mdi-bookmark-plus-outline"></i>Store</a>
           </li>
         </ul>
 		<ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-			{{-- <li class="nav-item">
+			<!-- {{-- <li class="nav-item">
 				<a href="#" class="nav-link">
 					<i class="mdi mdi-elevation-rise"></i>Deposit
 				</a>
-			</li> --}}
+			</li> --}} -->
 		</ul>
 		<ul class="navbar-nav navbar-nav-right">
 			<li class="nav-item">Balance : Rp. {{ number_format(Auth::user()->balance) }}</li>
@@ -42,7 +45,7 @@
 						document.getElementById('logout-form').submit();">
 						<i class="mdi mdi-power"></i>
 						{{ __('Logout') }}
-						
+
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							@csrf
 						</form>

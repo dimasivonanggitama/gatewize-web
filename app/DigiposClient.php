@@ -16,31 +16,43 @@ class DigiposClient
 		]);
 	}
 
+	public function subscribe($userId, $license, $accountLimit, $settings, $callbackUrl = null)
+	{
+		$response = $this->client->post('/devel-digipos/user/'.$license.'/'.$userId. '/subscribe', [
+			'json' => [
+				"account_limit" => $accountLimit,
+				"settings" => $settings,
+				"callback_url" => $callbackUrl
+			]
+		]);
+		return json_decode($response->getBody(), true);
+	}
+
 	public function voucherProducts($license)
 	{
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/voucher');
 		return json_decode($response->getBody(), true);
 	}
 
-    public function digitalProducts($license)
+	public function digitalProducts($license)
 	{
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/digital');
 		return json_decode($response->getBody(), true);
-    }
-    
-    public function smsProducts($license)
+	}
+
+	public function smsProducts($license)
 	{
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/sms');
 		return json_decode($response->getBody(), true);
-    }
-    
-    public function bulkProducts($license)
+	}
+
+	public function bulkProducts($license)
 	{
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/bulk');
 		return json_decode($response->getBody(), true);
-    }
-    
-    public function voiceProducts($license)
+	}
+
+	public function voiceProducts($license)
 	{
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/voice');
 		return json_decode($response->getBody(), true);

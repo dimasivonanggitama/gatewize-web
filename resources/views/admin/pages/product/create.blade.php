@@ -1,5 +1,7 @@
 @extends('admin.app')
-
+@section('custom_css')
+    <!-- <link rel="stylesheet" href="{{ asset('theme/StarAdmin/vendors/icheck/skins/all.css') }}"> -->
+@endsection
 @section('content')
 <div class="row">
   <div class="col-md-6 grid-margin stretch-card">

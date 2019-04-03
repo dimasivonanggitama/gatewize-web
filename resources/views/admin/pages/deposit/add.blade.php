@@ -8,9 +8,42 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <h4 class="card-title">Pilih Metode Pembayaran</h4>
+                            <div class="accordion accordion-body-filled" id="accordion" role="tablist">
+                                @foreach ($payment as $item)
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="heading{{ $item->id }}">
+                                            <h6 class="mb-0">
+                                                <a data-toggle="collapse" class="heading-accordion"  href="#collapse{{ $item->id }}" aria-expanded="false" aria-controls="collapse{{ $item->id }}" data-id="{{ $item->id }}">
+                                                {{ $item->account_vendor }} </a>
+                                            </h6>
+                                        </div>
+                                        <div id="collapse{{ $item->id }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ $item->id }}" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        No. Rekening : {{ $item->account_number }} <br>
+                                                        Atas Nama : {{ $item->account_name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex align-items-stretch grid-margin">
+            <div class="row flex-grow">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
                             <form class="forms-sample" method="POST" action="{{ route('deposit-store') }}">
                                 @csrf
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="inputMetode">Metode Pembayaran</label>
                                     <select class="form-control" name="payment" id="inputMetode" required>
                                         <option value="" selected>Pilih Metode Pembayaran</option>
@@ -21,7 +54,8 @@
                                     @if ($errors->first('payment'))
                                         <small class="text-danger">{{ $errors->first('payment') }}</small>
                                     @endif
-                                </div>
+                                </div> -->
+                                <input type="hidden" name="payment" id="payment">
                                 <div class="form-group">
                                     <label for="inputPengirim">Informasi Pengirim</label>
                                     <input type="text" class="form-control" name="sender" id="inputPengirim" placeholder="Pengirim (Nama / Nomor)" value="{{ old('sender') }}" required>
@@ -44,8 +78,9 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-6 grid-margin stretch-card">
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Informasi</h4>
@@ -64,4 +99,13 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('custom_js')
+<script>
+    $('.heading-accordion').click(function(){
+        let paymentId = $(this).data('id')
+        $("#payment").val(paymentId)
+    })
+</script>
 @endsection
