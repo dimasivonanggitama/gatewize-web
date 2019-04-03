@@ -91,6 +91,8 @@ Route::middleware('verified')->group(function () {
     Route::prefix('product')->group(function(){
         Route::get('/', 'ProductController@index');
     });
+
+    Route::get('integration', 'IntegrationController@index')->name('integration');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
