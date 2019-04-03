@@ -32,7 +32,13 @@
         <span class="menu-title">Product</span>
       </a>
     </li>
-    @endif
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/users">
+        <i class="menu-icon mdi mdi-account-multiple"></i>
+        <span class="menu-title">User</span>
+      </a>
+    </li>
+    @else
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#service" aria-expanded="false" aria-controls="service">
         <i class="menu-icon mdi mdi-currency-usd"></i>
@@ -189,5 +195,6 @@
         </ul>
       </div>
     </li>
+    @endif
   </ul>
 </nav>

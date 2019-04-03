@@ -99,10 +99,17 @@ Route::prefix('pages')->group(function() {
 
 
 // super admin routes
-Route::prefix('admin')->group(function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(){
+    Route::get('/dashboard', 'DashboardController@adminIndex');
     Route::get('/products', 'ProductController@adminIndex');
-    Route::get('/products/create', 'ProductController@create')->middleware('role:superadmin');
-    Route::post('/products/create', 'ProductController@store')->middleware('role:superadmin');
-    Route::delete('/products/{productId}', 'ProductController@destroy')->middleware('role:superadmin');
-    Route::put('/products/{productId}', 'ProductController@update')->middleware('role:superadmin');
+    Route::get('/products/create', 'ProductController@create');
+    Route::post('/products/create', 'ProductController@store');
+    Route::delete('/products/{productId}', 'ProductController@destroy');
+    Route::put('/products/{productId}', 'ProductController@update');
+
+    Route::get('/users', 'UserController@index');
+    Route::get('/users/create', 'UserController@create');
+    Route::post('/users', 'UserController@store');
+    Route::delete('/users/{userId}', 'UserController@destroy');
+    Route::put('/users/{userId}', 'UserController@update');
 });
