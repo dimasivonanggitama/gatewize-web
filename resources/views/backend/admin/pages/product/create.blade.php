@@ -1,12 +1,8 @@
-<<<<<<< Updated upstream:resources/views/admin/pages/product/create.blade.php
-@extends('admin.app')
-
-=======
 @extends('backend.app')
 @section('custom_css')
     <!-- <link rel="stylesheet" href="{{ asset('theme/StarAdmin/vendors/icheck/skins/all.css') }}"> -->
 @endsection
->>>>>>> Stashed changes:resources/views/backend/member/pages/product/create.blade.php
+
 @section('content')
 <div class="row">
   <div class="col-md-6 grid-margin stretch-card">
