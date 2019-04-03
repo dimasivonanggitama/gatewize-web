@@ -9,21 +9,21 @@
 	</div>
 	<div class="navbar-menu-wrapper d-flex align-items-center">
 		<ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-          <li class="nav-item">
+<!--           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="mdi mdi-elevation-rise"></i>Integration</a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a href="/product" class="nav-link">
+            <a href="/store" class="nav-link">
               <i class="mdi mdi-bookmark-plus-outline"></i>Store</a>
           </li>
         </ul>
 		<ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-			{{-- <li class="nav-item">
+			<!-- {{-- <li class="nav-item">
 				<a href="#" class="nav-link">
 					<i class="mdi mdi-elevation-rise"></i>Deposit
 				</a>
-			</li> --}}
+			</li> --}} -->
 		</ul>
 		<ul class="navbar-nav navbar-nav-right">
 			<li class="nav-item">Balance : Rp. {{ number_format(Auth::user()->balance) }}</li>

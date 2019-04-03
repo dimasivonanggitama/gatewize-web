@@ -19,6 +19,12 @@ class ProductController extends Controller
 	public function index()
 	{
 		$products = Product::all();
+		return view('admin.pages.product.store', compact('products'));
+	}
+
+	public function adminIndex()
+	{
+		$products = Product::all();
 		$services = Service::all();
 		return view('admin.pages.product.index', compact('products', 'services'));
 	}
@@ -133,11 +139,11 @@ class ProductController extends Controller
 		$voiceProducts = $client->voiceProducts($license);
 
 		return view('admin.pages.product.digipos', compact('voucherProducts', 'digitalProducts', 'smsProducts', 'bulkProducts', 'voiceProducts'));
-    }
+	}
 
-    public function ovo()
-    {
-        $client = new OvoClient();
+	public function ovo()
+	{
+		$client = new OvoClient();
 		$license = auth()->user()->license_key;
         $tsProducts = $client->pulsaProducts($license, 'TELKOMSEL');
         $xlProducts = $client->pulsaProducts($license, 'XL');
@@ -149,5 +155,5 @@ class ProductController extends Controller
 		$bankProducts = $client->bankProducts($license);
 
 		return view('admin.pages.product.ovo', compact('pulsaProducts', 'bankProducts'));
-    }
+	}
 }
