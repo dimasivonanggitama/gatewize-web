@@ -76,6 +76,19 @@ class AccountController extends Controller
             $client = new DigiposClient();
 
             $response = $client->addAccount($license, $request->phone);
+        } else if($service == "ovo"){
+            $client = new OvoClient();
+
+            $groups = $client->getGroups($license);
+
+            // search default group
+            $defaultGroup = 0;
+            foreach ($groups as $group) {
+                if($group['is_default'])
+                    $defaultGroup = $group['id'];
+            }
+
+            $response = $client->addAccount($license, $defaultGroup, $request->phone);
         } else {
             $response = ['status' => false, 'message' => 'Failed to add account to default group'];
         }
@@ -136,6 +149,10 @@ class AccountController extends Controller
             $response = $gojekClient->moveAccount(Auth::user()->license_key, $request->oldGroup, $request->phone, $request->newGroup);
         } else if($service == "digipos"){
             $digiposClient = new DigiposClient();
+        } else if($service == "ovo") {
+            $ovoClient = new OvoClient();
+
+            $response = $ovoClient->moveAccount(Auth::user()->license_key, $request->oldGroup, $request->phone, $request->newGroup);
         } else {
             $response = ['status' => false, 'message' => 'Account move failed'];
         }
