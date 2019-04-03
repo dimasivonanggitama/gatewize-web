@@ -23,4 +23,9 @@ class DashboardController extends Controller
         // $this->data['balance'] = Auth::user()->balance;
         return view('admin.pages.dashboard');
     }
+
+    public function adminIndex()
+    {
+        return view('admin.pages.dashboard');   
+    }
 }
