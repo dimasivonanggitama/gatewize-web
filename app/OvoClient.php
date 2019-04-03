@@ -30,7 +30,7 @@ class OvoClient
 
 	public function getGroups($license)
 	{
-		$response = $this->client->get('devel-ovo/group/'.$license.'/list');
+		$response = $this->client->get('/devel-ovo/group/'.$license.'/list');
 		$response = json_decode($response->getBody(), true);
 
 		if(isset($response['status'])){

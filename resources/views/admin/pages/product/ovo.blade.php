@@ -9,11 +9,11 @@
 				<ul class="nav nav-tabs tab-simple-styled" role="tablist">
 					<li class="nav-item">
                         <a class="nav-link active" id="tab-2-1" data-toggle="tab" href="#tab-pulsa" role="tab" aria-controls="tab-pulsa" aria-selected="true">
-                            <i class="mdi mdi-speedometer" style="font-size: 20px"></i>Pulsa</a>
+                            <i class="mdi mdi-speedometer" style="font-size: 20px"></i>Bank</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="tab-2-2" data-toggle="tab" href="#tab-token" role="tab" aria-controls="tab-token" aria-selected="false">
-                                <i class="mdi mdi-message-outline" style="font-size: 20px"></i>Token</a>
+                                <i class="mdi mdi-message-outline" style="font-size: 20px"></i>Pulsa</a>
                             </li>
                         </ul>
                         <div class="tab-content tab-content-basic">
@@ -28,24 +28,20 @@
                                                             No.
                                                         </th>
                                                         <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 99.1167px;" aria-label="Purchased On: activate to sort column ascending">
-                                                            Product ID
-                                                        </th>
-                                                        <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 99.1167px;" aria-label="Purchased On: activate to sort column ascending">
-                                                            Name
+                                                            Bank Name
                                                         </th>
                                                         <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 52.6667px;" aria-label="Actions: activate to sort column ascending">
-                                                            Price
+                                                            Bank Code
                                                         </th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
-                                                    @foreach($pulsaProducts as $product)
+                                                    @foreach($bankProducts as $product)
                                                     <tr role="row">
                                                         <td class="counterCell"></td>
-                                                        <td>{{$product['pulsaInventoryId']}}</td>
-                                                        <td>{{$product['skuItem']}}</td>
-                                                        <td>{{$product['transactionAmount']}}</td>
+                                                        <td>{{$product['name']}}</td>
+                                                        <td>{{$product['value']}}</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -77,12 +73,12 @@
                                             </thead>
 
                                             <tbody>
-                                                @foreach($tokenProducts as $product)
+                                                @foreach($pulsaProducts as $product)
                                                 <tr role="row">
                                                     <td class="counterCell"></td>
-                                                    <td>{{$product['productTag']}}</td>
-                                                    <td>{{$product['name']}}</td>
-                                                    <td>{{$product['adminFee']['amount'] + $product['denomination']['amount']}}</td>
+                                                    <td>{{$product['productCode']}}</td>
+                                                    <td>{{$product['productName']}}</td>
+                                                    <td>{{$product['price']}}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

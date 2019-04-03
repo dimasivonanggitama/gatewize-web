@@ -133,8 +133,15 @@ class ProductController extends Controller
     {
         $client = new OvoClient();
 		$license = auth()->user()->license_key;
-		$pulsaProducts = $client->pulsaProducts($license, 'TELKOMSEL');
+        $tsProducts = $client->pulsaProducts($license, 'TELKOMSEL');
+        $xlProducts = $client->pulsaProducts($license, 'XL');
+        $axProducts = $client->pulsaProducts($license, 'AXIS');
+        $thProducts = $client->pulsaProducts($license, 'TRI');
+        $idProducts = $client->pulsaProducts($license, 'INDOSAT');
+        $smProducts = $client->pulsaProducts($license, 'SMARTFREN');
+        $pulsaProducts = array_merge($tsProducts, $xlProducts, $axProducts, $thProducts, $smProducts, $idProducts);
 		$bankProducts = $client->bankProducts($license);
+
 		return view('admin.pages.product.ovo', compact('pulsaProducts', 'bankProducts'));
     }
 }
