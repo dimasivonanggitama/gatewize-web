@@ -55,7 +55,7 @@ Route::middleware('verified')->group(function () {
 
     Route::prefix('deposit')->group(function(){
         Route::get('/', 'DepositController@index')->name('deposit');
-        Route::get('add', 'DepositController@add')->name('deposit-add');
+        Route::get('add', 'DepositController@add')->name('deposit.add');
         Route::post('store', 'DepositController@store')->name('deposit-store');
         Route::get('invoice/{id}', 'DepositController@invoice')->name('deposit-invoice');
         Route::get('cancel/{id}', 'DepositController@cancel')->name('deposit-cancel');
