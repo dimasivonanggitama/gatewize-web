@@ -20,7 +20,7 @@ class StoreController extends Controller
 	public function index()
 	{
 		$products = Product::all();
-		return view('backend.member.pages.product.store', compact('products'));
+		return view('backend.member.pages.store.index', compact('products'));
 	}
 
 	public function subscribe(Request $request)
