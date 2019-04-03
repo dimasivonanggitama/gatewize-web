@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -40,33 +40,42 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
-    {
-        $this->validate($request, [
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+    // public function login(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'username' => 'required',
+    //         'password' => 'required',
+    //     ]);
 
-        $login_type = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL ) 
-            ? 'email' 
-            : 'username';
+    //     $login_type = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL ) 
+    //     ? 'email' 
+    //     : 'username';
 
-        $request->merge([
-            $login_type => $request->input('username')
-        ]);
+    //     $request->merge([
+    //         $login_type => $request->input('username')
+    //     ]);
 
-        if (Auth::attempt($request->only($login_type, 'password'))) {
-            return redirect()->intended($this->redirectPath());
-        }
+    //     if (Auth::attempt($request->only($login_type, 'password'))) {
+    //         return redirect()->intended($this->redirectPath());
+    //     }
 
-        return redirect()->back()
-            ->withInput()
-            ->withErrors([
-                'username' => 'These credentials do not match our records.',
-            ]);
-    }
+    //     return redirect()->back()
+    //     ->withInput()
+    //     ->withErrors([
+    //         'username' => 'These credentials do not match our records.',
+    //     ]);
+    // }
     
     public function username(){
         return "username";
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->isAdmin()){
+            return redirect('/admin/dashboard');
+        }else{
+            return redirect('/');
+        }
     }
 }
