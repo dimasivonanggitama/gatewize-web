@@ -108,7 +108,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(
     Route::put('/products/{productId}', 'ProductController@update');
 
     Route::get('/users', 'UserController@index');
-    Route::get('/users/create', 'UserController@create');
     Route::post('/users', 'UserController@store');
     Route::delete('/users/{userId}', 'UserController@destroy');
     Route::put('/users/{userId}', 'UserController@update');

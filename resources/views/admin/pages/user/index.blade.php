@@ -5,7 +5,7 @@
 	<div class="card-body">
 		<h4 class="card-title">Data User</h4>
 		<div class="row">
-			<a class="btn btn-success" href="/admin/users/create">Add New User</a>
+			<button class="btn btn-success" data-toggle="modal" data-target="#createModal" type="button">Add New User</button>
 			<div class="col-12">
 				<table id="order-listing" class="table">
 					<thead>
@@ -41,17 +41,17 @@
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Apa anda yakin akan menghapus "{{$user->nama}}" ?</h5>
+										<h5 class="modal-title">Are you sure delete "{{$user->fullname}}" ?</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									<div class="modal-footer">
-										<form class="forms-sample" method="POST" action="/admin/user/{{$user->id}}">
+										<form class="forms-sample" method="POST" action="/admin/users/{{$user->id}}">
 											@csrf
-											{{method_field('DELETE')}}
-											<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tidak</button>
-											<button type="submit" class="btn btn-danger" id="btn-update">Ya</button>
+											@method('DELETE')
+											<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Back</button>
+											<button type="submit" class="btn btn-danger" id="btn-update">Yes</button>
 										</form>
 									</div>
 								</div>
@@ -61,47 +61,52 @@
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Form Pembaruan {{$user->nama}} ?</h5>
+										<h5 class="modal-title">Form Pembaruan {{$user->fullname}}</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									<form class="forms-sample" method="POST" action="/admin/user/{{$user->id}}" enctype="multipart/form-data">
-										@csrf
-										@method('PUT')
+									<form class="forms-sample" method="POST" action="/admin/users/{{$user->id}}">
 										<div class="modal-body">
+											@csrf
+											@method('PUT')
 											<div class="form-group">
-												<img class="img-fluid mb-2" src="/storage/{{optional($user->image)->path}}" style="width: 50%; margin-left: 25%;">
-												<label style="display: block;">Gambar Visual Kain</label>
-												<input type="file" class="file-upload-default" name="gambar">
-												<div class="input-group col-xs-12">
-													<input type="text" class="form-control file-upload-info" disabled>
-													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
-													</span>
-												</div>
-												@if ($errors->has('image'))
-												<label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('image') }}</label>
-												@endif
+												<label for="exampleInputName1">Fullname</label>
+												<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="fullname" value="{{$user->fullname}}"> 
 											</div>
 											<div class="form-group">
-												<label for="namaInput">Nama Produk</label>
-												<input type="text" class="form-control" id="namaINput" name="nama" value="{{$user->nama}}"> 
-												@if ($errors->has('nama'))
-												<label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('nama') }}</label>
-												@endif
+												<label for="exampleInputName1">Username</label>
+												<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="username" value="{{$user->username}}"> 
 											</div>
 											<div class="form-group">
-												<label for="deskripsiInput">Deskripsi Produk</label> 
-												<textarea class="form-control" id="deskripsiInput" rows="4" name="deskripsi">{{$user->deskripsi}}</textarea> 
-												@if ($errors->has('deskripsi'))
-												<label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('deskripsi') }}</label>
-												@endif
+												<label for="exampleInputEmail3">Email address</label>
+												<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="email" value="{{$user->email}}"> 
+											</div>                
+											<div class="form-group">
+												<label for="exampleTextarea1">Address</label> <textarea class="form-control" id="exampleTextarea1" rows="2" name="address">{{$user->address}}</textarea> 
+											</div>
+											<div class="form-group">
+												<label for="exampleInputName1">TelegramID</label>
+												<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="telegram" value="{{$user->telegram}}"> 
+											</div>
+											<div class="form-group">
+												<label for="exampleInputName1">Balance</label>
+												<input type="number" class="form-control" id="exampleInputName1" placeholder="Name" name="balance" value="{{$user->balance}}"> 
+											</div>  
+											<div class="form-group">
+												<label>Role</label>
+												<select class="js-example-basic-single" style="width:100%" name="role_id">
+													<option value="{{$user->role->id}}"  default>{{$user->role->name}}</option>
+													@foreach($roles as $role)
+													<option value="{{$role->id}}">{{$role->name}}</option>
+													@endforeach
+												</select>
 											</div>
 										</div>
 										<div class="modal-footer">
-											<button class="btn btn-light" data-miss="modal">Kembali</button>
-											<button type="submit" class="btn btn-success mr-2" style="float: right;">Simpan</button>
+
+											<button type="submit" class="btn btn-success mr-2" style="float: right;">Submit</button>
+											<button type="button" class="btn btn-light" data-miss="modal">Cancel</button>
 										</div>
 									</form>
 								</div>
@@ -114,7 +119,70 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">User Form</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form class="forms-sample" method="POST" action="/admin/users">
+				<div class="modal-body">
+					@csrf
+					<div class="form-group">
+						<label for="exampleInputName1">Fullname</label>
+						<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="fullname"> 
+					</div>
+					<div class="form-group">
+						<label for="exampleInputName1">Username</label>
+						<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="username"> 
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail3">Email address</label>
+						<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="email"> 
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword4">Password</label>
+						<input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password" name="password"> 
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword4">Password Confirmation</label>
+						<input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password" name="password_confirmation"> 
+					</div>                   
+					<div class="form-group">
+						<label for="exampleTextarea1">Address</label> <textarea class="form-control" id="exampleTextarea1" rows="2" name="address"></textarea> 
+					</div>
+					<div class="form-group">
+						<label for="exampleInputName1">TelegramID</label>
+						<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="telegram"> 
+					</div>
+					<div class="form-group">
+						<label for="exampleInputName1">Balance</label>
+						<input type="number" class="form-control" id="exampleInputName1" placeholder="Name" name="balance"> 
+					</div>  
+					<div class="form-group">
+						<label>Role</label>
+						<select class="js-example-basic-single" style="width:100%" name="role_id">
+							<option value="" disabled default></option>
+							@foreach($roles as $role)
+							<option value="{{$role->id}}">{{$role->name}}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+
+					<button type="submit" class="btn btn-success mr-2" style="float: right;">Submit</button>
+					<button type="button" class="btn btn-light" data-miss="modal">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 @endsection
 
 @section('custom_js')
+<script src="{{ asset('template/backend/assets/js/shared/select2.js') }}"></script>
 @endsection
