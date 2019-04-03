@@ -41,6 +41,12 @@ class AccountController extends Controller
 
         }
 
+        // jika belum subscribe service
+        if(isset($accounts['status']) && $accounts['status'] == false) {
+            $accounts = [];
+        }
+
+
         $data = [
             'accounts' => $accounts,
             'groups' => $groups,
@@ -122,6 +128,11 @@ class AccountController extends Controller
             $accounts = $ovoClient->getAccountByGroup($license, $groupId);
         } else {
             $groups = [];
+            $accounts = [];
+        }
+        
+        // jika belum subscribe service
+        if(isset($accounts['status']) && $accounts['status'] == false) {
             $accounts = [];
         }
 
