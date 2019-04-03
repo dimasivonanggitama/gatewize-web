@@ -15,6 +15,7 @@
                   <a class="btn get-started-btn" href="{{ route("login") }}">SIGN IN</a>
                 </div>
                 <form action="{{ route("register") }}" method="POST">
+                    @csrf
                   <h3 class="mr-auto">Register</h3>
                   <p class="mb-5 mr-auto">Enter your details below.</p>
                   <div class="form-group row">
@@ -101,7 +102,7 @@
                                     <i class="mdi mdi-account-outline"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Username Telegram" name="email" value="{{ old('telegram') }}">
+                                <input type="text" class="form-control" placeholder="Username Telegram" name="telegram" value="{{ old('telegram') }}">
                             </div>
                             @if ($errors->has('telegram'))
                                 <small id="fullnameHelpBlock" class="form-text text-muted">
@@ -118,7 +119,7 @@
                                     <i class="mdi mdi-account-outline"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Alamat Lengkap" name="email" value="{{ old('address') }}">
+                                <input type="text" class="form-control" placeholder="Alamat Lengkap" name="address" value="{{ old('address') }}">
                             </div>
                             @if ($errors->has('address'))
                                 <small id="fullnameHelpBlock" class="form-text text-muted">

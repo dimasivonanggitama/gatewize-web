@@ -11,9 +11,20 @@ class OvoClient
 	public function __construct()
 	{
 		$this->client = new Client([
-            'base_uri' => 'https://api.gatewize.com',
+			'base_uri' => 'https://api.gatewize.com',
 			// 'timeout' => 2.0
 		]);
+	}
+	public function subscribe($userId, $license, $accountLimit, $settings, $callbackUrl = null)
+	{
+		$response = $this->client->post('/devel-ovo/user/'.$license.'/'.$userId. '/subscribe', [
+			'json' => [
+				"account_limit" => $accountLimit,
+				"settings" => $settings,
+				"callback_url" => $callbackUrl
+			]
+		]);
+		return json_decode($response->getBody(), true);
 	}
 
 	public function pulsaProducts($license, $oprName)

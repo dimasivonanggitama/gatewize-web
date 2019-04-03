@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'fullname', 'email', 'password', 'address', 'username', 'telegram', 'balance', 'license_key', 'role_id'
+        'fullname', 'email', 'password', 'address', 'username', 'telegram', 'balance', 'license_key', 'role_id', 'deleted_at'
     ];
 
     /**
@@ -48,5 +48,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function balanceHistories()
+    {
+        return $this->hasMany(BalanceHistory::class);
     }
 }

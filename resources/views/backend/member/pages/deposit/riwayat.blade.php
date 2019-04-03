@@ -12,7 +12,7 @@
                 <table id="deposit_table" class="table table-striped">
                     <thead>
                     <tr>
-                        <th class="sortStyle">ID</th>
+                        <th class="sortStyle">No</th>
                         <th class="sortStyle">Tanggal
                         <i class="mdi mdi-chevron-down"></i>
                         </th>
@@ -35,6 +35,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                        @php ($no=1)
                         @foreach ($depositData as $item)
                             @if ($item->status == 'WAITING')
                                 @php ($badge = 'badge-primary')
@@ -50,7 +51,7 @@
                                 @php ($badge = '')
                             @endif
                             <tr>
-                                <td>{{ $item->id }}</td>
+                                <td class="sorting_1">{{ $no }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>Rp. {{ number_format($item->amount) }}</td>
                                 <td>Rp. {{ number_format($item->unique_code) }}</td>
@@ -59,6 +60,7 @@
                                 <td><div class="badge {{ $badge }}">{{ $item->status }}</div></td>
                                 <td><a href="{{ route('deposit-invoice', $item->id) }}" class="btn btn-sm btn-info">Detail</a></td>
                             </tr>
+                            @php ($no++)
                         @endforeach
                     </tbody>
                 </table>

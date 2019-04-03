@@ -5,7 +5,9 @@
     <div class="card-body">
         <h4 class="card-title">Product table</h4>
         <div class="row">
+            @if(Auth::user()->isAdmin())
             <a class="btn btn-primary" href="/admin/products/create">Add New Product</a>
+            @endif
             <div class="col-12">
                 <table id="order-listing" class="table">
                     <thead>
@@ -106,54 +108,54 @@
                                         <label>File upload</label>
                                         <input type="file" class="file-upload-default" name="image">
                                         <div class="input-group col-xs-12">
-                                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                          <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
-                                        </span>
+                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                            <span class="input-group-append">
+                                                <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                                            </span>
+                                        </div>
+                                        @if ($errors->has('image'))
+                                        <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('image') }}</label>
+                                        @endif
                                     </div>
-                                    @if ($errors->has('image'))
-                                    <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('image') }}</label>
-                                    @endif
+                                    <div class="form-group">
+                                        <label for="priceInput">Price</label>
+                                        <input type="number" class="form-control" id="priceInput" placeholder="in Rp." name="price" value="{{$product->price}}"> 
+                                        @if ($errors->has('price'))
+                                        <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('price') }}</label>
+                                        @endif
+                                    </div>                    
+                                    <div class="form-group">
+                                        <label>Termin</label>
+                                        <select class="js-example-basic-single" style="width:100%" name="termin" value="{{$product->termin}}">
+                                            <option value="{{strtolower($product->termin)}}" selected>{{$product->termin}}</option>
+                                            <option value="days">Days</option>
+                                            <option value="months">Months</option>
+                                            <option value="years">Years</option>
+                                        </select>
+                                        @if ($errors->has('termin'))
+                                        <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('termin') }}</label>
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="slotInput">Slot</label>
+                                        <input type="number" class="form-control" id="slotInput" name="slot" value="{{$product->slot}}"> 
+                                        @if ($errors->has('slot'))
+                                        <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('slot') }}</label>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="priceInput">Price</label>
-                                    <input type="number" class="form-control" id="priceInput" placeholder="in Rp." name="price" value="{{$product->price}}"> 
-                                    @if ($errors->has('price'))
-                                    <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('price') }}</label>
-                                    @endif
-                                </div>                    
-                                <div class="form-group">
-                                    <label>Termin</label>
-                                    <select class="js-example-basic-single" style="width:100%" name="termin" value="{{$product->termin}}">
-                                        <option value="{{strtolower($product->termin)}}" selected>{{$product->termin}}</option>
-                                        <option value="days">Days</option>
-                                        <option value="months">Months</option>
-                                        <option value="years">Years</option>
-                                    </select>
-                                    @if ($errors->has('termin'))
-                                    <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('termin') }}</label>
-                                    @endif
+                                <div class="modal-footer">
+                                    <a class="btn btn-light" data-miss="modal">Cancel</a>
+                                    <button type="submit" class="btn btn-success mr-2" style="float: right;">Update</button>
                                 </div>
-                                <div class="form-group">
-                                    <label for="slotInput">Slot</label>
-                                    <input type="number" class="form-control" id="slotInput" name="slot" value="{{$product->slot}}"> 
-                                    @if ($errors->has('slot'))
-                                    <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('slot') }}</label>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <a class="btn btn-light" href="/admin/products">Cancel</a>
-                                <button type="submit" class="btn btn-success mr-2" style="float: right;">Update</button>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 </div>
 </div>
