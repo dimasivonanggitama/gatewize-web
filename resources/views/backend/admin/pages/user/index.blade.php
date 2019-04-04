@@ -1,4 +1,4 @@
-@extends('admin.app')
+@extends('backend.app')
 
 @section('content')
 <div class="card">
@@ -72,27 +72,27 @@
 											@method('PUT')
 											<div class="form-group">
 												<label for="exampleInputName1">Fullname</label>
-												<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="fullname" value="{{$user->fullname}}"> 
+												<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="fullname" value="{{$user->fullname}}">
 											</div>
 											<div class="form-group">
 												<label for="exampleInputName1">Username</label>
-												<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="username" value="{{$user->username}}"> 
+												<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="username" value="{{$user->username}}">
 											</div>
 											<div class="form-group">
 												<label for="exampleInputEmail3">Email address</label>
-												<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="email" value="{{$user->email}}"> 
-											</div>                
+												<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="email" value="{{$user->email}}">
+											</div>
 											<div class="form-group">
-												<label for="exampleTextarea1">Address</label> <textarea class="form-control" id="exampleTextarea1" rows="2" name="address">{{$user->address}}</textarea> 
+												<label for="exampleTextarea1">Address</label> <textarea class="form-control" id="exampleTextarea1" rows="2" name="address">{{$user->address}}</textarea>
 											</div>
 											<div class="form-group">
 												<label for="exampleInputName1">TelegramID</label>
-												<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="telegram" value="{{$user->telegram}}"> 
+												<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="telegram" value="{{$user->telegram}}">
 											</div>
 											<div class="form-group">
 												<label for="exampleInputName1">Balance</label>
-												<input type="number" class="form-control" id="exampleInputName1" placeholder="Name" name="balance" value="{{$user->balance}}"> 
-											</div>  
+												<input type="number" class="form-control" id="exampleInputName1" placeholder="Name" name="balance" value="{{$user->balance}}">
+											</div>
 											<div class="form-group">
 												<label>Role</label>
 												<select class="js-example-basic-single" style="width:100%" name="role_id">
@@ -133,35 +133,35 @@
 					@csrf
 					<div class="form-group">
 						<label for="exampleInputName1">Fullname</label>
-						<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="fullname"> 
+						<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="fullname">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputName1">Username</label>
-						<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="username"> 
+						<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="username">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail3">Email address</label>
-						<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="email"> 
+						<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="email">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword4">Password</label>
-						<input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password" name="password"> 
+						<input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password" name="password">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword4">Password Confirmation</label>
-						<input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password" name="password_confirmation"> 
-					</div>                   
+						<input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password" name="password_confirmation">
+					</div>
 					<div class="form-group">
-						<label for="exampleTextarea1">Address</label> <textarea class="form-control" id="exampleTextarea1" rows="2" name="address"></textarea> 
+						<label for="exampleTextarea1">Address</label> <textarea class="form-control" id="exampleTextarea1" rows="2" name="address"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputName1">TelegramID</label>
-						<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="telegram"> 
+						<input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="telegram">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputName1">Balance</label>
-						<input type="number" class="form-control" id="exampleInputName1" placeholder="Name" name="balance"> 
-					</div>  
+						<input type="number" class="form-control" id="exampleInputName1" placeholder="Name" name="balance">
+					</div>
 					<div class="form-group">
 						<label>Role</label>
 						<select class="js-example-basic-single" style="width:100%" name="role_id">

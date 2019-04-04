@@ -104,7 +104,7 @@ Route::middleware('verified')->group(function () {
 
 // Routing for Backend Admin
 Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(){
-    Route::get('/dashboard', 'Admin\DashboardController@index');
+    Route::get('dashboard', 'Admin\DashboardController@index')->name('admin_dashboard');
     Route::get('/products', 'Admin\ProductController@index');
     Route::get('/products/create', 'Admin\ProductController@create');
     Route::post('/products/create', 'Admin\ProductController@store');

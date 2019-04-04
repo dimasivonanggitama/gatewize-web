@@ -19,12 +19,21 @@
         </a>
       </div>
     </li>
+    @if(Auth::user()->isAdmin())
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin_dashboard') }}">
+        <i class="menu-icon mdi mdi-television"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    @else
     <li class="nav-item">
       <a class="nav-link" href="{{ route('dashboard') }}">
         <i class="menu-icon mdi mdi-television"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    @endif
     @if(Auth::user()->isAdmin())
     <li class="nav-item">
       <a class="nav-link" href="/admin/products">
