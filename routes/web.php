@@ -65,6 +65,7 @@ Route::middleware('verified')->group(function () {
         Route::get('cancel/{id}', 'Member\DepositController@cancel')->name('deposit.cancel');
         Route::get('confirmation/{id}', 'Member\DepositController@confirmation')->name('deposit.confirmation');
         Route::get('manual-confirmation/{id}', 'Member\DepositController@manual_confirmation')->name('deposit.confirmation.manual');
+        Route::post('manual-confirmation/{id}', 'Member\DepositController@store_manual_confirmation')->name('deposit.confirmation.manual.store');
         Route::get('print/{id}', 'Member\DepositController@print')->name('deposit.print');
     });
 
