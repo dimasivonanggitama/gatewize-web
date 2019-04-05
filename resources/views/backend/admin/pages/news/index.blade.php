@@ -125,10 +125,10 @@
 </div>
 @endsection
 @section('custom_js')
-<script src="{!! asset('theme/StarAdmin/js/shared/data-table.js') !!}"></script>
+<script src="{!! asset('template/backend/assets/js/shared/data-table.js') !!}"></script>
 
-<script src="{{ asset('theme/StarAdmin/js/shared/file-upload.js') }}"></script>
-<script src="{{ asset('theme/StarAdmin/js/shared/iCheck.js') }}"></script>
-<script src="{{ asset('theme/StarAdmin/js/shared/typeahead.js') }}"></script>
-<script src="{{ asset('theme/StarAdmin/js/shared/select2.js') }}"></script>
+<script src="{{ asset('template/backend/assets/js/shared/file-upload.js') }}"></script>
+<script src="{{ asset('template/backend/assets/js/shared/iCheck.js') }}"></script>
+<script src="{{ asset('template/backend/assets/js/shared/typeahead.js') }}"></script>
+<script src="{{ asset('template/backend/assets/js/shared/select2.js') }}"></script>
 @endsection
