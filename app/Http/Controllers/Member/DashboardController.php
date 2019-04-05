@@ -28,6 +28,7 @@ class DashboardController extends Controller
         $statsGojek = $gojekClient->getStats($license);
         $statsDigipos = $digiposClient->getStats($license);
         $statsOvo = $ovoClient->getStats($license);
+        
         $dataStats = [
             "month" => date("n"),
             "totalAccount" => $statsGojek['totalAccount'] + $statsDigipos['totalAccount'] + $statsOvo['totalAccount'],
