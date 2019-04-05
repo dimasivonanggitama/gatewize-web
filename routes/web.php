@@ -60,11 +60,12 @@ Route::middleware('verified')->group(function () {
     Route::prefix('deposit')->group(function(){
         Route::get('/', 'Member\DepositController@index')->name('deposit');
         Route::get('add', 'Member\DepositController@add')->name('deposit.add');
-        Route::post('store', 'Member\DepositController@store')->name('deposit-store');
-        Route::get('invoice/{id}', 'Member\DepositController@invoice')->name('deposit-invoice');
-        Route::get('cancel/{id}', 'Member\DepositController@cancel')->name('deposit-cancel');
-        Route::get('confirmation/{id}', 'Member\DepositController@confirmation')->name('deposit-confirmation');
-        Route::get('print/{id}', 'Member\DepositController@print')->name('deposit-print');
+        Route::post('store', 'Member\DepositController@store')->name('deposit.store');
+        Route::get('invoice/{id}', 'Member\DepositController@invoice')->name('deposit.invoice');
+        Route::get('cancel/{id}', 'Member\DepositController@cancel')->name('deposit.cancel');
+        Route::get('confirmation/{id}', 'Member\DepositController@confirmation')->name('deposit.confirmation');
+        Route::get('manual-confirmation/{id}', 'Member\DepositController@manual_confirmation')->name('deposit.confirmation.manual');
+        Route::get('print/{id}', 'Member\DepositController@print')->name('deposit.print');
     });
 
     Route::prefix('products')->group(function(){

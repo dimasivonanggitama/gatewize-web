@@ -36,7 +36,7 @@
                     </thead>
                     <tbody>
                         @php ($no=1)
-                        @foreach ($depositData as $item)
+                        @foreach ($deposit as $item)
                             @if ($item->status == 'WAITING')
                                 @php ($badge = 'badge-primary')
                             @elseif ($item->status == 'ACCEPTED')
@@ -56,16 +56,16 @@
                                 <td>Rp. {{ number_format($item->amount) }}</td>
                                 <td>Rp. {{ number_format($item->unique_code) }}</td>
                                 <td>Rp. {{ number_format($item->amount + $item->unique_code) }}</td>
-                                <td>{{ $item->payment_methods->account_vendor }}</td>
+                                <td>{{ strtoupper(Moota::cache(15)->bank($item->bank_id)['bank_type']) }}</td>
                                 <td><div class="badge {{ $badge }}">{{ $item->status }}</div></td>
-                                <td><a href="{{ route('deposit-invoice', $item->id) }}" class="btn btn-sm btn-info">Detail</a></td>
+                                <td><a href="{{ route('deposit.invoice', $item->id) }}" class="btn btn-sm btn-info">Detail</a></td>
                             </tr>
                             @php ($no++)
                         @endforeach
                     </tbody>
                 </table>
                 <div style="float:right;">
-                    {{ $depositData->links() }}
+                    {{ $deposit->links() }}
                 </div>
                 </div>
             </div>
