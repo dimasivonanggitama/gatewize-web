@@ -10,20 +10,20 @@
                         <div class="card-body">
                             <h4 class="card-title">Pilih Metode Pembayaran</h4>
                             <div class="accordion accordion-body-filled" id="accordion" role="tablist">
-                                @foreach ($payment as $item)
+                                @foreach ($banks as $item)
                                     <div class="card">
-                                        <div class="card-header" role="tab" id="heading{{ $item->id }}">
+                                        <div class="card-header" role="tab" id="heading{{ $item->bank_id }}">
                                             <h6 class="mb-0">
-                                                <a data-toggle="collapse" class="heading-accordion"  href="#collapse{{ $item->id }}" aria-expanded="false" aria-controls="collapse{{ $item->id }}" data-id="{{ $item->id }}">
-                                                {{ $item->account_vendor }} </a>
+                                                <a data-toggle="collapse" class="heading-accordion"  href="#collapse{{ $item->bank_id }}" aria-expanded="false" aria-controls="collapse{{ $item->bank_id }}" data-id="{{ $item->bank_id }}">
+                                                {{ strtoupper($item->bank_type) }} </a>
                                             </h6>
                                         </div>
-                                        <div id="collapse{{ $item->id }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ $item->id }}" data-parent="#accordion">
+                                        <div id="collapse{{ $item->bank_id }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ $item->bank_id }}" data-parent="#accordion">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-9">
                                                         No. Rekening : {{ $item->account_number }} <br>
-                                                        Atas Nama : {{ $item->account_name }}
+                                                        Atas Nama : {{ $item->atas_nama }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -41,20 +41,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="forms-sample" method="POST" action="{{ route('deposit-store') }}">
+                            <form class="forms-sample" method="POST" action="{{ route('deposit.store') }}">
                                 @csrf
-                                <!-- <div class="form-group">
-                                    <label for="inputMetode">Metode Pembayaran</label>
-                                    <select class="form-control" name="payment" id="inputMetode" required>
-                                        <option value="" selected>Pilih Metode Pembayaran</option>
-                                        @foreach ($payment as $item)
-                                            <option value="{{ $item->id }}" >{{ "$item->account_vendor ( $item->account_number ) a/n $item->account_name " }}</option>
-                                        @endforeach
-                                    </select>
-                                    @if ($errors->first('payment'))
-                                        <small class="text-danger">{{ $errors->first('payment') }}</small>
-                                    @endif
-                                </div> -->
                                 <input type="hidden" name="payment" id="payment">
                                 <div class="form-group">
                                     <label for="inputPengirim">Informasi Pengirim</label>
@@ -89,7 +77,8 @@
                             <li>Pilih metode pembayaran yang anda inginkan</li>
                             <li>Pada kotak pengirim masukan Informasi Pengirim (Nama / Nomor)</li>
                             <li>Kemudian masukan jumlah deposit yang anda inginkan, lalu submit</li>
-                            <li>Setelah halaman faktur keluar silahkan transfer sesuai jumlah yang anda minta dan sesuai Bank / No HP yang anda pilih</li>
+                            <li>Setelah halaman faktur keluar silahkan transfer sesuai jumlah yang anda minta dan sesuai Bank yang anda pilih</li>
+                            <li>Isikan deskripsi transfer sesuai dengan kode faktur</li>
                             <li>Deposit akan otomatis tercancel jika tidak melakukan pembayaran selama waktu 6 jam</li>
                             <li>User harus melakukan pembayaran yang sama persis dengan nominal yang tertera (+ unique code) jika tidak maka harus konfirmasi manual ke administrator</li>
                             <li>Jika ada deposit yang masih waiting, maka user tidak dapat membuat request deposit kembali.</li>
