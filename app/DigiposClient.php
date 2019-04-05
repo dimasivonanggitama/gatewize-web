@@ -16,6 +16,18 @@ class DigiposClient
 		]);
 	}
 
+	public function subscribe($userId, $license, $accountLimit, $settings, $callbackUrl = null)
+	{
+		$response = $this->client->post('/devel-digipos/user/'.$license.'/'.$userId. '/subscribe', [
+			'json' => [
+				"account_limit" => (int)$accountLimit,
+				"settings" => json_decode($settings, true),
+				"callback_url" => $callbackUrl
+			]
+		]);
+		return json_decode($response->getBody(), true);
+	}
+
 	public function voucherProducts($license)
 	{
 		$response = $this->client->get('/devel-digipos/product/'.$license.'/voucher');
