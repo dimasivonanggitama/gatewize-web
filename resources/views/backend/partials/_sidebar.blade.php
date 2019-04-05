@@ -44,6 +44,12 @@
         <span class="menu-title">News</span>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/tickets">
+        <i class="menu-icon mdi mdi-ticket"></i>
+        <span class="menu-title">Ticket</span>
+      </a>
+    </li>
     @else
     <li class="nav-item">
       <a class="nav-link" href="{{ route('dashboard') }}">

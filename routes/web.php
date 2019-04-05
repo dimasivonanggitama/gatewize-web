@@ -123,4 +123,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(
     Route::get('/news/create', 'Admin\NewsController@create');
     Route::delete('/news/{newsId}', 'Admin\NewsController@destroy');
     Route::put('/news/{newsId}', 'Admin\NewsController@update');
+
+    Route::get('/tickets', 'Admin\TicketController@index');
+    Route::post('/tickets', 'Admin\TicketController@store');
+    Route::get('/tickets/create', 'Admin\TicketController@create');
+    Route::delete('/tickets/{ticketId}', 'Admin\TicketController@destroy');
+    Route::put('/tickets/{ticketId}', 'Admin\TicketController@update');
 });

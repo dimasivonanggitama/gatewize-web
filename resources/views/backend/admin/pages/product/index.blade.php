@@ -5,9 +5,7 @@
     <div class="card-body">
         <h4 class="card-title">Product table</h4>
         <div class="row">
-            @if(Auth::user()->isAdmin())
             <a class="btn btn-primary" href="/admin/products/create">Add New Product</a>
-            @endif
             <div class="col-12">
                 <table id="order-listing" class="table">
                     <thead>
@@ -16,9 +14,7 @@
                             <th>Description</th>
                             <th>Price</th>
                             <th>Image</th>
-                            @if(Auth::user()->isAdmin())
                             <th>Action</th>
-                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -30,12 +26,10 @@
                             <td style="max-width: 150px;">
                                 <img src="/storage/{{$product->image}}" style="width: 100%; height: auto; border-radius: 0;">
                             </td>
-                            @if(Auth::user()->isAdmin())
                             <td>
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal-{{$product->id}}" style="padding: 0.5rem;">Edit</button>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{$product->id}}" style="padding: 0.5rem;">Delete</button>
                             </td>
-                            @endif
                         </tr>
                         <div class="modal fade" id="deleteModal-{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                             <div class="modal-dialog" role="document">
