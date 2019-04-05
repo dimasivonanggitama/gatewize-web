@@ -28,8 +28,8 @@ class ProductController extends Controller
 	{
 		$services = Service::all();
 		return view('backend.admin.pages.product.create', compact('services'));
-    }
-    
+	}
+
 	public function store(Request $request)
 	{
 		$this->validate($request, [
@@ -57,8 +57,8 @@ class ProductController extends Controller
 			'termin' => $request->termin,
 			'slot' => $request->slot
 		]);
-
-		return redirect('/admin/products')->with('flash', 'New Product has been created.');
+		flash('New Product has been created.')->success();
+		return redirect('/admin/products');
 	}
 
 	public function update(Request $request, $productId)
@@ -90,8 +90,11 @@ class ProductController extends Controller
 				'termin' => $request->termin,
 				'slot' => $request->slot
 			]);
+			flash('Product has been updated.')->success();
+			return back();
 		}
-		return redirect('/admin/products')->with('flash', 'Product has been updated.');
+		flash('Product not found.')->error();
+		return back();
 	}
 
 	public function destroy($productId)
@@ -101,7 +104,7 @@ class ProductController extends Controller
 		if ($product != null) {
 			$product->delete();
 		}
-
-		return back()->with('flash', 'Product has been deleted.');
+		flash('Product has been deleted')->success();
+		return back();
 	}
 }

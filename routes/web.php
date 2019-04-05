@@ -33,9 +33,9 @@ Route::middleware('verified')->group(function () {
         Route::post('/update', 'Member\ProfileController@update')->name('profile.update');
     });
 
-	Route::prefix('change-password')->group(function() {
+    Route::prefix('change-password')->group(function() {
         Route::get('/', 'Auth/ResetPasswordController@index')->name('change-password');
-	});
+    });
 
     Route::prefix('accounts')->group(function() {
         Route::get('/{service}', 'Member\AccountController@index')->name('accounts');
@@ -65,6 +65,7 @@ Route::middleware('verified')->group(function () {
         Route::get('cancel/{id}', 'Member\DepositController@cancel')->name('deposit.cancel');
         Route::get('confirmation/{id}', 'Member\DepositController@confirmation')->name('deposit.confirmation');
         Route::get('manual-confirmation/{id}', 'Member\DepositController@manual_confirmation')->name('deposit.confirmation.manual');
+        Route::post('manual-confirmation/{id}', 'Member\DepositController@store_manual_confirmation')->name('deposit.confirmation.manual.store');
         Route::get('print/{id}', 'Member\DepositController@print')->name('deposit.print');
     });
 
@@ -116,4 +117,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(
     Route::post('/users', 'Admin\UserController@store');
     Route::delete('/users/{userId}', 'Admin\UserController@destroy');
     Route::put('/users/{userId}', 'Admin\UserController@update');
+
+    Route::get('/news', 'Admin\NewsController@index');
+    Route::post('/news', 'Admin\NewsController@store');
+    Route::get('/news/create', 'Admin\NewsController@create');
+    Route::delete('/news/{newsId}', 'Admin\NewsController@destroy');
+    Route::put('/news/{newsId}', 'Admin\NewsController@update');
 });

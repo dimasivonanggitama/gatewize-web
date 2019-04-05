@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\UploadedFile;
 use App\Deposit as Deposit;
 use App\BalanceHistory as BalanceHistory;
-use App\PaymentMethod as PaymentMethod;
+use App\DepositConfirmation as DepositConfirmation;
 use Carbon\Carbon;
 use Moota;
 use PDF;
@@ -28,7 +29,6 @@ class DepositController extends Controller
     }
 
     public function add(){
-        // $this->data['payment'] = PaymentMethod::all();
         $this->data['banks'] = Moota::cache(60 * 24)->banks()['data'];
 
         return view('backend.member.pages.deposit.add')->with($this->data);
@@ -62,7 +62,7 @@ class DepositController extends Controller
 
     public function invoice($id){
         $deposit = Deposit::findOrFail($id);
-
+        
         $this->data['deposit'] = $deposit;
         $this->data['bank'] = Moota::bank($deposit->bank_id);
         return view('backend.member.pages.deposit.invoice')->with($this->data);
@@ -114,8 +114,45 @@ class DepositController extends Controller
     public function manual_confirmation(Request $request, $id)
     {
         $deposit = Deposit::findOrFail($id);
+        
+        $this->data['deposit'] = $deposit;
+        $this->data['bank'] = Moota::bank($deposit->bank_id);
+        
+        return view('backend.member.pages.deposit.manual-confirmation')->with($this->data);
+    }
 
-        dd($deposit);
+    public function store_manual_confirmation(Request $request, $id)
+    {
+        $this->validate($request, [
+            "bank_tujuan" => "required|string|max:191",
+            "bank_pengirim" => "required|string|max:191",
+            "rekening_pengirim" => "required|string|max:191",
+            "nama_pengirim" => "required|string|max:191",
+            "tanggal_pengiriman" => "required|date",
+            "jumlah" => "required|int",
+            'bukti_pembayaran' => 'required|mimes:jpeg,png,jpg,JPEG,PNG,JPG|max:10240'
+        ]);
+        $data = $request->except(['bukti_pembayaran', '_token']);
+        $data['deposit_id'] = $id;
+        $data['tanggal_pengiriman'] = date('Y-m-d', strtotime($request->tanggal_pengiriman));
+        if ($request->hasFile('bukti_pembayaran')) {
+            $data['bukti_pembayaran'] = $this->savePhoto($request->file('bukti_pembayaran'));
+            $depositConfirmation = DepositConfirmation::create($data);
+            
+            flash("Berhasil menambahkan bukti pembayaran, silahkan tunggu pengecekan oleh admin")->success();
+        } else {
+            
+            flash("Gagal menambahkan bukti pembayaran, pilih file terlebih dahulu")->error();
+        }
+        return redirect()->route('deposit.invoice', ['id' => $id]);
+    }
+    
+    protected function savePhoto(UploadedFile $photo)
+    {
+        $fileName = str_random(40) . '.' . $photo->extension();
+        $destinationPath = storage_path() . DIRECTORY_SEPARATOR . 'app/public/deposit-confirmation';
+        $photo->move($destinationPath, $fileName);
+        return $fileName;
     }
 
     // ini untuk cekmutasi.co.id

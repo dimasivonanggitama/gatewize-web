@@ -75,7 +75,6 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{!! asset('template/backend/assets/js/shared/tabs.js') !!}"></script>
-  <script src="{!! asset('template/backend/assets/js/shared/data-table.js') !!}"></script>
   <script>
     $(".service-menu a").click(function(event){
       event.stopPropagation();
