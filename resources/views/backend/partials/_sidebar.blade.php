@@ -26,15 +26,6 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-    @else
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('dashboard') }}">
-        <i class="menu-icon mdi mdi-television"></i>
-        <span class="menu-title">Dashboard</span>
-      </a>
-    </li>
-    @endif
-    @if(Auth::user()->isAdmin())
     <li class="nav-item">
       <a class="nav-link" href="/admin/products">
         <i class="menu-icon mdi mdi-package-variant"></i>
@@ -47,7 +38,19 @@
         <span class="menu-title">User</span>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/news">
+        <i class="menu-icon mdi mdi-newspaper"></i>
+        <span class="menu-title">News</span>
+      </a>
+    </li>
     @else
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('dashboard') }}">
+        <i class="menu-icon mdi mdi-television"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#service" aria-expanded="false" aria-controls="service">
         <i class="menu-icon mdi mdi-currency-usd"></i>

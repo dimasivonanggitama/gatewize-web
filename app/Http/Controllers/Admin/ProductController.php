@@ -28,8 +28,8 @@ class ProductController extends Controller
 	{
 		$services = Service::all();
 		return view('backend.admin.pages.product.create', compact('services'));
-    }
-    
+	}
+
 	public function store(Request $request)
 	{
 		$this->validate($request, [
@@ -90,9 +90,11 @@ class ProductController extends Controller
 				'termin' => $request->termin,
 				'slot' => $request->slot
 			]);
+			flash('Product has been updated.')->success();
+			return back();
 		}
-		flash('Product has been updated.')->success();
-		return redirect('/admin/products');
+		flash('Product not found.')->error();
+		return back();
 	}
 
 	public function destroy($productId)
