@@ -130,8 +130,7 @@ class DepositController extends Controller
             "nama_pengirim" => "required|string|max:191",
             "tanggal_pengiriman" => "required|date",
             "jumlah" => "required|int",
-            'bukti_pembayaran' => 'required|mimes:jpeg,png,jpg,JPEG,PNG,JPG|max:10240',
-            "catatan" => "string|max:191"
+            'bukti_pembayaran' => 'required|mimes:jpeg,png,jpg,JPEG,PNG,JPG|max:10240'
         ]);
         $data = $request->except(['bukti_pembayaran', '_token']);
         $data['deposit_id'] = $id;

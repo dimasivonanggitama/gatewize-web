@@ -23,7 +23,7 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <label for="bank_tujuan">Bank Tujuan</label>
+                        <label for="bank_tujuan">Bank Tujuan*</label>
                         <input type="hidden" name="bank_tujuan" value="{{ $bank['bank_id'] }}">
                         <input type="text" class="form-control" id="bank_tujuan" placeholder="Bank Tujuan" value="{{ strtoupper($bank['bank_type']) }} No. Rek : {{ $bank['account_number'] }} A/N {{ $bank['atas_nama']}}" disabled>
                         @if ($errors->first('bank_tujuan'))
@@ -31,28 +31,28 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="bank_pengirim">Bank Pengirim</label>
+                        <label for="bank_pengirim">Bank Pengirim*</label>
                         <input type="text" class="form-control" name="bank_pengirim" id="bank_pengirim" placeholder="Bank Pengirim (misal : BCA/BRI/dll)" value="{{ old('bank_pengirim') }}" required>
                         @if ($errors->first('bank_pengirim'))
                         <small class="text-danger">{{ $errors->first('bank_pengirim') }}</small>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="bank">Nomor Rekening Pengirim</label>
+                        <label for="bank">Nomor Rekening Pengirim*</label>
                         <input type="rekening_pengirim" class="form-control" name="rekening_pengirim" id="rekening_pengirim" placeholder="No. Rekening Pengirim (misal : 1238118123 atau No. Resi Bank)" value="{{ old('rekening_pengirim') }}" required>
                         @if ($errors->first('rekening_pengirim'))
                         <small class="text-danger">{{ $errors->first('rekening_pengirim') }}</small>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="nama_pengirim">Nama Pengirim</label>
+                        <label for="nama_pengirim">Nama Pengirim*</label>
                         <input type="text" class="form-control" name="nama_pengirim" id="nama_pengirim" placeholder="Nama Pengirim (misal : M. N. Fadillah)" value="{{ old('nama_pengirim') }}" required>
                         @if ($errors->first('nama_pengirim'))
                         <small class="text-danger">{{ $errors->first('nama_pengirim') }}</small>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="datepicker-popup">Tanggal Transfer</label>
+                        <label for="datepicker-popup">Tanggal Transfer*</label>
                          <div id="datepicker-popup" class="input-group date datepicker">
                           <input type="text" name="tanggal_pengiriman" class="form-control">
                           <span class="input-group-addon input-group-append border-left">
@@ -64,7 +64,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="jumlah">Jumlah Transfer</label>
+                        <label for="jumlah">Jumlah Transfer*</label>
                         <input type="hidden" name="jumlah" value="{{$deposit->total}}">
                         <input type="text" class="form-control" id="jumlah" placeholder="Bank Tujuan" value="{{ $deposit->total }}" disabled>
                         @if ($errors->first('jumlah'))
@@ -72,7 +72,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="bukti_pembayaran">Upload Bukti Pembayaran</label>
+                        <label for="bukti_pembayaran">Upload Bukti Pembayaran*</label>
                         <input name="bukti_pembayaran" type="file" class="dropify" require/>
                         @if ($errors->first('bukti_pembayaran'))
                         <small class="text-danger">{{ $errors->first('bukti_pembayaran') }}</small>
