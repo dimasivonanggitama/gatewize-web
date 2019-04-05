@@ -57,8 +57,8 @@ class ProductController extends Controller
 			'termin' => $request->termin,
 			'slot' => $request->slot
 		]);
-
-		return redirect('/admin/products')->with('flash', 'New Product has been created.');
+		flash('New Product has been created.')->success();
+		return redirect('/admin/products');
 	}
 
 	public function update(Request $request, $productId)
@@ -91,7 +91,8 @@ class ProductController extends Controller
 				'slot' => $request->slot
 			]);
 		}
-		return redirect('/admin/products')->with('flash', 'Product has been updated.');
+		flash('Product has been updated.')->success();
+		return redirect('/admin/products');
 	}
 
 	public function destroy($productId)
@@ -101,7 +102,7 @@ class ProductController extends Controller
 		if ($product != null) {
 			$product->delete();
 		}
-
-		return back()->with('flash', 'Product has been deleted.');
+		flash('Product has been deleted')->success();
+		return back();
 	}
 }
