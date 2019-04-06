@@ -14,9 +14,11 @@
             </div>
           </div>
         </div>
+         @if(!Auth::user()->isAdmin())
         <a href="{{ route('deposit.add') }}" class="btn btn-success btn-block">Deposit
           <i class="mdi mdi-plus"></i>
         </a>
+        @endif
       </div>
     </li>
     @if(Auth::user()->isAdmin())
@@ -42,6 +44,12 @@
       <a class="nav-link" href="/admin/news">
         <i class="menu-icon mdi mdi-newspaper"></i>
         <span class="menu-title">News</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/tickets">
+        <i class="menu-icon mdi mdi-ticket"></i>
+        <span class="menu-title">Ticket</span>
       </a>
     </li>
     @else

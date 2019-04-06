@@ -37,7 +37,7 @@ class ProductController extends Controller
 			'code' => 'required',
 			'name' => 'required',
 			'description' => 'required',
-			'image' => 'required|image|mimes:jpeg,jpg,png,gif,svg',
+			// 'image' => 'required|image|mimes:jpeg,jpg,png,gif,svg',
 			'price' => 'required|integer',
 			'termin' => 'required|in:days,months,years',
 			'slot' => 'required|integer'
@@ -52,7 +52,7 @@ class ProductController extends Controller
 			'code' => $request->code,
 			'name' => $request->name,
 			'description' => $request->description,
-			'image' => $path,
+			// 'image' => $path,
 			'price' => $request->price,
 			'termin' => $request->termin,
 			'slot' => $request->slot
