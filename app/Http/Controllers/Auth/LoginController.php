@@ -47,8 +47,8 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        $login_type = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL ) 
-        ? 'email' 
+        $login_type = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL )
+        ? 'email'
         : 'username';
 
         $request->merge([
@@ -56,7 +56,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($request->only($login_type, 'password'))) {
-            return redirect()->intended($this->redirectPath());
+            return redirect()->intended(Auth::user()->isAdmin() ? '/admin/dashboard' : '/dashboard');
         }
 
         return redirect()->back()
@@ -65,7 +65,7 @@ class LoginController extends Controller
             'username' => 'These credentials do not match our records.',
         ]);
     }
-    
+
     public function username(){
         return "username";
     }
