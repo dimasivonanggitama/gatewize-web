@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-6 grid-margin stretch-card">
+  <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">New Product Form</h4>
@@ -25,21 +25,21 @@
           </div>
           <div class="form-group">
             <label for="codeInput">Code</label>
-            <input type="text" class="form-control" id="codeInput" placeholder="Product Code" name="code"> 
+            <input type="text" class="form-control" id="codeInput" placeholder="Product Code" name="code">
             @if ($errors->has('code'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('code') }}</label>
             @endif
           </div>
           <div class="form-group">
             <label for="nameInput">Name</label>
-            <input type="text" class="form-control" id="nameInput" placeholder="Product Name" name="name"> 
+            <input type="text" class="form-control" id="nameInput" placeholder="Product Name" name="name">
             @if ($errors->has('name'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('name') }}</label>
             @endif
           </div>
           <div class="form-group">
-            <label for="descriptionInput">Description</label> 
-            <textarea class="form-control" id="descriptionInput" rows="2" name="description"></textarea> 
+            <label for="descriptionInput">Description</label>
+            <textarea class="form-control" id="descriptionInput" rows="2" name="description"></textarea>
             @if ($errors->has('description'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('description') }}</label>
             @endif
@@ -59,11 +59,11 @@
           </div>
           <div class="form-group">
             <label for="priceInput">Price</label>
-            <input type="number" class="form-control" id="priceInput" placeholder="in Rp." name="price"> 
+            <input type="number" class="form-control" id="priceInput" placeholder="in Rp." name="price">
             @if ($errors->has('price'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('price') }}</label>
             @endif
-          </div>                    
+          </div>
           <div class="form-group">
             <label>Termin</label>
             <select class="js-example-basic-single" style="width:100%" name="termin">
@@ -77,7 +77,7 @@
           </div>
           <div class="form-group">
             <label for="slotInput">Slot</label>
-            <input type="number" class="form-control" id="slotInput" placeholder="Slot Amount" name="slot"> 
+            <input type="number" class="form-control" id="slotInput" placeholder="Slot Amount" name="slot">
             @if ($errors->has('slot'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('slot') }}</label>
             @endif
