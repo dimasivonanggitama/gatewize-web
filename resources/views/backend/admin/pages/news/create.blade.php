@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-6 grid-margin stretch-card">
+  <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">News Form</h4>
@@ -11,27 +11,27 @@
           @csrf
           <div class="form-group">
             <label for="nameInput">Name</label>
-            <input type="text" class="form-control" id="nameInput" placeholder="Name" name="name"> 
+            <input type="text" class="form-control" id="nameInput" placeholder="Name" name="name">
             @if ($errors->has('name'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('name') }}</label>
             @endif
           </div>
           <div class="form-group">
             <label for="codeInput">Slug</label>
-            <input type="text" class="form-control" id="codeInput" placeholder="Slug" name="slug"> 
+            <input type="text" class="form-control" id="codeInput" placeholder="Slug" name="slug">
             @if ($errors->has('slyg'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('slug') }}</label>
             @endif
           </div>
           <div class="form-group">
             <label for="nameInput">Title</label>
-            <input type="text" class="form-control" id="nameInput" placeholder="Title" name="title"> 
+            <input type="text" class="form-control" id="nameInput" placeholder="Title" name="title">
             @if ($errors->has('title'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('title') }}</label>
             @endif
           </div>
           <div class="form-group">
-            <label for="descriptionInput">Content</label> 
+            <label for="descriptionInput">Content</label>
             <textarea class="form-control" id="descriptionInput" rows="2" name="content"></textarea>
             @if ($errors->has('content'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('content') }}</label>
