@@ -14,9 +14,11 @@
             </div>
           </div>
         </div>
+         @if(!Auth::user()->isAdmin())
         <a href="{{ route('deposit.add') }}" class="btn btn-success btn-block">Deposit
           <i class="mdi mdi-plus"></i>
         </a>
+        @endif
       </div>
     </li>
     @if(Auth::user()->isAdmin())
