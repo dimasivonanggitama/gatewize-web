@@ -52,10 +52,10 @@
                                         </thead>
 
                                         <tbody>
-                                            @foreach($voucherProducts as $product)      
+                                            @foreach($voucherProducts as $product)
                                             <tr role="row">
                                                 <td class="counterCell"></td>
-                                                <td>{{$product['productId']}}</td>
+                                                <td>{{$product['kodeProduk']}}</td>
                                                 <td>{{$product['productName']}}</td>
                                                 <td>{{(int)$product['price']}}</td>
                                             </tr>
@@ -89,7 +89,7 @@
                                         </thead>
 
                                         <tbody>
-                                            @foreach($digitalProducts as $product)      
+                                            @foreach($digitalProducts as $product)
                                             <tr role="row">
                                                 <td class="counterCell"></td>
                                                 <td>{{$product['productId']}}</td>
@@ -126,7 +126,7 @@
                                         </thead>
 
                                         <tbody>
-                                            @foreach($smsProducts as $product)      
+                                            @foreach($smsProducts as $product)
                                             <tr role="row">
                                                 <td class="counterCell"></td>
                                                 <td>{{$product['productId']}}</td>
@@ -163,7 +163,7 @@
                                         </thead>
 
                                         <tbody>
-                                            @foreach($bulkProducts as $product)      
+                                            @foreach($bulkProducts as $product)
                                             <tr role="row">
                                                 <td class="counterCell"></td>
                                                 <td>{{$product['productId']}}</td>
@@ -200,7 +200,7 @@
                                         </thead>
 
                                         <tbody>
-                                            @foreach($voiceProducts as $product)      
+                                            @foreach($voiceProducts as $product)
                                             <tr role="row">
                                                 <td class="counterCell"></td>
                                                 <td>{{$product['productId']}}</td>
