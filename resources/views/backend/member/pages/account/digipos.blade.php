@@ -42,7 +42,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>          
+                            <tbody>
                                 @php ($no = 1)
                                 @foreach ($accounts as $account)
                                 <tr role="row">
@@ -92,7 +92,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phoneadd" name="phone" placeholder="No. Telepon" value="{{ old('phone') }}" require>
+                    <input type="text" class="form-control" id="phoneadd" name="phone" placeholder="Username Digipos" value="{{ old('phone') }}" require>
                     @if ($errors->first('phone'))
                     <small class="text-danger">{{ $errors->first('phone') }}</small>
                     @endif
@@ -198,7 +198,7 @@
         let otp = $('#otp-update').val()
         let token = $('#token-update').val()
         $.post('https://api.gatewize.com/devel-digipos/account/'+ license +'/'+ phone +'/verify',
-            {   token: token, 
+            {   token: token,
                 otp: otp,
             }, function(data){
                 if(data.status){
