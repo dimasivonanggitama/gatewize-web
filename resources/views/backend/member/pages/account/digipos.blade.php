@@ -34,9 +34,6 @@
                                     <th class="sorting" >
                                         Active
                                     </th>
-                                    <th class="sorting">
-                                        Is Promo
-                                    </th>
                                     <th class="sorting" >
                                         Actions
                                     </th>
@@ -55,11 +52,6 @@
                                     <td>Aktif</td>
                                     @else
                                     <td>Tidak Aktif</td>
-                                    @endif
-                                    @if($account['is_promo'] == 1)
-                                    <td>Promo</td>
-                                    @else
-                                    <td>Tidak Promo</td>
                                     @endif
                                     <td>
                                         <button type="button" class="btn btn-update btn-primary" data-toggle="modal" data-target="#updateModal"  data-phone="{{ $account['phone'] }}" data-group="{{ $account['group_id'] }}" data-license="{{ Auth::user()->license_key }}">Update OTP</button>
