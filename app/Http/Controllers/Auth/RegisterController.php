@@ -90,9 +90,8 @@ class RegisterController extends Controller
         $gojekClient = new GojekClient();
         $digiposClient = new DigiposClient();
         $ovoClient = new OvoClient();
-        
+
         $subscribeGojek = $gojekClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'gojek')->first()->settings, url(''));
-        dd($subscribeGojek);
         $digiStat = $digiposClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'digipos')->first()->settings, url(''));
 
         $ovoStat = $ovoClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'ovo')->first()->settings, url(''));
