@@ -83,7 +83,7 @@
             <div class="modal-body">
                 @csrf
                 <div class="form-group">
-                    <label for="phone">Phone</label>
+                    <label for="phone">Username Digipos</label>
                     <input type="text" class="form-control" id="phoneadd" name="phone" placeholder="Username Digipos" value="{{ old('phone') }}" require>
                     @if ($errors->first('phone'))
                     <small class="text-danger">{{ $errors->first('phone') }}</small>
