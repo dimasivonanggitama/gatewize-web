@@ -27,7 +27,7 @@
 						<td>
 							@if($ticket->status == 'open')
 							<label class="badge badge-success">{{$ticket->status}}</label>
-							@elseif($ticket->status == 'close')
+							@elseif($ticket->status == 'closed')
 							<label class="badge badge-danger">{{$ticket->status}}</label>
 							@else
 							<label class="badge badge-primary">{{$ticket->status}}</label>

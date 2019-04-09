@@ -21,8 +21,10 @@
 
 				@if($ticket->status == 'open')
 				<label class="badge badge-success">{{$ticket->status}}</label>
-				@else
+				@elseif($ticket->status == 'closed')
 				<label class="badge badge-danger">{{$ticket->status}}</label>
+				@else 
+				<label class="badge badge-primary">{{$ticket->status}}</label>
 				@endif
 			</div>
 			<div class="form-group row">
@@ -45,9 +47,17 @@
 				<input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
 				<div class="form-group">
 					<label for="exampleTextarea1">Reply Ticket</label>
+					@if($ticket->status == "open")
 					<textarea class="form-control" id="exampleTextarea1" rows="6" name="comment"></textarea>
+					@else
+					<textarea class="form-control" id="exampleTextarea1" rows="6" name="comment" disabled></textarea>
+					@endif
 				</div>
+				@if($ticket->status == "open")
 				<button type="submit" class="btn btn-primary" style="float: right;">Reply</button>
+				@else
+				<button type="button" class="btn btn-primary" style="float: right;" disabled>Reply</button>
+				@endif
 			</form>
 		</div>
 	</div>
