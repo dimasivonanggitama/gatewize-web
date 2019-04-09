@@ -31,7 +31,7 @@ class UpdatePassword extends Mailable
     {
         $user = Auth::user();
 
-        return $this->from('support@gatewize.com')
+        return $this->from('no-reply@gatewize.com')
                     ->subject('Update Password')
                     ->view('admin.pages.profile.update_password_email', compact('user'));
     }

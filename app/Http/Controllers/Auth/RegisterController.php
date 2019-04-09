@@ -6,10 +6,15 @@ use App\Deposit;
 use App\Http\Controllers\Controller;
 use App\Role;
 use App\User;
+use App\GojekClient;
+use App\OvoClient;
+use App\DigiposClient;
+use App\Service;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use GuzzleHttp\Client;
 
 class RegisterController extends Controller
 {
@@ -79,6 +84,17 @@ class RegisterController extends Controller
             'license_key' => md5($data['email'] . rand(0,1000)),
             'role_id' => Role::where('name', 'Normal User')->first()->id
         ]);
+
+        // dd($user->license_key);
+
+        $gojekClient = new GojekClient();
+        $digiposClient = new DigiposClient();
+        $ovoClient = new OvoClient();
+
+        $subscribeGojek = $gojekClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'gojek')->first()->settings, url(''));
+        $digiStat = $digiposClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'digipos')->first()->settings, url(''));
+
+        $ovoStat = $ovoClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'ovo')->first()->settings, url(''));
 
         // $now = Carbon::now();
         // $expired_date = $now->addHours(6);

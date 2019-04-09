@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace App;
 
 use GuzzleHttp\Client;
 
-class GojekClient 
+class GojekClient
 {
 	protected $client;
 
@@ -48,13 +48,21 @@ class GojekClient
 		if(isset($response['status'])){
 			$response = [];
 		}
-		
+
 		return $response;
-	}
+    }
+
+    public function getStats($license)
+    {
+        $response = $this->client->get('/devel-gopay/stats/'.$license.'/all');
+        $response = json_decode($response->getBody(), true);
+
+        return $response;
+    }
 
 	public function addGroup($license, $groupName, $groupLimit)
 	{
-		$response = $this->client->post("devel-gopay/group/" . $license . "/add", 
+		$response = $this->client->post("devel-gopay/group/" . $license . "/add",
 			[
 				'json' => [
 					'name' => $groupName,
@@ -66,7 +74,7 @@ class GojekClient
 
 	public function updateGroup($license, $id, $groupName, $groupLimit)
 	{
-		$response = $this->client->post("devel-gopay/group/" . $license . "/$id/update", 
+		$response = $this->client->post("devel-gopay/group/" . $license . "/$id/update",
 			[
 				'json' => [
 					'name' => $groupName,
