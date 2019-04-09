@@ -54,6 +54,8 @@ class TicketController extends Controller
 
 		$mailer->sendTicketInformation(Auth::user(), $ticket);
 
+		activity("ticket")->log("Create new ticket with ID: #$ticket->ticket_id");
+
 		return redirect()->back()->with("status", "A ticket with ID: #$ticket->ticket_id has been opened.");
 	}
 

@@ -62,35 +62,14 @@
 							<div class="tab-pane fade" id="user-profile-activity" role="tabpanel" aria-labelledby="user-profile-activity-tab">
 								<div class="horizontal-timeline">
 									<section class="time-frame">
-										<h4 class="section-time-frame">Today</h4>
+										<h4 class="section-time-frame">Log Activity</h4>
+										@foreach($activityLog as $item)
 										<div class="event">
-										<p class="event-text">We’re big on real names around here, so people know who’s who</p>
-										<div class="event-alert">You have added task #26 Successfully to the project “Agile CRM”</div>
-										<div class="event-info">New Dashboard Design - 9:24 PM</div>
+											<p class="event-text">Menu : {{ strtoupper($item->log_name) }}</p>
+											<div class="event-alert">{{ $item->description }}</div>
+											<div class="event-info">{{ $item->created_at->diffForHumans() }}</div>
 										</div>
-										<div class="event">
-										<p class="event-text">Admin is a full featured, multipurpose, premium bootstrap admin template built with Bootstrap 4 Framework</p>
-										<div class="tumbnail-views">
-											<div class="thumbnail">
-											<img src="../../../assets/images/samples/profile_page/thumbnail/01.jpg" alt="thumbnail"> </div>
-											<div class="thumbnail">
-											<img src="../../../assets/images/samples/profile_page/thumbnail/02.jpg" alt="thumbnail"> </div>
-											<div class="thumbnail">
-											<img src="../../../assets/images/samples/profile_page/thumbnail/03.jpg" alt="thumbnail"> </div>
-											<div class="thumbnail">
-											<img src="../../../assets/images/samples/profile_page/thumbnail/04.jpg" alt="thumbnail"> </div>
-											<div class="thumbnail">
-											<img src="../../../assets/images/samples/profile_page/thumbnail/05.jpg" alt="thumbnail"> </div>
-											<div class="thumbnail">
-											<img src="../../../assets/images/samples/profile_page/thumbnail/06.jpg" alt="thumbnail"> </div>
-										</div>
-										<div class="event-info">New Dashboard Design - 9:24 PM</div>
-										</div>
-										<div class="event">
-										<p class="event-text">It is a fully responsive bootstrap admin template / bootstrap admin dashboard</p>
-										<div class="event-alert">You have added task #26 Successfully to the project “Agile CRM”</div>
-										<div class="event-info">New Dashboard Design - 9:24 PM</div>
-										</div>
+										@endforeach
 									</section>
 								</div>
 							</div>

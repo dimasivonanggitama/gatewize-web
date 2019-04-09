@@ -26,6 +26,7 @@ class CommentsController extends Controller
 		if ($comment->ticket->user->id !== Auth::user()->id) {
 			$mailer->sendTicketComments($comment->ticket->user, Auth::user(), $comment->ticket, $comment);
 		}
+		activity("ticket")->log("Post Comment in ticket ID: #" . $request->input('ticket_id'));
 
 		return redirect()->back()->with("status", "Your comment has be submitted.");
 	}
@@ -41,6 +42,8 @@ class CommentsController extends Controller
 		$ticketOwner = $ticket->user;
 
 		$mailer->sendTicketStatusNotification($ticketOwner, $ticket);
+
+		activity("ticket")->log("Close Ticket ID: #$ticket_id");
 
 		return redirect()->back()->with("status", "The ticket has been closed.");
 	}

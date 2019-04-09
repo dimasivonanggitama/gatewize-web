@@ -15,7 +15,8 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "rackbeat/laravel-ui-avatars": "^0.6.0",
-        "yugo/moota": "^1.2"
+        "yugo/moota": "^1.2",
+        "spatie/laravel-activitylog" : "^2.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

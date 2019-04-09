@@ -69,6 +69,8 @@ class GroupController extends Controller
 
         if($response['status']){
             flash($response["message"])->success();
+
+            activity("group")->log("Add new group: $request->name");
         } else {
             flash($response["message"])->error();
         }
@@ -97,6 +99,7 @@ class GroupController extends Controller
 
         if($response['status']){
             flash($response["message"])->success();
+            activity("group")->log("Update group");
         } else {
             flash($response["message"])->error();
         }
@@ -123,6 +126,7 @@ class GroupController extends Controller
 
         if($response['status']){
             flash($response['message'])->success();
+            activity("group")->log("Delete group");
         } else {
             flash($response['message'])->error();
         }
@@ -146,6 +150,7 @@ class GroupController extends Controller
 
         if($response != null){
             flash("Berhasil merefresh status")->success();
+            activity("group")->log("Refresh group");
         } else {
             flash("Gagal merefresh status")->error();
         }

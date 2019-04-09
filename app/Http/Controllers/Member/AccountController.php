@@ -101,6 +101,7 @@ class AccountController extends Controller
         }
 
         if($response['status']) {
+            activity("account")->log("Create new account in service : $service");
             flash($response['message'])->success();
         } else {
             flash($response['message'])->error();
@@ -170,6 +171,7 @@ class AccountController extends Controller
         }
 
         if($response['status']) {
+            activity("account")->log("Move account in service : $service");
             flash($response['message'])->success();
         } else {
             flash($response['message'])->error();
