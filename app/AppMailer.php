@@ -5,7 +5,7 @@ use App\Ticket;
 use Illuminate\Contracts\Mail\Mailer;
 
 class AppMailer {
-    protected $mailer; 
+    protected $mailer;
     protected $fromAddress = 'support@supportticket.dev';
     protected $fromName = 'Support Ticket';
     protected $to;
@@ -22,7 +22,7 @@ class AppMailer {
     {
         $this->to = $user->email;
         $this->subject = "[Ticket ID: $ticket->ticket_id] $ticket->title";
-        $this->view = 'admin.pages.ticket.ticket_email';
+        $this->view = 'backend.member.pages.ticket.ticket_email';
         $this->data = compact('user', 'ticket');
 
         return $this->deliver();
@@ -40,7 +40,7 @@ class AppMailer {
     {
         $this->to = $ticketOwner->email;
         $this->subject = "RE: $ticket->title (Ticket ID: $ticket->ticket_id)";
-        $this->view = 'admin.pages.ticket.comment_email';
+        $this->view = 'backend.member.pages.ticket.comment_email';
         $this->data = compact('ticketOwner', 'user', 'ticket', 'comment');
 
         return $this->deliver();
@@ -50,7 +50,7 @@ class AppMailer {
     {
         $this->to = $ticketOwner->email;
         $this->subject = "RE: $ticket->title (Ticket ID: $ticket->ticket_id)";
-        $this->view = 'admin.pages.ticket.status_email';
+        $this->view = 'backend.member.pages.ticket.status_email';
         $this->data = compact('ticketOwner', 'ticket');
 
         return $this->deliver();
