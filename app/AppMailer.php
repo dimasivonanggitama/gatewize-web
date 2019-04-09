@@ -22,7 +22,7 @@ class AppMailer {
     {
         $this->to = $user->email;
         $this->subject = "[Ticket ID: $ticket->ticket_id] $ticket->title";
-        $this->view = 'admin.pages.ticket.ticket_email';
+        $this->view = 'backend.member.pages.ticket.ticket_email';
         $this->data = compact('user', 'ticket');
 
         return $this->deliver();
