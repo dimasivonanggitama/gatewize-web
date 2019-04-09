@@ -10,25 +10,41 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
+						<th>ID</th>
 						<th>Category</th>
 						<th>Title</th>
 						<th>Status</th>
 						<th>Last Update</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($tickets as $ticket)
-					<tr class="clickable-row" data-href="{{route('ticket.show', $ticket->ticket_id)}}">
+					<tr>
+						<td>#{{$ticket->ticket_id}}</td>
 						<td>{{$ticket->category->name}}</td>
 						<td>{{$ticket->title}}</td>
 						<td>
 							@if($ticket->status == 'open')
 							<label class="badge badge-success">{{$ticket->status}}</label>
-							@else
+							@elseif($ticket->status == 'close')
 							<label class="badge badge-danger">{{$ticket->status}}</label>
+							@else
+							<label class="badge badge-primary">{{$ticket->status}}</label>
 							@endif
 						</td>
 						<td>{{$ticket->updated_at}}</td>
+						<td>
+							@if($ticket->status == "open")
+							<form action="{{route('ticket.close', $ticket->ticket_id)}}" method="POST" class="inline">
+								@csrf
+								<a href="{{route('ticket.show', $ticket->ticket_id)}}" class="btn btn-primary">View</a>
+								<button type="submit" class="btn btn-danger">Close</button>
+							</form>
+							@else
+								<a href="{{route('ticket.show', $ticket->ticket_id)}}" class="btn btn-primary">View</a>
+							@endif
+						</td>
 					</tr>
 					@endforeach
 				</tbody>

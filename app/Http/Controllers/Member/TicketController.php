@@ -69,4 +69,17 @@ class TicketController extends Controller
 
 		return view('backend.member.pages.ticket.show', compact('ticket', 'category', 'comments'));
 	}
+
+	public function close(Request $request, $ticketId)
+	{
+		$ticket = Ticket::where('ticket_id', $ticketId)->firstOrFail();
+		
+		$ticket->status = "close";
+
+		$ticket->save();
+
+		flash("Success close ticket ID: #$ticketId")->success();
+
+		return redirect()->route('ticket.index');
+	}
 }

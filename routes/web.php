@@ -87,10 +87,11 @@ Route::middleware('verified')->group(function () {
         Route::post('create', 'Member\TicketController@store');
         Route::get('my', 'Member\TicketController@index')->name('ticket.index');
         Route::get('{ticketId}', 'Member\TicketController@show')->name('ticket.show');
+        Route::post('{ticketId}/close', 'Member\TicketController@close')->name('ticket.close');
     });
     Route::prefix('comment')->group(function(){
-        Route::get('', 'Member\CommentsController@index');
-        Route::post('', 'Member\CommentsController@postComment');
+        Route::get('', 'Member\CommentsController@index')->name('comment.index');
+        Route::post('', 'Member\CommentsController@postComment')->name('comment.store');
         Route::post('{ticketId}/close', 'Member\CommentsController@close');
     });
 

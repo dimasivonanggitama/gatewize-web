@@ -40,7 +40,7 @@
 			</div>
 			<hr>
 			@endforeach
-			<form class="forms-sample" method="POST" action="/admin/comment">
+			<form class="forms-sample" method="POST" action="{{ route('comment.store') }}">
 				{{csrf_field()}}
 				<input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
 				<div class="form-group">
