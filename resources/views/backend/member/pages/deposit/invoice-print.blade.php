@@ -48,9 +48,9 @@
                     <p class="mt-5 mb-2 text-right">
                         <b>Tujuan</b>
                     </p>
-                    <p class="text-right">{{ $newDeposit->payment_methods->account_vendor }},
-                        <br> No. Rekening : {{ $newDeposit->payment_methods->account_number }}
-                        <br> A/N : {{ $newDeposit->payment_methods->account_name }}</p>
+                    <p class="text-right">{{ strtoupper($bank['bank_type']) }},
+                        <br> No. Rekening : {{ $bank['account_number'] }}
+                        <br> A/N : {{ $bank['atas_nama'] }}</p>
                     </div>
                 </div>
                 <div class="container-fluid d-flex justify-content-between">

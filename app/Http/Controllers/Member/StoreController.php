@@ -56,6 +56,8 @@ class StoreController extends Controller
 					$user->update([
 						'balance' => $balanceLeft
 					]);
+
+					activity("store")->log("Buy new product: $product->name");
 					flash('Product subscribe succeed.')->success();
 					return back();
 				}

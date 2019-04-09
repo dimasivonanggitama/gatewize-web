@@ -57,6 +57,9 @@ class DepositController extends Controller
         ];
 
         $deposit = Deposit::create($data);
+
+        activity("deposit")->log("Top up deposit ID: #$deposit->id");
+
         return redirect()->route('deposit.invoice', ['id' => $deposit->id]);
     }
 
@@ -72,6 +75,9 @@ class DepositController extends Controller
         $deposit = Deposit::findOrFail($id);
         $deposit->status = "CANCELED";
         $status = $deposit->save();
+
+        activity("deposit")->log("Cancel deposit ID: #$id");
+
         return redirect()->route('deposit.invoice', ['id' => $id]);
     }
 
@@ -79,7 +85,11 @@ class DepositController extends Controller
         $deposit = Deposit::findOrFail($id);
 
         $this->data['newDeposit'] = $deposit;
+        $this->data['bank'] = Moota::bank($deposit->bank_id);
         $pdf = PDF::loadView('backend.member.pages.deposit.invoice-print', $this->data);
+        
+        activity("deposit")->log("Print deposit");
+
         return $pdf->download('invoice.pdf');
     }
 
@@ -100,6 +110,8 @@ class DepositController extends Controller
                 $user->balance = $user->balance + $deposit->total;
                 $user->save();
                 flash("Konfirmasi top up deposit sukses")->success();
+                
+                activity("deposit")->log("Confirm deposit ID: #$id");
             } else {
                 flash("Konfirmasi top up deposit gagal, silahkan coba lagi")->error();
             }
@@ -138,6 +150,8 @@ class DepositController extends Controller
         if ($request->hasFile('bukti_pembayaran')) {
             $data['bukti_pembayaran'] = $this->savePhoto($request->file('bukti_pembayaran'));
             $depositConfirmation = DepositConfirmation::create($data);
+
+            activity("deposit")->log("Manual confirm deposit ID: #$id");
             
             flash("Berhasil menambahkan bukti pembayaran, silahkan tunggu pengecekan oleh admin")->success();
         } else {
