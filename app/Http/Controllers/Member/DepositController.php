@@ -85,6 +85,7 @@ class DepositController extends Controller
         $deposit = Deposit::findOrFail($id);
 
         $this->data['newDeposit'] = $deposit;
+        $this->data['bank'] = Moota::bank($deposit->bank_id);
         $pdf = PDF::loadView('backend.member.pages.deposit.invoice-print', $this->data);
         
         activity("deposit")->log("Print deposit");
