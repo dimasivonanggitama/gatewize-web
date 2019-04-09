@@ -1,16 +1,18 @@
 @extends('home.app')
 
+@section('pageTitle', 'Privacy Policy')
+
 @section('hero')
-<section class="jumbotron sub-page text-center d-flex align-items-center">
-    <div class="container">
-        <h1 class="display-4">Privacy Policy</h1>
-        <p class="lead my-4">by Admin on 1 Apr 2019 •</p>
-    </div>
-</section>
+	<section class="jumbotron sub-page text-center d-flex align-items-center">
+		<div class="container">
+			<h1 class="display-4">Privacy Policy</h1>
+			<p class="lead my-4">by Admin on 1 Apr 2019 •</p>
+		</div>
+	</section>
 @endsection
 
 @section('content')
-<div class="section my-4" id="blog">
+	<div class="section my-4" id="blog">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -31,8 +33,10 @@
                     </div>
                 </div>
                 <!-- // end .col-md-8 -->
+				
             </div>
         </div>
         <!-- // end .container -->
+		
     </div>
 @endsection
