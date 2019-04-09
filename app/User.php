@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Rackbeat\UIAvatars\HasAvatar;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, CanResetPassword, HasAvatar, LogsActivity;
+    use Notifiable, CanResetPassword, HasAvatar;
 
     /**
      * The attributes that are mass assignable.
