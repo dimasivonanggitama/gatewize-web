@@ -29,12 +29,12 @@
                             <td>{{$ticket->title}}</td>
                             <td style="white-space: normal;">{{$ticket->message}}</td>
                             <td>
-                                @if($ticket->status->priority == 'high')
-                                <label class="badge badge-danger">{{$ticket->status->priority}}</label>
-                                @elseif($ticket->status->priority == 'medium')
-                                <label class="badge badge-warning">{{$ticket->status->priority}}</label>
+                                @if($ticket->priority == 'high')
+                                <label class="badge badge-danger">{{$ticket->priority}}</label>
+                                @elseif($ticket->priority == 'medium')
+                                <label class="badge badge-warning">{{$ticket->priority}}</label>
                                 @else
-                                <label class="badge badge-default">{{$ticket->status->priority}}</label>
+                                <label class="badge badge-default">{{$ticket->priority}}</label>
                                 @endif
                             </td>
                             <td>
