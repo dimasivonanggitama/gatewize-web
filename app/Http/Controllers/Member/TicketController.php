@@ -54,6 +54,8 @@ class TicketController extends Controller
 
 		$mailer->sendTicketInformation(Auth::user(), $ticket);
 
+		activity("ticket")->log("Create new ticket with ID: #$ticket->ticket_id");
+
 		return redirect()->back()->with("status", "A ticket with ID: #$ticket->ticket_id has been opened.");
 	}
 
@@ -66,5 +68,18 @@ class TicketController extends Controller
 		$category = $ticket->category;
 
 		return view('backend.member.pages.ticket.show', compact('ticket', 'category', 'comments'));
+	}
+
+	public function close(Request $request, $ticketId)
+	{
+		$ticket = Ticket::where('ticket_id', $ticketId)->firstOrFail();
+		
+		$ticket->status = "close";
+
+		$ticket->save();
+
+		flash("Success close ticket ID: #$ticketId")->success();
+
+		return redirect()->route('ticket.index');
 	}
 }

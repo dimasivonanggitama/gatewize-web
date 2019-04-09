@@ -85,12 +85,13 @@ class RegisterController extends Controller
             'role_id' => Role::where('name', 'Normal User')->first()->id
         ]);
 
+        // dd($user->license_key);
+
         $gojekClient = new GojekClient();
         $digiposClient = new DigiposClient();
         $ovoClient = new OvoClient();
-        
-        $gojekStat = $gojekClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'gojek')->first()->settings, url(''));
 
+        $subscribeGojek = $gojekClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'gojek')->first()->settings, url(''));
         $digiStat = $digiposClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'digipos')->first()->settings, url(''));
 
         $ovoStat = $ovoClient->subscribe($user->id, $user->license_key, 0, Service::where('name', 'ovo')->first()->settings, url(''));
@@ -112,6 +113,7 @@ class RegisterController extends Controller
 
 
         // $deposit = Deposit::create($data);
+        activity("user")->log("User register");
 
         return $user;
     }

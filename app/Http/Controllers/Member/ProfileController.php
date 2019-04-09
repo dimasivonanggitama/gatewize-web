@@ -8,11 +8,14 @@ use App\User as User;
 use Auth; 
 use Mail;
 use App\Mail\UpdatePassword;
+use Spatie\Activitylog\Models\Activity;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
     public function index() {
-		return view('backend.member.pages.profile.profile');
+		$activityLog = Activity::where('causer_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
+		return view('backend.member.pages.profile.profile', compact('activityLog'));
 	}
 
 	public function update(Request $request)
@@ -47,6 +50,7 @@ class ProfileController extends Controller
 		    Mail::to(Auth::user()->email)->send(new UpdatePassword);		
 
 		flash("Success update user")->success();
+		activity("profile")->log("Update profile");
 		
 		return redirect()->route('profile');
 	}

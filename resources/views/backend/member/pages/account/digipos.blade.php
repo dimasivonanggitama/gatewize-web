@@ -34,15 +34,12 @@
                                     <th class="sorting" >
                                         Active
                                     </th>
-                                    <th class="sorting">
-                                        Is Promo
-                                    </th>
                                     <th class="sorting" >
                                         Actions
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>          
+                            <tbody>
                                 @php ($no = 1)
                                 @foreach ($accounts as $account)
                                 <tr role="row">
@@ -55,11 +52,6 @@
                                     <td>Aktif</td>
                                     @else
                                     <td>Tidak Aktif</td>
-                                    @endif
-                                    @if($account['is_promo'] == 1)
-                                    <td>Promo</td>
-                                    @else
-                                    <td>Tidak Promo</td>
                                     @endif
                                     <td>
                                         <button type="button" class="btn btn-update btn-primary" data-toggle="modal" data-target="#updateModal"  data-phone="{{ $account['phone'] }}" data-group="{{ $account['group_id'] }}" data-license="{{ Auth::user()->license_key }}">Update OTP</button>
@@ -91,8 +83,8 @@
             <div class="modal-body">
                 @csrf
                 <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phoneadd" name="phone" placeholder="No. Telepon" value="{{ old('phone') }}" require>
+                    <label for="phone">Username Digipos</label>
+                    <input type="text" class="form-control" id="phoneadd" name="phone" placeholder="Username Digipos" value="{{ old('phone') }}" require>
                     @if ($errors->first('phone'))
                     <small class="text-danger">{{ $errors->first('phone') }}</small>
                     @endif
@@ -198,7 +190,7 @@
         let otp = $('#otp-update').val()
         let token = $('#token-update').val()
         $.post('https://api.gatewize.com/devel-digipos/account/'+ license +'/'+ phone +'/verify',
-            {   token: token, 
+            {   token: token,
                 otp: otp,
             }, function(data){
                 if(data.status){

@@ -104,54 +104,34 @@
                     </div>
                     <div class="col-md-7">
                         <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistik DIGIPOS Bulan {{date('F')}}</h4>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['digipos']['monthly'][0]['total']}}</p>
-                                    <small class="text-muted ml-2">Success Requests</small>
+                        @foreach($services['digipos']['monthly'] as $key => $statMonth)
+                            @if($statMonth['status'] == 'success' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect' || $statMonth['status'] == 'process')
+                            <div class="wrapper mt-2">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <p class="mb-0 font-weight-medium">{{ $statMonth['total']}}</p>
+                                        <small class="text-muted ml-2">{{ucfirst($statMonth['status'] == 'process' ? 'Unknown' : $statMonth['status'])}} Requests</small>
+                                    </div>
+                                    <p class="mb-0 font-weight-medium">{{ round(($statMonth['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
                                 </div>
-                                <p class="mb-0 font-weight-medium">{{ round(($services['digipos']['monthly'][0]['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ ceil(($services['digipos']['monthly'][0]['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil(($services['digipos']['monthly'][0]['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['digipos']['monthly'][1]['total']}}</p>
-                                    <small class="text-muted ml-2">Failed Requests</small>
+                                <div class="progress">
+                                    @php 
+                                    $status = 'info'; 
+                                    if($statMonth['status'] == 'success')
+                                        $status = 'success';
+                                    else if($statMonth['status'] == 'failed')
+                                        $status = 'danger';
+                                    else if($statMonth['status'] == 'suspect')
+                                        $status = 'warning';
+                                    else
+                                        $status = 'info';
+                                    @endphp
+                                    <div class="progress-bar bg-{{$status}}" role="progressbar" style="width: {{ ceil(($statMonth['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil(($statMonth['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <p class="mb-0 font-weight-medium">{{ round(($services['digipos']['monthly'][1]['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
                             </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ ceil(($services['digipos']['monthly'][1]['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil(($services['digipos']['monthly'][1]['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['digipos']['monthly'][2]['status'] == "suspect" ? $services['digipos']['monthly'][2]['total'] : 0}}</p>
-                                    <small class="text-muted ml-2">Suspect Requests</small>
-                                </div>
-                                <p class="mb-0 font-weight-medium">{{ round((($services['digipos']['monthly'][2]['status'] == "suspect" ? $services['digipos']['monthly'][2]['total'] : 0) / $services['digipos']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ ceil((($services['digipos']['monthly'][2]['status'] == 'suspect' ? $services['digipos']['monthly'][2]['total'] : 0) / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil((($services['digipos']['monthly'][2]['status'] == 'suspect' ? $services['digipos']['monthly'][2]['total'] : 0) / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['digipos']['monthly'][count($services['digipos']['monthly']) - 1]['total'] + $services['digipos']['monthly'][count($services['digipos']['monthly']) - 2]['total']}}</p>
-                                    <small class="text-muted ml-2">Failed Requests</small>
-                                </div>
-                                <p class="mb-0 font-weight-medium">{{ round((($services['digipos']['monthly'][count($services['digipos']['monthly']) - 1]['total'] + $services['digipos']['monthly'][count($services['digipos']['monthly']) - 2]['total']) / $services['digipos']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ ceil((($services['digipos']['monthly'][count($services['digipos']['monthly']) - 1]['total'] + $services['digipos']['monthly'][count($services['digipos']['monthly']) - 2]['total']) / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil((($services['digipos']['monthly'][count($services['digipos']['monthly']) - 1]['total'] + $services['digipos']['monthly'][count($services['digipos']['monthly']) - 2]['total']) / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -168,54 +148,34 @@
                     </div>
                     <div class="col-md-7">
                         <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistik GOJEK Bulan {{date('F')}}</h4>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['gojek']['monthly'][0]['total']}}</p>
-                                    <small class="text-muted ml-2">Success Requests</small>
+                        @foreach($services['gojek']['monthly'] as $key => $statMonth)
+                            @if($statMonth['status'] == 'success' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect' || $statMonth['status'] == 'process')
+                            <div class="wrapper mt-2">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <p class="mb-0 font-weight-medium">{{ $statMonth['total']}}</p>
+                                        <small class="text-muted ml-2">{{ucfirst($statMonth['status'] == 'process' ? 'Unknown' : $statMonth['status'])}} Requests</small>
+                                    </div>
+                                    <p class="mb-0 font-weight-medium">{{ round(($statMonth['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
                                 </div>
-                                <p class="mb-0 font-weight-medium">{{ round(($services['gojek']['monthly'][0]['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ ceil(($services['gojek']['monthly'][0]['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil(($services['gojek']['monthly'][0]['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['gojek']['monthly'][1]['total']}}</p>
-                                    <small class="text-muted ml-2">Failed Requests</small>
+                                <div class="progress">
+                                    @php 
+                                    $status = 'info'; 
+                                    if($statMonth['status'] == 'success')
+                                        $status = 'success';
+                                    else if($statMonth['status'] == 'failed')
+                                        $status = 'danger';
+                                    else if($statMonth['status'] == 'suspect')
+                                        $status = 'warning';
+                                    else
+                                        $status = 'info';
+                                    @endphp
+                                    <div class="progress-bar bg-{{$status}}" role="progressbar" style="width: {{ ceil(($statMonth['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil(($statMonth['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <p class="mb-0 font-weight-medium">{{ round(($services['gojek']['monthly'][1]['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
                             </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ ceil(($services['gojek']['monthly'][1]['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil(($services['gojek']['monthly'][1]['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['gojek']['monthly'][2]['status'] == "suspect" ? $services['gojek']['monthly'][2]['total'] : 0}}</p>
-                                    <small class="text-muted ml-2">Suspect Requests</small>
-                                </div>
-                                <p class="mb-0 font-weight-medium">{{ round((($services['gojek']['monthly'][2]['status'] == "suspect" ? $services['gojek']['monthly'][2]['total'] : 0) / $services['gojek']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ ceil((($services['gojek']['monthly'][2]['status'] == 'suspect' ? $services['gojek']['monthly'][2]['total'] : 0) / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil((($services['gojek']['monthly'][2]['status'] == 'suspect' ? $services['gojek']['monthly'][2]['total'] : 0) / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['gojek']['monthly'][count($services['gojek']['monthly']) - 1]['total'] + $services['gojek']['monthly'][count($services['gojek']['monthly']) - 2]['total']}}</p>
-                                    <small class="text-muted ml-2">Unknown Requests</small>
-                                </div>
-                                <p class="mb-0 font-weight-medium">{{ round((($services['gojek']['monthly'][count($services['gojek']['monthly']) - 1]['total'] + $services['gojek']['monthly'][count($services['gojek']['monthly']) - 2]['total']) / $services['gojek']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ ceil((($services['gojek']['monthly'][count($services['gojek']['monthly']) - 1]['total'] + $services['gojek']['monthly'][count($services['gojek']['monthly']) - 2]['total']) / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil((($services['gojek']['monthly'][count($services['gojek']['monthly']) - 1]['total'] + $services['gojek']['monthly'][count($services['gojek']['monthly']) - 2]['total']) / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -231,55 +191,35 @@
                         <canvas id="ovoMonthlyChart" class="400x160 mb-6 mb-md-0" height="200"></canvas>
                     </div>
                     <div class="col-md-7">
-                        <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistik GOJEK Bulan {{date('F')}}</h4>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['ovo']['monthly'][0]['total']}}</p>
-                                    <small class="text-muted ml-2">Success Requests</small>
+                        <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistik OVO Bulan {{date('F')}}</h4>
+                        @foreach($services['ovo']['monthly'] as $key => $statMonth)
+                            @if($statMonth['status'] == 'success' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect' || $statMonth['status'] == 'process')
+                            <div class="wrapper mt-2">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <p class="mb-0 font-weight-medium">{{ $statMonth['total']}}</p>
+                                        <small class="text-muted ml-2">{{ucfirst($statMonth['status'] == 'process' ? 'Unknown' : $statMonth['status'])}} Requests</small>
+                                    </div>
+                                    <p class="mb-0 font-weight-medium">{{ round(($statMonth['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
                                 </div>
-                                <p class="mb-0 font-weight-medium">{{ round(($services['ovo']['monthly'][0]['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ ceil(($services['ovo']['monthly'][0]['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil(($services['ovo']['monthly'][0]['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['ovo']['monthly'][1]['total']}}</p>
-                                    <small class="text-muted ml-2">Failed Requests</small>
+                                <div class="progress">
+                                    @php 
+                                    $status = 'info'; 
+                                    if($statMonth['status'] == 'success')
+                                        $status = 'success';
+                                    else if($statMonth['status'] == 'failed')
+                                        $status = 'danger';
+                                    else if($statMonth['status'] == 'suspect')
+                                        $status = 'warning';
+                                    else
+                                        $status = 'info';
+                                    @endphp
+                                    <div class="progress-bar bg-{{$status}}" role="progressbar" style="width: {{ ceil(($statMonth['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil(($statMonth['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <p class="mb-0 font-weight-medium">{{ round(($services['ovo']['monthly'][1]['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
                             </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ ceil(($services['ovo']['monthly'][1]['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil(($services['ovo']['monthly'][1]['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['ovo']['monthly'][2]['status'] == "suspect" ? $services['ovo']['monthly'][2]['total'] : 0}}</p>
-                                    <small class="text-muted ml-2">Suspect Requests</small>
-                                </div>
-                                <p class="mb-0 font-weight-medium">{{ round((($services['ovo']['monthly'][2]['status'] == "suspect" ? $services['ovo']['monthly'][2]['total'] : 0) / $services['ovo']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ ceil((($services['ovo']['monthly'][2]['status'] == 'suspect' ? $services['ovo']['monthly'][2]['total'] : 0) / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil((($services['ovo']['monthly'][2]['status'] == 'suspect' ? $services['ovo']['monthly'][2]['total'] : 0) / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="wrapper mt-2">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0 font-weight-medium">{{ $services['ovo']['monthly'][count($services['ovo']['monthly']) - 1]['total'] + $services['ovo']['monthly'][count($services['ovo']['monthly']) - 2]['total']}}</p>
-                                    <small class="text-muted ml-2">Failed Requests</small>
-                                </div>
-                                <p class="mb-0 font-weight-medium">{{ round((($services['ovo']['monthly'][count($services['ovo']['monthly']) - 1]['total'] + $services['ovo']['monthly'][count($services['ovo']['monthly']) - 2]['total']) / $services['ovo']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ ceil((($services['ovo']['monthly'][count($services['ovo']['monthly']) - 1]['total'] + $services['ovo']['monthly'][count($services['ovo']['monthly']) - 2]['total']) / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}%" aria-valuenow="{{ ceil((($services['ovo']['monthly'][count($services['ovo']['monthly']) - 1]['total'] + $services['ovo']['monthly'][count($services['ovo']['monthly']) - 2]['total']) / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -296,7 +236,7 @@
 (function ($) {
   'use strict';
   $(function () {
-    
+
     if ($('#transaksi-tahunan-chart').length) {
       var lineChartCanvas = $("#transaksi-tahunan-chart").get(0).getContext("2d");
       var data = {
@@ -304,18 +244,11 @@
         datasets: [{
             label: 'DIGIPOS',
             data: [
-                {{ $services['digipos']['yearly'][0]['total']}},
-                {{ $services['digipos']['yearly'][1]['total']}},
-                {{ $services['digipos']['yearly'][2]['total']}},
-                {{ $services['digipos']['yearly'][3]['total']}},
-                {{ $services['digipos']['yearly'][4]['total']}},
-                {{ $services['digipos']['yearly'][5]['total']}},
-                {{ $services['digipos']['yearly'][6]['total']}},
-                {{ $services['digipos']['yearly'][7]['total']}},
-                {{ $services['digipos']['yearly'][8]['total']}},
-                {{ $services['digipos']['yearly'][9]['total']}},
-                {{ $services['digipos']['yearly'][10]['total']}},
-                {{ $services['digipos']['yearly'][11]['total']}}
+                @php
+                    for($i = 0;$i < 12;$i++){
+                        echo $services['digipos']['yearly'][$i]['total'] . ",";
+                    }
+                @endphp
             ],
             backgroundColor: '#e74c3c',
             borderColor: '#c0392b',
@@ -325,18 +258,11 @@
           {
             label: 'GOJEK',
             data: [
-                {{ $services['gojek']['yearly'][0]['total']}},
-                {{ $services['gojek']['yearly'][1]['total']}},
-                {{ $services['gojek']['yearly'][2]['total']}},
-                {{ $services['gojek']['yearly'][3]['total']}},
-                {{ $services['gojek']['yearly'][4]['total']}},
-                {{ $services['gojek']['yearly'][5]['total']}},
-                {{ $services['gojek']['yearly'][6]['total']}},
-                {{ $services['gojek']['yearly'][7]['total']}},
-                {{ $services['gojek']['yearly'][8]['total']}},
-                {{ $services['gojek']['yearly'][9]['total']}},
-                {{ $services['gojek']['yearly'][10]['total']}},
-                {{ $services['gojek']['yearly'][11]['total']}}
+                @php
+                    for($i = 0;$i < 12;$i++){
+                        echo $services['gojek']['yearly'][$i]['total'] . ",";
+                    }
+                @endphp
             ],
             backgroundColor: '#2ecc71',
             borderColor: '#27ae60',
@@ -346,18 +272,11 @@
           {
             label: 'OVO',
             data: [
-                {{ $services['ovo']['yearly'][0]['total']}},
-                {{ $services['ovo']['yearly'][1]['total']}},
-                {{ $services['ovo']['yearly'][2]['total']}},
-                {{ $services['ovo']['yearly'][3]['total']}},
-                {{ $services['ovo']['yearly'][4]['total']}},
-                {{ $services['ovo']['yearly'][5]['total']}},
-                {{ $services['ovo']['yearly'][6]['total']}},
-                {{ $services['ovo']['yearly'][7]['total']}},
-                {{ $services['ovo']['yearly'][8]['total']}},
-                {{ $services['ovo']['yearly'][9]['total']}},
-                {{ $services['ovo']['yearly'][10]['total']}},
-                {{ $services['ovo']['yearly'][11]['total']}}
+                @php
+                    for($i = 0;$i < 12;$i++){
+                        echo $services['ovo']['yearly'][$i]['total'] . ",";
+                    }
+                @endphp
             ],
             backgroundColor: '#9b59b6',
             borderColor: '#8e44ad',
@@ -427,94 +346,54 @@
       var doughnutPieData = {
         datasets: [{
           data: [
-                    {{ ceil(($services['gojek']['monthly'][0]['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}, 
-                    {{ ceil(($services['gojek']['monthly'][1]['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}}, 
-                    {{ ceil((($services['gojek']['monthly'][2]['status'] == "suspect" ? $services['gojek']['monthly'][2]['total'] : 0) / $services['gojek']['yearly'][($month - 1)]['total']) * 100)}},
-                    {{ round((($services['gojek']['monthly'][count($services['gojek']['monthly']) - 1]['total'] + $services['gojek']['monthly'][count($services['gojek']['monthly']) - 2]['total']) / $services['gojek']['yearly'][($month - 1)]['total']) * 100, 2)}}
+                    @php
+                        foreach($services['gojek']['monthly'] as $key => $statMonth) {
+                            if($statMonth['status'] == 'success' || $statMonth['status'] == 'process' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect')
+                                echo ceil(($statMonth['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100) . ",";
+                        }
+                    @endphp
                 ],
           backgroundColor: [
-            successColor,
-            primaryColor,
-            dangerColor,
-            warningColor,
+            @php
+                foreach($services['gojek']['monthly'] as $key => $statMonth) {
+                    if($statMonth['status'] == 'success' || $statMonth['status'] == 'process' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect'){
+                        if($statMonth['status'] == 'success') {
+                            echo 'successColor,';
+                        } else if($statMonth['status'] == 'failed') {
+                            echo 'dangerColor,';
+                        } else if($statMonth['status'] == 'suspect') {
+                            echo 'warningColor,';
+                        } else {
+                            echo 'infoColor,';
+                        }
+                    }
+                }
+            @endphp
           ],
           borderColor: [
-            successColor,
-            primaryColor,
-            dangerColor,
-            warningColor,
+            @php
+                foreach($services['gojek']['monthly'] as $key => $statMonth) {
+                    if($statMonth['status'] == 'success') {
+                        echo 'successColor,';
+                    } else if($statMonth['status'] == 'failed') {
+                        echo 'dangerColor,';
+                    } else if($statMonth['status'] == 'suspect') {
+                        echo 'warningColor,';
+                    } else {
+                        echo 'infoColor,';
+                    }
+                }
+            @endphp
           ],
         }],
         labels: [
-          'Success',
-          'Failed',
-          'Suspect',
-          'Unknown'
-        ]
-      };
-      var doughnutPieOptions = {
-        cutoutPercentage: 70,
-        animationEasing: "easeOutBounce",
-        animateRotate: true,
-        animateScale: false,
-        responsive: true,
-        maintainAspectRatio: true,
-        showScale: true,
-        legend: {
-          display: false
-        },
-        layout: {
-          padding: {
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0
-          }
-        }
-      };
-      var doughnutChart = new Chart(doughnutChartCanvas, {
-        type: 'doughnut',
-        data: doughnutPieData,
-        options: doughnutPieOptions
-      });
-    }
-  });
-})(jQuery);
-</script>
-@endif
-@if ($services['ovo']['yearly'][($month - 1)]['total'] > 100)
-<script>
-(function ($) {
-  'use strict';
-  $(function () {
-    if ($("#gojekMonthlyChart").length) {
-      var doughnutChartCanvas = $("#gojekMonthlyChart").get(0).getContext("2d");
-      var doughnutPieData = {
-        datasets: [{
-          data: [
-                    {{ ceil(($services['ovo']['monthly'][0]['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}, 
-                    {{ ceil(($services['ovo']['monthly'][1]['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}}, 
-                    {{ ceil((($services['ovo']['monthly'][2]['status'] == "suspect" ? $services['ovo']['monthly'][2]['total'] : 0) / $services['ovo']['yearly'][($month - 1)]['total']) * 100)}},
-                    {{ round((($services['ovo']['monthly'][count($services['ovo']['monthly']) - 1]['total'] + $services['ovo']['monthly'][count($services['ovo']['monthly']) - 2]['total']) / $services['ovo']['yearly'][($month - 1)]['total']) * 100, 2)}}
-                ],
-          backgroundColor: [
-            successColor,
-            primaryColor,
-            dangerColor,
-            warningColor,
-          ],
-          borderColor: [
-            successColor,
-            primaryColor,
-            dangerColor,
-            warningColor,
-          ],
-        }],
-        labels: [
-          'Success',
-          'Failed',
-          'Suspect',
-          'Unknown'
+          @php
+                foreach($services['gojek']['monthly'] as $key => $statMonth) {
+                    if($statMonth['status'] == 'success' || $statMonth['status'] == 'process' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect'){
+                        echo "'" . ucfirst($statMonth['status'] == 'process' ? 'Unknown' : $statMonth['status']) . "',";
+                    }
+                }
+            @endphp
         ]
       };
       var doughnutPieOptions = {
@@ -552,34 +431,149 @@
 (function ($) {
   'use strict';
   $(function () {
-    if ($("#gojekMonthlyChart").length) {
-      var doughnutChartCanvas = $("#gojekMonthlyChart").get(0).getContext("2d");
+    if ($("#digiposMonthlyChart").length) {
+      var doughnutChartCanvas = $("#digiposMonthlyChart").get(0).getContext("2d");
       var doughnutPieData = {
         datasets: [{
           data: [
-                    {{ ceil(($services['digipos']['monthly'][0]['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}, 
-                    {{ ceil(($services['digipos']['monthly'][1]['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}}, 
-                    {{ ceil((($services['digipos']['monthly'][2]['status'] == "suspect" ? $services['digipos']['monthly'][2]['total'] : 0) / $services['digipos']['yearly'][($month - 1)]['total']) * 100)}},
-                    {{ round((($services['digipos']['monthly'][count($services['digipos']['monthly']) - 1]['total'] + $services['digipos']['monthly'][count($services['digipos']['monthly']) - 2]['total']) / $services['digipos']['yearly'][($month - 1)]['total']) * 100, 2)}}
+                    @php
+                        foreach($services['digipos']['monthly'] as $key => $statMonth) {
+                            if($statMonth['status'] == 'success' || $statMonth['status'] == 'process' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect')
+                                echo ceil(($statMonth['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100) . ",";
+                        }
+                    @endphp
                 ],
           backgroundColor: [
-            successColor,
-            primaryColor,
-            dangerColor,
-            warningColor,
+            @php
+                foreach($services['digipos']['monthly'] as $key => $statMonth) {
+                    if($statMonth['status'] == 'success' || $statMonth['status'] == 'process' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect'){
+                        if($statMonth['status'] == 'success') {
+                            echo 'successColor,';
+                        } else if($statMonth['status'] == 'failed') {
+                            echo 'dangerColor,';
+                        } else if($statMonth['status'] == 'suspect') {
+                            echo 'warningColor,';
+                        } else {
+                            echo 'infoColor,';
+                        }
+                    }
+                }
+            @endphp
           ],
           borderColor: [
-            successColor,
-            primaryColor,
-            dangerColor,
-            warningColor,
+            @php
+                foreach($services['digipos']['monthly'] as $key => $statMonth) {
+                    if($statMonth['status'] == 'success') {
+                        echo 'successColor,';
+                    } else if($statMonth['status'] == 'failed') {
+                        echo 'dangerColor,';
+                    } else if($statMonth['status'] == 'suspect') {
+                        echo 'warningColor,';
+                    } else {
+                        echo 'infoColor,';
+                    }
+                }
+            @endphp
           ],
         }],
         labels: [
-          'Success',
-          'Failed',
-          'Suspect',
-          'Unknown'
+          @php
+                foreach($services['digipos']['monthly'] as $key => $statMonth) {
+                    if($statMonth['status'] == 'success' || $statMonth['status'] == 'process' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect'){
+                        echo "'" . ucfirst($statMonth['status'] == 'process' ? 'Unknown' : $statMonth['status']) . "',";
+                    }
+                }
+            @endphp
+        ]
+      };
+      var doughnutPieOptions = {
+        cutoutPercentage: 70,
+        animationEasing: "easeOutBounce",
+        animateRotate: true,
+        animateScale: false,
+        responsive: true,
+        maintainAspectRatio: true,
+        showScale: true,
+        legend: {
+          display: false
+        },
+        layout: {
+          padding: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
+        }
+      };
+      var doughnutChart = new Chart(doughnutChartCanvas, {
+        type: 'doughnut',
+        data: doughnutPieData,
+        options: doughnutPieOptions
+      });
+    }
+  });
+})(jQuery);
+</script>
+@endif
+@if ($services['ovo']['yearly'][($month - 1)]['total'] > 100)
+<script>
+(function ($) {
+  'use strict';
+  $(function () {
+    if ($("#ovoMonthlyChart").length) {
+      var doughnutChartCanvas = $("#ovoMonthlyChart").get(0).getContext("2d");
+      var doughnutPieData = {
+        datasets: [{
+          data: [
+                    @php
+                        foreach($services['ovo']['monthly'] as $key => $statMonth) {
+                            if($statMonth['status'] == 'success' || $statMonth['status'] == 'process' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect')
+                                echo ceil(($statMonth['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100) . ",";
+                        }
+                    @endphp
+                ],
+          backgroundColor: [
+            @php
+                foreach($services['ovo']['monthly'] as $key => $statMonth) {
+                    if($statMonth['status'] == 'success' || $statMonth['status'] == 'process' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect'){
+                        if($statMonth['status'] == 'success') {
+                            echo 'successColor,';
+                        } else if($statMonth['status'] == 'failed') {
+                            echo 'dangerColor,';
+                        } else if($statMonth['status'] == 'suspect') {
+                            echo 'warningColor,';
+                        } else {
+                            echo 'infoColor,';
+                        }
+                    }
+                }
+            @endphp
+          ],
+          borderColor: [
+            @php
+                foreach($services['ovo']['monthly'] as $key => $statMonth) {
+                    if($statMonth['status'] == 'success') {
+                        echo 'successColor,';
+                    } else if($statMonth['status'] == 'failed') {
+                        echo 'dangerColor,';
+                    } else if($statMonth['status'] == 'suspect') {
+                        echo 'warningColor,';
+                    } else {
+                        echo 'infoColor,';
+                    }
+                }
+            @endphp
+          ],
+        }],
+        labels: [
+          @php
+                foreach($services['ovo']['monthly'] as $key => $statMonth) {
+                    if($statMonth['status'] == 'success' || $statMonth['status'] == 'process' || $statMonth['status'] == 'failed' || $statMonth['status'] == 'suspect'){
+                        echo "'" . ucfirst($statMonth['status'] == 'process' ? 'Unknown' : $statMonth['status']) . "',";
+                    }
+                }
+            @endphp
         ]
       };
       var doughnutPieOptions = {
