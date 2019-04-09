@@ -49,7 +49,15 @@ class OvoClient
 		}
 
 		return $response;
-	}
+    }
+
+    public function getStats($license)
+    {
+        $response = $this->client->get('/devel-ovo/stats/'.$license.'/all');
+        $response = json_decode($response->getBody(), true);
+
+        return $response;
+    }
 
 	public function addGroup($license, $groupName, $groupLimit)
 	{
