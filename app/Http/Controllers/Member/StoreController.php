@@ -33,20 +33,20 @@ class StoreController extends Controller
 		if ($product != null) {
 			$balanceLeft = $user->balance - $product->price;
 			if ($balanceLeft > 0) {
-				$client;
-				switch (strtolower($product->service->name)) {
-					case 'gojek':
-					$client = new GojekClient();
-					break;
-					case 'digipos':
-					$client = new DigiposClient();
-					break;
-					case 'ovo':
-					$client = new OvoClient();
-					break;
-				}
-				$response = $client->subscribe($user->id, $user->license_key, $product->slot, $product->service->settings);
-				if ($response['status']) {
+				// $client;
+				// switch (strtolower($product->service->name)) {
+				// 	case 'gojek':
+				// 	$client = new GojekClient();
+				// 	break;
+				// 	case 'digipos':
+				// 	$client = new DigiposClient();
+				// 	break;
+				// 	case 'ovo':
+				// 	$client = new OvoClient();
+				// 	break;
+				// }
+				// $response = $client->subscribe($user->id, $user->license_key, $product->slot, $product->service->settings);
+				// if ($response['status']) {
 					$user->balanceHistories()->create([
 						'type' => 'credit',
 						'description' => 'Pembelian produk '. $product->name,
@@ -58,9 +58,9 @@ class StoreController extends Controller
 					]);
 					flash('Product subscribe succeed.')->success();
 					return back();
-				}
-				flash('There\'s something wrong with server')->error();
-				return back();
+				// }
+				// flash('There\'s something wrong with server')->error();
+				// return back();
 			}else{
 				flash('Your balance doesn\'t enough')->error();
 				return back();
