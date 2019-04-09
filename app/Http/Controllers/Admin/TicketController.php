@@ -12,8 +12,10 @@ class TicketController extends Controller
 {
 	public function index()
 	{
-		$tickets = Ticket::all();
-		return view('backend.admin.pages.ticket.index', compact('tickets'));
+        $tickets = Ticket::all();
+        $users = User::all();
+        $categories = Category::all();
+		return view('backend.admin.pages.ticket.index', compact('tickets', 'users', 'categories'));
 	}
 
 	public function store(Request $request)
@@ -24,7 +26,7 @@ class TicketController extends Controller
 			'title' => 'required',
 			'priority' => 'required|in:low,medium,high',
 			'message' => 'required',
-		]);    	
+		]);
 		Ticket::create([
 			'user_id' => $request->user_id,
 			'category_id' => $request->category_id,
@@ -51,7 +53,7 @@ class TicketController extends Controller
 		if ($ticket != null) {
 			$this->validate($request, [
 				'status' => 'required'
-			]);     
+			]);
 			$ticket->update([
 				'user_id' => $request->user_id,
 				'category_id' => $request->category_id,

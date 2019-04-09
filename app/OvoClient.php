@@ -20,7 +20,7 @@ class OvoClient
 		$response = $this->client->post('/devel-ovo/user/'.$license.'/'.$userId. '/subscribe', [
 			'json' => [
 				"account_limit" => $accountLimit,
-				"settings" => $settings,
+				"settings" => json_decode($settings, true),
 				"callback_url" => $callbackUrl
 			]
 		]);
