@@ -113,6 +113,7 @@ class RegisterController extends Controller
 
 
         // $deposit = Deposit::create($data);
+        activity("user")->log("User register");
 
         return $user;
     }

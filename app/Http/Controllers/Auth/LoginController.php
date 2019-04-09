@@ -56,6 +56,8 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($request->only($login_type, 'password'))) {
+            
+            activity("user")->log("User login");
             return redirect()->intended(Auth::user()->isAdmin() ? '/admin/dashboard' : '/dashboard');
         }
 
@@ -64,6 +66,13 @@ class LoginController extends Controller
         ->withErrors([
             'username' => 'These credentials do not match our records.',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        activity("user")->log("User logout");
+        Auth::logout();
+        return redirect("/");
     }
 
     public function username(){
