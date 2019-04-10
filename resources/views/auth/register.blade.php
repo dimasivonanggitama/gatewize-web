@@ -129,7 +129,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary submit-btn">SIGN IN</button>
+							<button class="btn btn-primary submit-btn">SIGN UP</button>
 						</div>
 						<div class="wrapper mt-5 text-gray">
 							<p class="footer-text">Copyright © 2019 Gatewize. All rights reserved.</p>

@@ -67,7 +67,7 @@
 										<div class="event">
 											<p class="event-text">Menu : {{ strtoupper($item->log_name) }}</p>
 											<div class="event-alert">{{ $item->description }}</div>
-											<div class="event-info">{{ $item->created_at->diffForHumans() }}</div>
+											<div class="event-info">IP : {{ $item->properties['ip'] }}, {{ $item->created_at->diffForHumans() }}</div>
 										</div>
 										@endforeach
 									</section>
