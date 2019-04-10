@@ -65,10 +65,21 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('announcement') }}">
+      <a class="nav-link" data-toggle="collapse" href="#announcement" aria-expanded="false" aria-controls="announcement">
         <i class="menu-icon mdi mdi-bell"></i>
         <span class="menu-title">Announcement</span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse" id="announcement">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('announcement') }}">List Announcement</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('announcement-category') }}">Category Announcement</a>
+          </li>
+        </ul>
+      </div>
     </li>
     @else
     <li class="nav-item">

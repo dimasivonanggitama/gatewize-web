@@ -145,4 +145,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(
     Route::post('/announcement', 'Admin\AnnouncementController@store')->name('announcement.store');
     Route::delete('/announcement', 'Admin\AnnouncementController@destroy')->name('announcement.destroy');
     Route::put('/announcement', 'Admin\AnnouncementController@update')->name('announcement.update');
+
+    Route::get('/announcement/category', 'Admin\AnnouncementCategoryController@index')->name('announcement-category');
+    Route::post('/announcement/category', 'Admin\AnnouncementCategoryController@store')->name('announcement-category.store');
+    Route::delete('/announcement/category', 'Admin\AnnouncementCategoryController@destroy')->name('announcement-category.destroy');
+    Route::put('/announcement/category', 'Admin\AnnouncementCategoryController@update')->name('announcement-category.update');
 });
