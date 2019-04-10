@@ -10,7 +10,7 @@
 			<div class="profile-header text-white">
 				<div class="d-flex justify-content-around">
 					<div class="profile-info d-flex align-items-center">
-						<img class="rounded-circle img-lg" src="{{ Auth::user()->getAvatar(128) }}" alt="profile image">
+						<img class="rounded-circle img-lg" src="{{ Gravatar::get(Auth::user()->email, ['size'=>600]) }}" alt="profile image">
 						<div class="wrapper pl-4">
 							<p class="profile-user-name" style="margin-bottom:10px;">{{ Auth::user()->fullname }}</p>
 							<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editModal">Edit Profile</button>

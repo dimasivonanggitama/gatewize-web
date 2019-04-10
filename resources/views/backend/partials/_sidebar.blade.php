@@ -4,7 +4,7 @@
       <div class="nav-link">
         <div class="user-wrapper">
           <div class="profile-image">
-            <img src="{{ Auth::user()->getAvatar() }}" alt="profile image">
+            <img src="{{ Gravatar::get(Auth::user()->email) }}" alt="Image">
           </div>
           <div class="text-wrapper">
             <p class="profile-name">{{ Auth::user()->fullname }}</p>
@@ -48,9 +48,38 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/admin/tickets">
-        <i class="menu-icon mdi mdi-ticket"></i>
+        <i class="menu-icon mdi mdi-ticket-account"></i>
         <span class="menu-title">Ticket</span>
       </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/categories">
+        <i class="menu-icon mdi mdi-ticket"></i>
+        <span class="menu-title">Ticket Category</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/transactions">
+        <i class="menu-icon mdi mdi-rotate-3d"></i>
+        <span class="menu-title">Transaction</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#announcement" aria-expanded="false" aria-controls="announcement">
+        <i class="menu-icon mdi mdi-bell"></i>
+        <span class="menu-title">Announcement</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="announcement">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('announcement') }}">List Announcement</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('announcement-category') }}">Category Announcement</a>
+          </li>
+        </ul>
+      </div>
     </li>
     @else
     <li class="nav-item">

@@ -12,9 +12,15 @@ class TicketController extends Controller
 {
 	public function index()
 	{
+<<<<<<< HEAD
         $tickets = Ticket::all();
         $users = User::all();
         $categories = Category::all();
+=======
+		$users = User::all();
+		$tickets = Ticket::all();
+		$categories = Category::all();
+>>>>>>> 7935388d09095ab331be4a9807fca5c2b19cb6b0
 		return view('backend.admin.pages.ticket.index', compact('tickets', 'users', 'categories'));
 	}
 

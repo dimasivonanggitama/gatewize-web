@@ -174,6 +174,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Yugo\Moota\Providers\MootaServiceProvider::class,
+        Creativeorange\Gravatar\GravatarServiceProvider::class
 
     ],
 
@@ -225,6 +226,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Moota' => Yugo\Moota\Facades\Moota::class,
+        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
     ],
 
 ];
