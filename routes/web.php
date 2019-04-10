@@ -139,7 +139,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(
 
     Route::get('/transactions', 'Admin\TransactionController@index');
     Route::delete('/transactions/{transactionId}', 'Admin\TransactionController@destroy');
-    Route::put('/transactions/{transactionId}', 'Admin\TransactionController@update');
+    Route::post('/transactions/{transactionId}', 'Admin\TransactionController@approve');
 
     Route::get('/announcement', 'Admin\AnnouncementController@index')->name('announcement');
     Route::post('/announcement', 'Admin\AnnouncementController@store')->name('announcement.store');
