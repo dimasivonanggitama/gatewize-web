@@ -10,7 +10,7 @@
                         <i class="mdi mdi-cube text-danger icon-lg"></i>
                     </div>
                     <div class="float-right">
-                        <p class="mb-0 text-right">Deposit</p>
+                        <p class="mb-0 text-right">Balance</p>
                         <div class="fluid-container">
                             <h3 class="font-weight-medium text-right mb-0">Rp. {{ number_format(Auth::user()->balance) }}</h3>
                         </div>
@@ -115,8 +115,8 @@
                                     <p class="mb-0 font-weight-medium">{{ round(($statMonth['total'] / $services['digipos']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
                                 </div>
                                 <div class="progress">
-                                    @php 
-                                    $status = 'info'; 
+                                    @php
+                                    $status = 'info';
                                     if($statMonth['status'] == 'success')
                                         $status = 'success';
                                     else if($statMonth['status'] == 'failed')
@@ -159,8 +159,8 @@
                                     <p class="mb-0 font-weight-medium">{{ round(($statMonth['total'] / $services['gojek']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
                                 </div>
                                 <div class="progress">
-                                    @php 
-                                    $status = 'info'; 
+                                    @php
+                                    $status = 'info';
                                     if($statMonth['status'] == 'success')
                                         $status = 'success';
                                     else if($statMonth['status'] == 'failed')
@@ -203,8 +203,8 @@
                                     <p class="mb-0 font-weight-medium">{{ round(($statMonth['total'] / $services['ovo']['yearly'][($month - 1)]['total']) * 100, 2)}}%</p>
                                 </div>
                                 <div class="progress">
-                                    @php 
-                                    $status = 'info'; 
+                                    @php
+                                    $status = 'info';
                                     if($statMonth['status'] == 'success')
                                         $status = 'success';
                                     else if($statMonth['status'] == 'failed')

@@ -61,7 +61,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#service" aria-expanded="false" aria-controls="service">
-        <i class="menu-icon mdi mdi-currency-usd"></i>
+        <i class="menu-icon mdi mdi-apps"></i>
         <span class="menu-title">Service</span>
         <i class="menu-arrow"></i>
       </a>
@@ -86,9 +86,6 @@
                 <li class="nav-item">
                   <a class="nav-link"  href="{{ route('products.digipos') }}">Products</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Documentation</a>
-                </li>
               </ul>
             </div>
           </li>
@@ -110,9 +107,6 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('products.gojek') }}">Products</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Documentation</a>
                 </li>
               </ul>
             </div>
@@ -136,34 +130,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('products.ovo') }}">Products</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Documentation</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#linkaja" aria-expanded="false" aria-controls="linkaja">
-              <span class="menu-title">Link Aja!</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="linkaja">
-              <ul class="nav flex-column sub-menu" style="padding: 0 0 0 1rem;">
-                <li class="nav-item">
-                  <a class="nav-link" href="">Groups</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Accounts</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Reports</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Products</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Documentation</a>
-                </li>
               </ul>
             </div>
           </li>
@@ -172,8 +138,8 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#billingbalance" aria-expanded="false" aria-controls="billingbalance">
-        <i class="menu-icon mdi mdi-currency-usd"></i>
+      <a class="nav-link" data-toggle="collapse" href="#billingbalance" aria-expanded="true" aria-controls="billingbalance">
+        <i class="menu-icon mdi mdi-cash-usd"></i>
         <span class="menu-title">Billing & Balance</span>
         <i class="menu-arrow"></i>
       </a>
@@ -193,8 +159,8 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#support" aria-expanded="false" aria-controls="service">
-        <i class="menu-icon mdi mdi-currency-usd"></i>
+      <a class="nav-link" data-toggle="collapse" href="#support" aria-expanded="true" aria-controls="service">
+        <i class="menu-icon mdi mdi-lifebuoy"></i>
         <span class="menu-title">Support</span>
         <i class="menu-arrow"></i>
       </a>
