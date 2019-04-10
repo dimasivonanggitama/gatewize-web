@@ -64,6 +64,12 @@
         <span class="menu-title">Transaction</span>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('announcement') }}">
+        <i class="menu-icon mdi mdi-bell"></i>
+        <span class="menu-title">Announcement</span>
+      </a>
+    </li>
     @else
     <li class="nav-item">
       <a class="nav-link" href="{{ route('dashboard') }}">

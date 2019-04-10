@@ -93,32 +93,32 @@
 
 <!-- create modal -->
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Add Account</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <form class="forms-sample" method="POST" action="{{ route('accounts.store', $service) }}">
-            <div class="modal-body">
-                @csrf
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phoneadd" name="phone" placeholder="No. Telepon" value="{{ old('phone') }}" require>
-                    @if ($errors->first('phone'))
-                    <small class="text-danger">{{ $errors->first('phone') }}</small>
-                    @endif
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="forms-sample" method="POST" action="{{ route('accounts.store', $service) }}">
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phoneadd" name="phone" placeholder="No. Telepon" value="{{ old('phone') }}" require>
+                        @if ($errors->first('phone'))
+                        <small class="text-danger">{{ $errors->first('phone') }}</small>
+                        @endif
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 
 <!-- move modal -->
