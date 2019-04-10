@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.1.3",
         "barryvdh/laravel-dompdf": "^0.8.3",
+        "creativeorange/gravatar": "^1.0",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.8",
@@ -15,8 +16,8 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "rackbeat/laravel-ui-avatars": "^0.6.0",
-        "yugo/moota": "^1.2",
-        "spatie/laravel-activitylog" : "^2.0"
+        "spatie/laravel-activitylog": "^2.0",
+        "yugo/moota": "^1.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
