@@ -48,8 +48,20 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/admin/tickets">
-        <i class="menu-icon mdi mdi-ticket"></i>
+        <i class="menu-icon mdi mdi-ticket-account"></i>
         <span class="menu-title">Ticket</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/categories">
+        <i class="menu-icon mdi mdi-ticket"></i>
+        <span class="menu-title">Ticket Category</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/transactions">
+        <i class="menu-icon mdi mdi-rotate-3d"></i>
+        <span class="menu-title">Transaction</span>
       </a>
     </li>
     @else

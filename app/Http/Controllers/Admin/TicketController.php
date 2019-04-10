@@ -12,8 +12,10 @@ class TicketController extends Controller
 {
 	public function index()
 	{
+		$users = User::all();
 		$tickets = Ticket::all();
-		return view('backend.admin.pages.ticket.index', compact('tickets'));
+		$categories = Category::all();
+		return view('backend.admin.pages.ticket.index', compact('tickets', 'users', 'categories'));
 	}
 
 	public function store(Request $request)

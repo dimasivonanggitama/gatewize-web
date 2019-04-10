@@ -23,8 +23,8 @@
                     <tbody>
                         @foreach($tickets as $ticket)
                         <tr>
-                            <td>{{$ticket->user->name}}</td>
-                            <td>{{$ticket->category->name}}</td>
+                            <td>{{$ticket->user->fullname}}</td>
+                            <td>{{optional($ticket->category)->name}}</td>
                             <td>{{$ticket->ticket_id}}</td>
                             <td>{{$ticket->title}}</td>
                             <td style="white-space: normal;">{{$ticket->message}}</td>
@@ -34,7 +34,7 @@
                                 @elseif($ticket->priority == 'medium')
                                 <label class="badge badge-warning">{{$ticket->priority}}</label>
                                 @else
-                                <label class="badge badge-default">{{$ticket->priority}}</label>
+                                <label class="badge badge-primary">{{$ticket->priority}}</label>
                                 @endif
                             </td>
                             <td>
@@ -53,7 +53,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Are you user delete "{{$ticket->name}}" ?</h5>
+                                        <h5 class="modal-title">Are you user delete "{{$ticket->title}}" ?</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -73,7 +73,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Are you user delete "{{$ticket->name}}" ?</h5>
+                                        <h5 class="modal-title">Are you user delete "{{$ticket->title}}" ?</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -89,7 +89,7 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">User</label>
                                             <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="user_id">
-                                                <option default value="{{$ticket->user_id}}">{{$ticket->user->name}}</option>
+                                                <option default value="{{$ticket->user_id}}">{{$ticket->user->fullname}}</option>
                                                 @foreach($users as $user)
                                                 <option value="{{$user->id}}">{{$user->fullname}}</option>
                                                 @endforeach
@@ -98,7 +98,7 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">Category</label>
                                             <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="category_id">
-                                                <option default value="{{$ticket->category_id}}">{{$ticket->category->name}}</option>
+                                                <option default value="{{$ticket->category_id}}">{{optional($ticket->category)->name}}</option>
                                                 @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                                 @endforeach
@@ -107,6 +107,7 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">Priority</label>
                                             <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="priority">
+                                                <option default disabled></option>
                                                 <option value="low">Low</option>
                                                 <option value="medium">Medium</option>
                                                 <option value="high">High</option>
@@ -126,7 +127,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a class="btn btn-light" data-miss="modal">Cancel</a>
+                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
                                         <button type="submit" class="btn btn-success mr-2" style="float: right;">Update</button>
                                     </div>
                                 </form>
