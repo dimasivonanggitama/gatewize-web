@@ -99,7 +99,7 @@ Route::middleware('verified')->group(function () {
         Route::get('/', 'ProductController@index');
     });
 
-    Route::get('integration', 'IntegrationController@index')->name('integration');
+    Route::get('integration', 'Member\IntegrationController@index')->name('integration');
     Route::get('store', 'Member\StoreController@index')->middleware('role:normaluser')->name('store');
     Route::post('subscribe', 'Member\StoreController@subscribe')->middleware('role:normaluser');
 });
