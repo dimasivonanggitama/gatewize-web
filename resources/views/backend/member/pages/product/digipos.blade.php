@@ -129,7 +129,7 @@
                                             @foreach($smsProducts as $product)
                                             <tr role="row">
                                                 <td class="counterCell"></td>
-                                                <td>{{$product['productId']}}</td>
+                                                <td>{{$product['kodeProduk']}}</td>
                                                 <td>{{$product['productName']}}</td>
                                                 <td>{{(int)$product['price']}}</td>
                                             </tr>
