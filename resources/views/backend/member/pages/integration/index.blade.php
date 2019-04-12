@@ -163,9 +163,9 @@ $('#btnGenerate').on('click', function(){
         $("#trxSuspect").text('');
         $("#trxGagal").text('@STATUS:GAGAL@MSISDN: 085347440840@MESSAGE:TRANSAKSI GAGAL : GAGAL SAAT PEMBELIAN PRODUK@PRODUK:25000,1,025@IDTRX:44290993@');
 
-        if($("#tipeSelect option:select").val() == 'bulk') {
+        if($("#tipeSelect option:selected").val() == 'bulk') {
             optDesc += '<li><strong>&lt;PRODUK&gt; :</strong> Produk diisi dengan kode produk yang terdapat di menu Products, Limit Harga, dan Limit Los. (Contoh : 10000*10*2GB30H. 10000 = Limit Harga, 10 = Limit Los, 2GB30H = Kode Produk)</li>';
-        }  else if($("#tipeSelect option:select").val() == 'mkios') {
+        }  else if($("#tipeSelect option:selected").val() == 'mkios') {
             optDesc += '<li><strong>&lt;PRODUK&gt; :</strong> Produk diisi dengan nominal dan kode transaksi (Contoh: BULK * 25. Untuk pembelian pulsa dengan menggunakan saldo bulk, MKIOS * 10. Untuk pembelian pulsa dengan menggunakan stock mkios.)</li>';
         } else {
             optDesc += '<li><strong>&lt;PRODUK&gt; :</strong> Produk diisi dengan kode produk yang terdapat di Menu Products</li>';
@@ -203,7 +203,11 @@ $('#btnGenerate').on('click', function(){
             }
         }
         $("#listDesc").append($(optDesc));
-        $('#textUrl').text(url + $("#methodSelect").val() + '/{{Auth::user()->license_key}}' + '/' + $("#groupSelect").val() + '/<PIN>/' + $("#tipeSelect").val() + "/<PRODUK>/<TUJUAN>/<IDTRX>/string");
+
+        if(name != 'DIGIPOS')
+            $('#textUrl').text(url + $("#methodSelect").val() + '/{{Auth::user()->license_key}}' + '/' + $("#groupSelect").val() + '/<PIN>/' + $("#tipeSelect").val() + "/<PRODUK>/<TUJUAN>/<IDTRX>/string");
+        else
+            $('#textUrl').text(url + $("#methodSelect").val() + '/{{Auth::user()->license_key}}' + '/' + $("#accountSelect").val() + '/<PIN>/' + $("#tipeSelect").val() + "/<PRODUK>/<TUJUAN>/<IDTRX>/string");
     }
 });
 </script>
