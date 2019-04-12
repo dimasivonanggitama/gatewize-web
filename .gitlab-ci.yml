@@ -1,0 +1,64 @@
+image: php:7.2
+
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  BASE_DIR: "/home/gatewize"
+
+# Select what we should cache between builds
+cache:
+  paths:
+  - vendor/
+
+before_script:
+- apt-get update -yqq
+- apt-get install -yqq git libmcrypt-dev libpq-dev libcurl4-gnutls-dev libicu-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libsqlite3-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev
+- apt-get --yes --force-yes install git ssh rsync
+# Install PHP extensions
+- docker-php-ext-install pdo_pgsql curl json intl gd xml zip bz2 opcache
+# Install & enable Xdebug for code coverage reports
+- pecl install xdebug
+- docker-php-ext-enable xdebug
+# Install and run Composer
+- curl -sS https://getcomposer.org/installer | php
+- php composer.phar install
+
+test:
+  stage: test
+  script:
+  - vendor/bin/phpunit --configuration phpunit.xml --coverage-text --colors=never
+
+build:
+  stage: build
+  script:
+  - echo "build success"
+
+deploy to development:
+  stage: deploy
+  script:
+  - which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - 'echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - echo "${DEPLOYER_PRIVATE_KEY}" > "${HOME}/.ssh/id_rsa"
+  - chmod 400 ~/.ssh/id_rsa
+  - rsync -av --delete --exclude='.git/' -e "ssh -i ${HOME}/.ssh/id_rsa" ./ gatewize@$SERVER_HOST:${BASE_DIR}/development
+  only:
+  - develop
+
+deploy_to_live:
+  stage: deploy
+  script:
+  - which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - 'echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - echo "${DEPLOYER_PRIVATE_KEY}" > "${HOME}/.ssh/id_rsa"
+  - chmod 400 ~/.ssh/id_rsa
+  - rsync -av --delete --exclude='.git/' -e "ssh -i ${HOME}/.ssh/id_rsa" ./ gatewize@$SERVER_HOST:${BASE_DIR}/production
+  only:
+  - master
+  when: manual
