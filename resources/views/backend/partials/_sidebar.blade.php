@@ -4,7 +4,7 @@
       <div class="nav-link">
         <div class="user-wrapper">
           <div class="profile-image">
-            <img src="{{ Auth::user()->getAvatar() }}" alt="profile image">
+            <img src="{{ Gravatar::get(Auth::user()->email) }}" alt="Image">
           </div>
           <div class="text-wrapper">
             <p class="profile-name">{{ Auth::user()->fullname }}</p>
@@ -48,9 +48,38 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/admin/tickets">
-        <i class="menu-icon mdi mdi-ticket"></i>
+        <i class="menu-icon mdi mdi-ticket-account"></i>
         <span class="menu-title">Ticket</span>
       </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/categories">
+        <i class="menu-icon mdi mdi-ticket"></i>
+        <span class="menu-title">Ticket Category</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/transactions">
+        <i class="menu-icon mdi mdi-rotate-3d"></i>
+        <span class="menu-title">Transaction</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#announcement" aria-expanded="false" aria-controls="announcement">
+        <i class="menu-icon mdi mdi-bell"></i>
+        <span class="menu-title">Announcement</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="announcement">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('announcement') }}">List Announcement</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('announcement-category') }}">Category Announcement</a>
+          </li>
+        </ul>
+      </div>
     </li>
     @else
     <li class="nav-item">
@@ -61,7 +90,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#service" aria-expanded="false" aria-controls="service">
-        <i class="menu-icon mdi mdi-currency-usd"></i>
+        <i class="menu-icon mdi mdi-apps"></i>
         <span class="menu-title">Service</span>
         <i class="menu-arrow"></i>
       </a>
@@ -86,9 +115,6 @@
                 <li class="nav-item">
                   <a class="nav-link"  href="{{ route('products.digipos') }}">Products</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Documentation</a>
-                </li>
               </ul>
             </div>
           </li>
@@ -110,9 +136,6 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('products.gojek') }}">Products</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Documentation</a>
                 </li>
               </ul>
             </div>
@@ -136,34 +159,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('products.ovo') }}">Products</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Documentation</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#linkaja" aria-expanded="false" aria-controls="linkaja">
-              <span class="menu-title">Link Aja!</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="linkaja">
-              <ul class="nav flex-column sub-menu" style="padding: 0 0 0 1rem;">
-                <li class="nav-item">
-                  <a class="nav-link" href="">Groups</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Accounts</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Reports</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Products</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">Documentation</a>
-                </li>
               </ul>
             </div>
           </li>
@@ -172,8 +167,8 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#billingbalance" aria-expanded="false" aria-controls="billingbalance">
-        <i class="menu-icon mdi mdi-currency-usd"></i>
+      <a class="nav-link" data-toggle="collapse" href="#billingbalance" aria-expanded="true" aria-controls="billingbalance">
+        <i class="menu-icon mdi mdi-cash-usd"></i>
         <span class="menu-title">Billing & Balance</span>
         <i class="menu-arrow"></i>
       </a>
@@ -193,8 +188,8 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#support" aria-expanded="false" aria-controls="service">
-        <i class="menu-icon mdi mdi-currency-usd"></i>
+      <a class="nav-link" data-toggle="collapse" href="#support" aria-expanded="true" aria-controls="service">
+        <i class="menu-icon mdi mdi-lifebuoy"></i>
         <span class="menu-title">Support</span>
         <i class="menu-arrow"></i>
       </a>

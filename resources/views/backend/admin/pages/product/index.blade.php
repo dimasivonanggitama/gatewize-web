@@ -11,9 +11,11 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Code</th>
+                            <th>Termin</th>
+                            <th>Slot</th>
                             <th>Price</th>
-                            <th>Image</th>
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -21,11 +23,11 @@
                         @foreach($products as $product)
                         <tr>
                             <td>{{$product->name}}</td>
-                            <td style="white-space: normal;">{{$product->description}}</td>
+                            <td>{{$product->code}}</td>
+                            <td>{{$product->termin}}</td>
+                            <td>{{$product->slot}}</td>
                             <td>Rp. {{number_format($product->price, 0)}}</td>
-                            <td style="max-width: 150px;">
-                                <img src="/storage/{{$product->image}}" style="width: 100%; height: auto; border-radius: 0;">
-                            </td>
+                            <td style="white-space: normal;">{{$product->description}}</td>
                             <td>
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal-{{$product->id}}" style="padding: 0.5rem;">Edit</button>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{$product->id}}" style="padding: 0.5rem;">Delete</button>
@@ -60,7 +62,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form class="forms-sample" method="POST" action="/admin/products/{{$product->id}}" enctype="multipart/form-data">
+                                    <form class="forms-sample" method="POST" action="/admin/products/{{$product->id}}">
                                         <div class="modal-body">
                                           @csrf
                                           {{method_field('PUT')}}
@@ -92,23 +94,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="descriptionInput">Description</label> 
-                                        <textarea class="form-control" id="descriptionInput" rows="2" name="description">{{$product->slot}}</textarea> 
+                                        <textarea class="form-control" id="descriptionInput" rows="2" name="description">{{$product->description}}</textarea> 
                                         @if ($errors->has('description'))
                                         <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('description') }}</label>
-                                        @endif
-                                    </div>
-                                    <div class="form-group">
-                                        <img class="img-fluid mb-2" src="/storage/{{$product->image}}">
-                                        <label>File upload</label>
-                                        <input type="file" class="file-upload-default" name="image">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                            <span class="input-group-append">
-                                                <button class="file-upload-browse btn btn-info" type="button">Upload</button>
-                                            </span>
-                                        </div>
-                                        @if ($errors->has('image'))
-                                        <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('image') }}</label>
                                         @endif
                                     </div>
                                     <div class="form-group">
@@ -139,7 +127,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <a class="btn btn-light" data-miss="modal">Cancel</a>
+                                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
                                     <button type="submit" class="btn btn-success mr-2" style="float: right;">Update</button>
                                 </div>
                             </form>

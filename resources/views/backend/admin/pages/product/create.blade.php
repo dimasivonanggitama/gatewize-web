@@ -10,7 +10,7 @@
       <div class="card-body">
         <h4 class="card-title">New Product Form</h4>
 
-        <form class="forms-sample" method="POST" action="/admin/products/create" enctype="multipart/form-data">
+        <form class="forms-sample" method="POST" action="/admin/products/create">
           @csrf
           <div class="form-group">
             <label>Service</label>
@@ -42,19 +42,6 @@
             <textarea class="form-control" id="descriptionInput" rows="2" name="description"></textarea>
             @if ($errors->has('description'))
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('description') }}</label>
-            @endif
-          </div>
-          <div class="form-group">
-            <label>File upload</label>
-            <input type="file" class="file-upload-default" name="image">
-            <div class="input-group col-xs-12">
-              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-              <span class="input-group-append">
-                <button class="file-upload-browse btn btn-info" type="button">Upload</button>
-              </span>
-            </div>
-            @if ($errors->has('image'))
-            <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('image') }}</label>
             @endif
           </div>
           <div class="form-group">

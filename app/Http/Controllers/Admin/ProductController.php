@@ -37,22 +37,16 @@ class ProductController extends Controller
 			'code' => 'required',
 			'name' => 'required',
 			'description' => 'required',
-			// 'image' => 'required|image|mimes:jpeg,jpg,png,gif,svg',
 			'price' => 'required|integer',
 			'termin' => 'required|in:days,months,years',
 			'slot' => 'required|integer'
 		]);
-
-		if($request->hasFile('image')){
-			$path = $request->image->store('images/product', 'public');
-		}
 
 		Product::create([
 			'service_id' => $request->service_id,
 			'code' => $request->code,
 			'name' => $request->name,
 			'description' => $request->description,
-			// 'image' => $path,
 			'price' => $request->price,
 			'termin' => $request->termin,
 			'slot' => $request->slot
@@ -70,22 +64,16 @@ class ProductController extends Controller
 				'code' => 'required',
 				'name' => 'required',
 				'description' => 'required',
-				'image' => 'required|image|mimes:jpeg,jpg,png,gif,svg',
 				'price' => 'required|integer',
 				'termin' => 'required|in:days,months,years',
 				'slot' => 'required|integer'
 			]);
-
-			if($request->hasFile('image')){
-				$path = $request->image->store('images/product', 'public');
-			}
 
 			$product->update([
 				'service_id' => $request->service_id,
 				'code' => $request->code,
 				'name' => $request->name,
 				'description' => $request->description,
-				'image' => $path,
 				'price' => $request->price,
 				'termin' => $request->termin,
 				'slot' => $request->slot

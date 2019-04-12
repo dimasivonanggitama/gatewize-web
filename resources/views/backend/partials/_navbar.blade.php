@@ -12,28 +12,47 @@
             <span class="mdi mdi-menu"></span>
 		</button>
 		<ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-<!--           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="mdi mdi-elevation-rise"></i>Integration</a>
-          </li> -->
+            <li class="nav-item">
+            <a href="{{route('integration')}}" class="nav-link">
+              <i class="mdi mdi-newspaper"></i>News</a>
+          </li>
           <li class="nav-item">
-            <a href="/store" class="nav-link">
-              <i class="mdi mdi-bookmark-plus-outline"></i>Store</a>
+            <a href="{{route('integration')}}" class="nav-link">
+              <i class="mdi mdi-transit-connection-variant"></i>Integration</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('store')}}" class="nav-link">
+              <i class="mdi mdi-shopping"></i>Store</a>
           </li>
         </ul>
-		<ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-			<!-- {{-- <li class="nav-item">
-				<a href="#" class="nav-link">
-					<i class="mdi mdi-elevation-rise"></i>Deposit
-				</a>
-			</li> --}} -->
-		</ul>
+
 		<ul class="navbar-nav navbar-nav-right">
+        <li class="nav-item dropdown ml-4">
+              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                <i class="mdi mdi-bell-outline"></i>
+                <span class="count bg-success">4</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
+                <a class="dropdown-item py-3 border-bottom">
+                  <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
+                  <span class="badge badge-pill badge-primary float-right">View all</span>
+                </a>
+                <a class="dropdown-item preview-item py-3">
+                  <div class="preview-thumbnail">
+                    <i class="mdi mdi-alert m-auto text-primary"></i>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal text-dark mb-1">Application Error</h6>
+                    <p class="font-weight-light small-text mb-0"> Just now </p>
+                  </div>
+                </a>
+              </div>
+            </li>
 			<li class="nav-item">Balance : Rp. {{ number_format(Auth::user()->balance) }}</li>
 			<li class="nav-item dropdown d-none d-xl-inline-block">
 				<a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
 					<span class="profile-text">Hello, {{ Auth::user()->fullname }} !</span>
-					<img class="img-xs rounded-circle" src="{{ Auth::user()->getAvatar() }}" alt="Profile image">
+					<img class="img-xs rounded-circle" src="{{ Gravatar::get(Auth::user()->email) }}" alt="Image">
 				</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
 					<a class="dropdown-item mt-2" href="{{ route('profile') }}">

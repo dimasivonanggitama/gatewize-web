@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Member;
 
-use App\Http\Controllers\Controller;
 use App\DigiposClient;
 use App\GojekClient;
+use App\Http\Controllers\Controller;
 use App\OvoClient;
 use App\Product;
 use App\Service;
+use App\Transaction;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -33,35 +34,22 @@ class StoreController extends Controller
 		if ($product != null) {
 			$balanceLeft = $user->balance - $product->price;
 			if ($balanceLeft > 0) {
-				$client;
-				switch (strtolower($product->service->name)) {
-					case 'gojek':
-					$client = new GojekClient();
-					break;
-					case 'digipos':
-					$client = new DigiposClient();
-					break;
-					case 'ovo':
-					$client = new OvoClient();
-					break;
-				}
-				$response = $client->subscribe($user->id, $user->license_key, $product->slot, $product->service->settings);
-				if ($response['status']) {
-					$user->balanceHistories()->create([
-						'type' => 'credit',
-						'description' => 'Pembelian produk '. $product->name,
-						'last_balance' => $user->balance,
-						'update_balance' => $balanceLeft
-					]);
-					$user->update([
-						'balance' => $balanceLeft
-					]);
+				$user->balanceHistories()->create([
+					'type' => 'credit',
+					'description' => 'Pembelian produk '. $product->name,
+					'last_balance' => $user->balance,
+					'update_balance' => $balanceLeft
+				]);
+				$user->update([
+					'balance' => $balanceLeft
+				]);
+				Transaction::create([
+					'user_id' => $user->id,
+					'product_id' => $product->id
+				]);
 
-					activity("store")->log("Buy new product: $product->name");
-					flash('Product subscribe succeed.')->success();
-					return back();
-				}
-				flash('There\'s something wrong with server')->error();
+				activity("store")->log("Buy new product: $product->name");
+				flash('Product subscribe succeed.')->success();
 				return back();
 			}else{
 				flash('Your balance doesn\'t enough')->error();

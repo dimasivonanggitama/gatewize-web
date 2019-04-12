@@ -99,8 +99,8 @@ Route::middleware('verified')->group(function () {
         Route::get('/', 'ProductController@index');
     });
 
-    Route::get('integration', 'IntegrationController@index')->name('integration');
-    Route::get('store', 'Member\StoreController@index')->middleware('role:normaluser');
+    Route::get('integration', 'Member\IntegrationController@index')->name('integration');
+    Route::get('store', 'Member\StoreController@index')->middleware('role:normaluser')->name('store');
     Route::post('subscribe', 'Member\StoreController@subscribe')->middleware('role:normaluser');
 });
 
@@ -130,4 +130,24 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(
     Route::get('/tickets/create', 'Admin\TicketController@create');
     Route::delete('/tickets/{ticketId}', 'Admin\TicketController@destroy');
     Route::put('/tickets/{ticketId}', 'Admin\TicketController@update');
+
+
+    Route::get('/categories', 'Admin\CategoryController@index');
+    Route::post('/categories', 'Admin\CategoryController@store');
+    Route::delete('/categories/{categoryId}', 'Admin\CategoryController@destroy');
+    Route::put('/categories/{categoryId}', 'Admin\CategoryController@update');
+
+    Route::get('/transactions', 'Admin\TransactionController@index');
+    Route::delete('/transactions/{transactionId}', 'Admin\TransactionController@destroy');
+    Route::post('/transactions/{transactionId}', 'Admin\TransactionController@approve');
+
+    Route::get('/announcement', 'Admin\AnnouncementController@index')->name('announcement');
+    Route::post('/announcement', 'Admin\AnnouncementController@store')->name('announcement.store');
+    Route::delete('/announcement', 'Admin\AnnouncementController@destroy')->name('announcement.destroy');
+    Route::put('/announcement', 'Admin\AnnouncementController@update')->name('announcement.update');
+
+    Route::get('/announcement/category', 'Admin\AnnouncementCategoryController@index')->name('announcement-category');
+    Route::post('/announcement/category', 'Admin\AnnouncementCategoryController@store')->name('announcement-category.store');
+    Route::delete('/announcement/category', 'Admin\AnnouncementCategoryController@destroy')->name('announcement-category.destroy');
+    Route::put('/announcement/category', 'Admin\AnnouncementCategoryController@update')->name('announcement-category.update');
 });

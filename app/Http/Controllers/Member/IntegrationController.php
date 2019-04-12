@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Service;
+use Illuminate\Support\Facades\Auth;
 class IntegrationController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class IntegrationController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -23,6 +25,9 @@ class IntegrationController extends Controller
      */
     public function index()
     {
-        return view('backend.member.pages.integration.index');
+
+        $services = Service::all();
+        $user = auth()->user();
+        return view('backend.member.pages.integration.index', compact('services', 'user'));
     }
 }
