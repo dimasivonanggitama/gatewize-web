@@ -10,7 +10,6 @@
                 <table id="order-listing" class="table">
                     <thead>
                         <tr>
-                            <th>Name</th>
                             <th>Slug</th>
                             <th>Title</th>
                             <th>Content</th>
@@ -21,7 +20,6 @@
                     <tbody>
                         @foreach($news as $new)
                         <tr>
-                            <td>{{$new->name}}</td>
                             <td>{{$new->slug}}</td>
                             <td>{{$new->title}}</td>
                             <td style="white-space: normal;">{{$new->content}}</td>
@@ -37,7 +35,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Are you user delete "{{$new->name}}" ?</h5>
+                                        <h5 class="modal-title">Are you user delete "{{$new->title}}" ?</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -57,7 +55,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Are you user delete "{{$new->name}}" ?</h5>
+                                        <h5 class="modal-title">Edit {{$new->title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -66,20 +64,7 @@
                                         <div class="modal-body">
                                           @csrf
                                           {{method_field('PUT')}}
-                                          <div class="form-group">
-                                            <label for="nameInput">Name</label>
-                                            <input type="text" class="form-control" id="nameInput" placeholder="Name" name="name" value="{{$new->name}}"> 
-                                            @if ($errors->has('name'))
-                                            <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('name') }}</label>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="codeInput">Slug</label>
-                                            <input type="text" class="form-control" id="codeInput" placeholder="Slug" name="slug" value="{{$new->slug}}"> 
-                                            @if ($errors->has('slyg'))
-                                            <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('slug') }}</label>
-                                            @endif
-                                        </div>
+                                          <img class="img-fluid" src="/storage/{{$new->image}}" style="width: 50%; margin-left: 25%">
                                         <div class="form-group">
                                             <label for="nameInput">Title</label>
                                             <input type="text" class="form-control" id="nameInput" placeholder="Title" name="title" value="{{$new->title}}"> 
@@ -110,7 +95,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <a class="btn btn-light" data-miss="modal">Cancel</a>
-                                    <button type="submit" class="btn btn-success mr-2" style="float: right;">Update</button>
+                                    <button type="submit" class="btn btn-primary mr-2" style="float: right;">Update</button>
                                 </div>
                             </form>
                         </div>
