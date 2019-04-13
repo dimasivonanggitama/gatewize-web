@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-cube text-danger icon-lg"></i>
+                        <i class="mdi mdi-wallet text-success icon-lg"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Balance</p>
@@ -28,7 +28,7 @@
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-receipt text-warning icon-lg"></i>
+                        <i class="mdi mdi-apps text-primary icon-lg"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Service</p>
@@ -49,7 +49,7 @@
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
-                        <i class="mdi mdi-account-location text-info icon-lg"></i>
+                        <i class="mdi mdi-account-box text-info icon-lg"></i>
                     </div>
                     <div class="float-right">
                         <p class="mb-0 text-right">Akun</p>
