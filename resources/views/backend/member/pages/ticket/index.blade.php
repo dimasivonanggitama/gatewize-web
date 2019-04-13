@@ -25,7 +25,7 @@
 						<td>{{$ticket->category->name}}</td>
 						<td>{{$ticket->title}}</td>
 						<td>
-							@if($ticket->status == 'open')
+							@if($ticket->status == 'answered')
 							<label class="badge badge-success">{{$ticket->status}}</label>
 							@elseif($ticket->status == 'closed')
 							<label class="badge badge-danger">{{$ticket->status}}</label>
@@ -35,7 +35,7 @@
 						</td>
 						<td>{{$ticket->updated_at}}</td>
 						<td>
-							@if($ticket->status == "open")
+							@if($ticket->status != "closed")
 							<form action="{{route('ticket.close', $ticket->ticket_id)}}" method="POST" class="inline">
 								@csrf
 								<a href="{{route('ticket.show', $ticket->ticket_id)}}" class="btn btn-primary">View</a>

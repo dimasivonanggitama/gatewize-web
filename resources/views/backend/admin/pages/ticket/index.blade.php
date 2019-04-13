@@ -38,15 +38,18 @@
                             <td>
                                 @if($ticket->status == 'open')
                                 <label class="badge badge-success">{{$ticket->status}}</label>
+                                @elseif($ticket->status == 'closed')
+                                <label class="badge badge-danger">{{$ticket->status}}</label>
                                 @else
-                                <label class="badge badge-info">{{$ticket->status}}</label>
+                                <label class="badge badge-primary">{{$ticket->status}}</label>
                                 @endif
                             </td>
                             <td>
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewModal-{{$ticket->id}}" style="padding: 0.5rem;">View</button>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal-{{$ticket->id}}" style="padding: 0.5rem;">Comment</button>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#closeModal-{{$ticket->id}}" style="padding: 0.5rem;">Close</button>
+                                <a class="btn btn-primary" style="padding: 0.5rem;" href="/admin/tickets/{{$ticket->ticket_id}}">View</a>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{$ticket->id}}" style="padding: 0.5rem;">Delete</button>
+                                @if($ticket->status != 'closed')
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#closeModal-{{$ticket->id}}" style="padding: 0.5rem;">Close</button>
+                                @endif
                             </td>
                         </tr>
                         <div class="modal fade" id="deleteModal-{{$ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
@@ -108,43 +111,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="commentModal-{{$ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="commentModal" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <form action="/comment" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="ticket_id" value="{{$ticket->id}}">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">{{$ticket->title}}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label" for="exampleFormControlSelect1">User</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" value="{{$ticket->user->fullname}}" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleTextarea1">Message</label>
-                                                <textarea class="form-control" id="exampleTextarea1" rows="6" disabled>{{$ticket->message}}</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleTextarea1">Reply</label>
-                                                <textarea class="form-control" id="exampleTextarea1" rows="6" name="comment"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-light" data-dismiss="modal">Back</button>
-                                            <button type="submit" class="btn btn-primary mr-2" style="float: right;">Comment</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="modal fade" id="closeModal-{{$ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="closeModal" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">

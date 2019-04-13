@@ -19,13 +19,13 @@ class CommentsController extends Controller
 
 		$ticket = Ticket::findOrFail($request->input('ticket_id'));
 
-		if($ticket->status == "open"){
+		if($ticket->status != "closed"){
 			$comment = Comment::create([
 				'ticket_id' => $request->input('ticket_id'),
 				'user_id'    => Auth::user()->id,
 				'comment'    => $request->input('comment'),
 			]);
-
+			$ticket->update(['status' => 'open']);
 			// send mail if the user commenting is not the ticket owner
 			if ($comment->ticket->user->id !== Auth::user()->id) {
 				$mailer->sendTicketComments($comment->ticket->user, Auth::user(), $comment->ticket, $comment);

@@ -127,6 +127,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(
 
     Route::get('/tickets', 'Admin\TicketController@index');
     Route::post('/tickets', 'Admin\TicketController@store');
+    Route::get('/tickets/{ticketId}', 'Admin\TicketController@show');
     Route::get('/tickets/create', 'Admin\TicketController@create');
     Route::post('/tickets/{ticketId}/close', 'Admin\TicketController@close');
     Route::post('/tickets/comment', 'Admin\CommentsController@postComment');

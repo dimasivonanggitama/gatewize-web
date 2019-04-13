@@ -19,6 +19,18 @@ class TicketController extends Controller
 		return view('backend.admin.pages.ticket.index', compact('tickets', 'users', 'categories'));
 	}
 
+	public function show($ticketId)
+	{
+		$ticket = Ticket::where('ticket_id', $ticketId)->firstOrFail();
+
+		$comments = $ticket->comments;
+
+		$category = $ticket->category;
+
+		return view('backend.admin.pages.ticket.show', compact('ticket', 'category', 'comments'));
+	}
+
+
 	public function store(Request $request)
 	{
 		$this->validate($request, [
