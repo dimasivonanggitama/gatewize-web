@@ -131,6 +131,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(
     Route::delete('/tickets/{ticketId}', 'Admin\TicketController@destroy');
     Route::put('/tickets/{ticketId}', 'Admin\TicketController@update');
 
+    // Route::post('/tickets/{ticketId}/comment', 'Admin\CommentsController@store');
 
     Route::get('/categories', 'Admin\CategoryController@index');
     Route::post('/categories', 'Admin\CategoryController@store');

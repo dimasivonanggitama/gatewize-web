@@ -14,7 +14,7 @@
                             <th>Category</th>
                             <th>TicketID</th>
                             <th>Title</th>
-                            <th>Message</th>
+                            <!-- <th>Message</th> -->
                             <th>Priority</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -27,7 +27,7 @@
                             <td>{{optional($ticket->category)->name}}</td>
                             <td>{{$ticket->ticket_id}}</td>
                             <td>{{$ticket->title}}</td>
-                            <td style="white-space: normal;">{{$ticket->message}}</td>
+                            <!-- <td style="white-space: normal;">{{$ticket->message}}</td> -->
                             <td>
                                 @if($ticket->priority == 'high')
                                 <label class="badge badge-danger">{{$ticket->priority}}</label>
@@ -45,7 +45,9 @@
                                 @endif
                             </td>
                             <td>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal-{{$ticket->id}}" style="padding: 0.5rem;">Edit</button>
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewModal-{{$ticket->id}}" style="padding: 0.5rem;">View</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal-{{$ticket->id}}" style="padding: 0.5rem;">Comment</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#closeModal-{{$ticket->id}}" style="padding: 0.5rem;">Close</button>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{$ticket->id}}" style="padding: 0.5rem;">Delete</button>
                             </td>
                         </tr>
@@ -69,77 +71,107 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="editModal-{{$ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+                        <div class="modal fade" id="viewModal-{{$ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="viewModal" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Are you user delete "{{$ticket->title}}" ?</h5>
+                                        <h5 class="modal-title">{{$ticket->title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form class="forms-sample" method="POST" action="/admin/tickets/{{$ticket->id}}" enctype="multipart/form-data">
-                                        <div class="modal-body">
-                                          @csrf
-                                          @method('PUT')
-                                          <div class="form-group">
-                                            <label for="exampleInputName1">Title</label>
-                                            <input type="text" class="form-control" id="exampleInputName1" name="title">
+                                    <div class="modal-body">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="exampleFormControlSelect1">User</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="" value="{{$ticket->user->fullname}}" disabled>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect1">User</label>
-                                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="user_id">
-                                                <option default value="{{$ticket->user_id}}">{{$ticket->user->fullname}}</option>
-                                                @foreach($users as $user)
-                                                <option value="{{$user->id}}">{{$user->fullname}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Category</label>
-                                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="category_id">
-                                                <option default value="{{$ticket->category_id}}">{{optional($ticket->category)->name}}</option>
-                                                @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Priority</label>
-                                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="priority">
-                                                <option default disabled></option>
-                                                <option value="low">Low</option>
-                                                <option value="medium">Medium</option>
-                                                <option value="high">High</option>
-                                            </select>
+                                        <div class="form-group row">
+                                            <label for="exampleFormControlSelect1" class="col-sm-3 col-form-label">Priority</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="" disabled value="{{$ticket->priority}}">
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleTextarea1">Message</label>
-                                            <textarea class="form-control" id="exampleTextarea1" rows="6" name="message">{{$ticket->message}}</textarea>
+                                            <textarea class="form-control" id="exampleTextarea1" rows="6" name="message" disabled>{{$ticket->message}}</textarea>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Status</label>
-                                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="status">
-                                                <option value="open">Open</option>
-                                                <option value="closed">Closed</option>
-                                            </select>
+                                        <div class="form-group row">
+                                            <label for="exampleFormControlSelect1" class="col-form-label col-sm-3">Status</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="" disabled="" value="{{$ticket->status}}">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-success mr-2" style="float: right;">Update</button>
+                                        <button type="button" class="btn btn-light" data-dismiss="modal">Back</button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
-                </tbody>
-            </table>
+                        <div class="modal fade" id="commentModal-{{$ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="commentModal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form action="/comment" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="ticket_id" value="{{$ticket->id}}">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">{{$ticket->title}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" for="exampleFormControlSelect1">User</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" value="{{$ticket->user->fullname}}" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleTextarea1">Message</label>
+                                                <textarea class="form-control" id="exampleTextarea1" rows="6" disabled>{{$ticket->message}}</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleTextarea1">Reply</label>
+                                                <textarea class="form-control" id="exampleTextarea1" rows="6" name="comment"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-dismiss="modal">Back</button>
+                                            <button type="submit" class="btn btn-primary mr-2" style="float: right;">Comment</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="closeModal-{{$ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="closeModal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Are you user closing "{{$ticket->title}}" ?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form class="forms-sample" method="POST" action="/ticket/{{$ticket->ticket_id}}/close">
+                                            @csrf
+                                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary" id="btn-update">Close</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
 @section('custom_js')
