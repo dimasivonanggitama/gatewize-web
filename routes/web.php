@@ -128,10 +128,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:superadmin'], function(
     Route::get('/tickets', 'Admin\TicketController@index');
     Route::post('/tickets', 'Admin\TicketController@store');
     Route::get('/tickets/create', 'Admin\TicketController@create');
+    Route::post('/tickets/{ticketId}/close', 'Admin\TicketController@close');
+    Route::post('/tickets/comment', 'Admin\CommentsController@postComment');
     Route::delete('/tickets/{ticketId}', 'Admin\TicketController@destroy');
     Route::put('/tickets/{ticketId}', 'Admin\TicketController@update');
 
-    // Route::post('/tickets/{ticketId}/comment', 'Admin\CommentsController@store');
 
     Route::get('/categories', 'Admin\CategoryController@index');
     Route::post('/categories', 'Admin\CategoryController@store');

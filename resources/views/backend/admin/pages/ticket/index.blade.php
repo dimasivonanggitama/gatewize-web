@@ -14,7 +14,6 @@
                             <th>Category</th>
                             <th>TicketID</th>
                             <th>Title</th>
-                            <!-- <th>Message</th> -->
                             <th>Priority</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -27,7 +26,6 @@
                             <td>{{optional($ticket->category)->name}}</td>
                             <td>{{$ticket->ticket_id}}</td>
                             <td>{{$ticket->title}}</td>
-                            <!-- <td style="white-space: normal;">{{$ticket->message}}</td> -->
                             <td>
                                 @if($ticket->priority == 'high')
                                 <label class="badge badge-danger">{{$ticket->priority}}</label>
@@ -157,7 +155,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-footer">
-                                        <form class="forms-sample" method="POST" action="/ticket/{{$ticket->ticket_id}}/close">
+                                        <form class="forms-sample" method="POST" action="/admin/tickets/{{$ticket->ticket_id}}/close">
                                             @csrf
                                             <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
                                             <button type="submit" class="btn btn-primary" id="btn-update">Close</button>

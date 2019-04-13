@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Mailers\AppMailer;
 use App\Ticket;
 use App\User;
 use Illuminate\Http\Request;
@@ -77,5 +78,21 @@ class TicketController extends Controller
 		}
 		flash('Ticket has been deleted.')->success();
 		return back();
+	}
+	public function close($ticket_id, AppMailer $mailer)
+	{
+		$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+
+		$ticket->status = 'closed';
+
+		$ticket->save();
+
+		$ticketOwner = $ticket->user;
+
+		$mailer->sendTicketStatusNotification($ticketOwner, $ticket);
+
+		activity("ticket")->log("Close Ticket ID: #$ticket_id");
+
+		return redirect()->back()->with("status", "The ticket has been closed.");
 	}
 }
