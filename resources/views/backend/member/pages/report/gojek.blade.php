@@ -36,6 +36,24 @@
                 </div>
             </div>
         </div>
+		<hr>
+		<div class="row">
+			<p class="form-text text-muted"><small>Filter:</small></p>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">Limit</label>
+					<input class="form-control form-control-lg" id="limitInput">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">Post</label>
+					<input class="form-control form-control-lg" id="limitInput">
+				</div>
+			</div>
+		</div>
     </div>
 </div>
 <div class="card mt-4">
