@@ -10,20 +10,6 @@
         <form class="forms-sample" method="POST" action="/admin/news" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
-            <label for="nameInput">Name</label>
-            <input type="text" class="form-control" id="nameInput" placeholder="Name" name="name">
-            @if ($errors->has('name'))
-            <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('name') }}</label>
-            @endif
-          </div>
-          <div class="form-group">
-            <label for="codeInput">Slug</label>
-            <input type="text" class="form-control" id="codeInput" placeholder="Slug" name="slug">
-            @if ($errors->has('slyg'))
-            <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('slug') }}</label>
-            @endif
-          </div>
-          <div class="form-group">
             <label for="nameInput">Title</label>
             <input type="text" class="form-control" id="nameInput" placeholder="Title" name="title">
             @if ($errors->has('title'))
@@ -50,7 +36,7 @@
             <label id="firstname-error" class="error mt-2 text-danger" for="firstname">{{ $errors->first('image') }}</label>
             @endif
           </div>
-          <button type="submit" class="btn btn-success mr-2" style="float: right;">Submit</button>
+          <button type="submit" class="btn btn-primary mr-2" style="float: right;">Submit</button>
           <a class="btn btn-light" href="/admin/news">Cancel</a>
         </form>
       </div>

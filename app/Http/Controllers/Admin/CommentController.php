@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Comment;
@@ -25,7 +25,7 @@ class CommentsController extends Controller
 				'user_id'    => Auth::user()->id,
 				'comment'    => $request->input('comment'),
 			]);
-			$ticket->update(['status' => 'open']);
+			$ticket->update(['status' => 'answered']);
 			// send mail if the user commenting is not the ticket owner
 			if ($comment->ticket->user->id !== Auth::user()->id) {
 				$mailer->sendTicketComments($comment->ticket->user, Auth::user(), $comment->ticket, $comment);
@@ -38,22 +38,5 @@ class CommentsController extends Controller
 		}
 
 		return redirect()->back()->with("status", $status);
-	}
-
-	public function close($ticket_id, AppMailer $mailer)
-	{
-		$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
-
-		$ticket->status = 'closed';
-
-		$ticket->save();
-
-		$ticketOwner = $ticket->user;
-
-		$mailer->sendTicketStatusNotification($ticketOwner, $ticket);
-
-		activity("ticket")->log("Close Ticket ID: #$ticket_id");
-
-		return redirect()->back()->with("status", "The ticket has been closed.");
 	}
 }

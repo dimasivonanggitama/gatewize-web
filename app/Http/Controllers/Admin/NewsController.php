@@ -17,24 +17,30 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'slug' => 'required',
             'title' => 'required',
             'content' => 'required',
-            'image' => 'required|image'
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
         ]);    	
         if ($request->hasFile('image')) {
             $path = $request->image->store('images/news', 'public');
         }
         News::create([
-            'name' => $request->name,
-            'slug' => $request->slug,
+            'slug' => $this->createSlug($request->title),
             'title' => $request->title,
             'content' => $request->content,
             'image' => $path
         ]);
         flash('News has been created.')->success();
         return redirect('/admin/news');
+    }
+
+    protected function createSlug($string)
+    {
+        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+        $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+        $string = strtolower($string); // Convert to lowercase
+
+        return $string;
     }
 
     public function create()
@@ -47,8 +53,6 @@ class NewsController extends Controller
         $news = News::find($newsId);
         if ($news != null) {
             $this->validate($request, [
-                'name' => 'required',
-                'slug' => 'required',
                 'title' => 'required',
                 'content' => 'required',
             ]);     
@@ -57,8 +61,7 @@ class NewsController extends Controller
                 $path = $request->image->store('images/news', 'public');
             }
             $news->update([
-                'name' => $request->name ?: $news->name,
-                'slug' => $request->slug ?: $news->slug,
+                'slug' => $this->createSlug($request->title),
                 'title' => $request->title ?: $news->title,
                 'content' => $request->content ?: $news->content,
                 'image' => $path ?: $news->image

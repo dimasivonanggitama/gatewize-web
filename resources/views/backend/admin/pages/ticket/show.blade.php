@@ -74,7 +74,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">Tambahkan Jawaban</div>
-                <form class="forms-sample" method="POST" action="{{ route('comment.store') }}">
+                <form class="forms-sample" method="POST" action="/admin/tickets/comment">
                     {{csrf_field()}}
                     <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
                     <div class="form-group">
@@ -88,5 +88,4 @@
     </div>
     @endif
 </div>
-
 @endsection

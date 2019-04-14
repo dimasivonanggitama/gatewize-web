@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-         @if(!Auth::user()->isAdmin())
+        @if(!Auth::user()->isAdmin())
         <a href="{{ route('deposit.add') }}" class="btn btn-success btn-block">Deposit
           <i class="mdi mdi-plus"></i>
         </a>
@@ -47,22 +47,33 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/admin/tickets">
-        <i class="menu-icon mdi mdi-ticket-account"></i>
-        <span class="menu-title">Ticket</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/admin/categories">
-        <i class="menu-icon mdi mdi-ticket"></i>
-        <span class="menu-title">Ticket Category</span>
-      </a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" href="/admin/transactions">
         <i class="menu-icon mdi mdi-rotate-3d"></i>
         <span class="menu-title">Transaction</span>
       </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/services">
+        <i class="menu-icon mdi mdi-cloud-braces"></i>
+        <span class="menu-title">Services</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#tickets" aria-expanded="false" aria-controls="announcement">
+        <i class="menu-icon mdi mdi-ticket-account"></i>
+        <span class="menu-title">Ticket</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="tickets">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/tickets">List Ticket</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/categories">Category Ticket</a>
+          </li>
+        </ul>
+      </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#announcement" aria-expanded="false" aria-controls="announcement">
