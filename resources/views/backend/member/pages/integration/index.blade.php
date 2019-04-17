@@ -140,7 +140,7 @@ $('select#serviceSelect').on('change', function(){
                 $('#tipeSelect').append($('<option disabled selected value=""></option>'))
                 $('#tipeSelect').append($('<option value="transfer">GOPAY</option>'))
                 $('#tipeSelect').append($('<option value="token">PLN</option>'))
-                // $('#tipeSelect').append($('<option value="voucher">PULSA</option>'))
+                $('#tipeSelect').append($('<option value="pulsa">PULSA</option>'))
             }
             $('#col-groups').show();
             $('#col-accounts').hide();

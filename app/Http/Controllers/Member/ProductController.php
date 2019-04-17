@@ -28,7 +28,7 @@ class ProductController extends Controller
 	{
 		$client = new GojekClient();
 		$license = auth()->user()->license_key;
-		$tsProducts = $client->pulsaProducts($license, '082268888859');
+		$tsProducts = $client->pulsaProducts($license, '082268888860');
 		$xlProducts = $client->pulsaProducts($license, '087880892109');
 		$axProducts = $client->pulsaProducts($license, '083808921095');
 		$thProducts = $client->pulsaProducts($license, '08973502424');
