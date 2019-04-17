@@ -54,7 +54,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>          
+                            <tbody>
                                 @php ($no = 1)
                                 @foreach ($accounts as $account)
                                 <tr role="row">
@@ -274,7 +274,7 @@
             } else {
                 swal({
                     title: 'Update Gagal',
-                    text: "Silahkan coba lagi",
+                    text: data.message,
                     icon: 'error',
                 })
             }
@@ -288,7 +288,7 @@
         let token = $('#token-update').val()
         let otp = $('#otp-update').val()
         $.post('https://api.gatewize.com/devel-gopay/account/'+ license +'/'+ groupId +'/'+ phone +'/verify',
-            {   token: token, 
+            {   token: token,
                 otp: otp,
             }, function(data){
                 if(data.status){
@@ -322,7 +322,7 @@
                     voucher.status+"</td><td>"+
                     voucher.title+"</td><td>"+
                     voucher.expiry_date+"</td></tr>");
-            }            
+            }
         })
     })
 </script>
